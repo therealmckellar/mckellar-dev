@@ -1,0 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #07091A;
+    color: #E2E8F5;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Minimal, professional radial gradient — no starfields */
+    background-image:
+      radial-gradient(ellipse at 25% 0%, rgba(79, 110, 247, 0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 75% 100%, rgba(79, 110, 247, 0.03) 0%, transparent 50%);
+    background-attachment: fixed;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 1.25rem;
+  }
+}
+
+@layer utilities {
+  /* ── Animation ───────────────────────────────────────────────────────────── */
+  .animate-fade-in {
+    animation-fill-mode: forwards !important;
+  }
+
+  /* ── Avatar ──────────────────────────────────────────────────────────────── */
+  .avatar-wrap {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: #111528;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ── Credential pill ─────────────────────────────────────────────────────── */
+  .cred-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: #7A8BAD;
+    white-space: nowrap;
+  }
+
+  /* ── Section label ───────────────────────────────────────────────────────── */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #3B4A68;
+  }
+
+  /* ── Pro card base ───────────────────────────────────────────────────────── */
+  .pro-card {
+    width: 100%;
+    background: #0B0E20;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.875rem;
+    padding: 1.125rem;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  /* ── Spoke card variants ─────────────────────────────────────────────────── */
+  .spoke-ai {
+    border-color: rgba(79, 110, 247, 0.22);
+  }
+  .spoke-ai:hover {
+    border-color: rgba(79, 110, 247, 0.42);
+    background: #0C1026;
+  }
+  .spoke-ai-accent { color: #818CF8; }
+
+  .spoke-mca {
+    border-color: rgba(201, 151, 58, 0.22);
+  }
+  .spoke-mca:hover {
+    border-color: rgba(201, 151, 58, 0.42);
+    background: #0E0D1F;
+  }
+  .spoke-mca-accent { color: #D4A843; }
+
+  .spoke-re {
+    border-color: rgba(20, 184, 166, 0.22);
+  }
+  .spoke-re:hover {
+    border-color: rgba(20, 184, 166, 0.42);
+    background: #0A1020;
+  }
+  .spoke-re-accent { color: #2DD4BF; }
+
+  /* ── Spoke badge ─────────────────────────────────────────────────────────── */
+  .spoke-badge {
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+  }
+
+  .spoke-badge-blue {
+    background: rgba(79, 110, 247, 0.12);
+    color: #818CF8;
+    border: 1px solid rgba(79, 110, 247, 0.22);
+  }
+
+  .spoke-badge-gold {
+    background: rgba(201, 151, 58, 0.12);
+    color: #D4A843;
+    border: 1px solid rgba(201, 151, 58, 0.22);
+  }
+
+  .spoke-badge-teal {
+    background: rgba(20, 184, 166, 0.12);
+    color: #2DD4BF;
+    border: 1px solid rgba(20, 184, 166, 0.22);
+  }
+
+  /* ── Spoke sub-link ──────────────────────────────────────────────────────── */
+  .spoke-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.625rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: #7A8BAD;
+    font-size: 0.8125rem;
+    transition: all 0.15s ease;
+  }
+
+  .spoke-link:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: #E2E8F5;
+  }
+
+  /* ── Link row (general links) ────────────────────────────────────────────── */
+  .link-row {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    width: 100%;
+    padding: 0.875rem 1.125rem;
+    background: #0B0E20;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.875rem;
+    text-decoration: none;
+    color: #E2E8F5;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    cursor: pointer;
+  }
+
+  .link-row:hover {
+    border-color: rgba(255, 255, 255, 0.13);
+    background: #111528;
+  }
+
+  .link-row-icon {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Primary CTA button ──────────────────────────────────────────────────── */
+  .btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: #4F6EF7;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.875rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: #6B86F8;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(79, 110, 247, 0.28);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  /* ── Social icon button ──────────────────────────────────────────────────── */
+  .social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #7A8BAD;
+    transition: all 0.15s ease;
+  }
+
+  .social-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.13);
+    color: #E2E8F5;
+  }
+
+  /* ── Thin divider ────────────────────────────────────────────────────────── */
+  .rule {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
