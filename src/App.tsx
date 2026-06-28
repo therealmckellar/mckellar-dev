@@ -39,7 +39,7 @@ const App: React.FC = () => {
         accent="blue"
         title="AI Adoption & Integration"
         badge="Consulting Open"
-        description="Enterprise AI strategy, custom agent workflows, and automation systems that replace repetitive processes and scale with your team."
+        description="AI agent adoption and deployment, technical adoption and sales consulting, and seamless integration of custom intelligent workflows that scale."
         links={[
           { label: 'Hermes AI Agent', href: 'https://hermes.mckellar.dev', rel: 'me author noopener noreferrer' },
           { label: 'Technical Consulting', href: '#contact' },
@@ -52,8 +52,8 @@ const App: React.FC = () => {
       <SpokeCard
         accent="gold"
         title="Merchant Cash Advance"
-        badge="$27M+ Funded"
-        description="15+ years building and advising MCA / RBF platforms — underwriting frameworks, ISO channel strategy, investor reporting, and deal flow at scale."
+        badge="$100M+ Personally Funded"
+        description="15+ years building and advising MCA / RBF platforms. C-suite executive formerly on the Whetstone Holdings executive team — expert in underwriting frameworks, ISO channel strategy, investor reporting, and scaling deal flow."
         links={[
           { label: 'My Commercial Funding', href: 'https://mycommercialfunding.com', rel: 'me author noopener noreferrer' },
           { label: 'Platform Advisory & Consulting', href: '#contact' },
@@ -61,23 +61,10 @@ const App: React.FC = () => {
         animationDelay={400}
       />
 
-      {/* ── Real Estate ── */}
-      <SpokeCard
-        accent="teal"
-        title="Real Estate"
-        badge="Licensed · 11+ Years"
-        description="Licensed salesperson with a focus on CRM systems, marketing automation, and lead generation technology for property professionals."
-        links={[
-          { label: 'Funded — Real Estate CRM', href: 'https://funded.com.au', rel: 'me author noopener noreferrer' },
-          { label: 'Marketing Systems', href: '#contact' },
-        ]}
-        animationDelay={480}
-      />
-
       {/* ── Section label ── */}
       <p
         className="section-label px-0.5 mt-1 animate-fade-in"
-        style={{ animationDelay: '540ms' }}
+        style={{ animationDelay: '480ms' }}
       >
         Ventures
       </p>
@@ -89,7 +76,7 @@ const App: React.FC = () => {
         rel="me author noopener noreferrer"
         id="link-robbi-promotional"
         className="link-row animate-fade-in"
-        style={{ animationDelay: '580ms' }}
+        style={{ animationDelay: '520ms' }}
       >
         <div className="link-row-icon">
           <span aria-hidden="true">👕</span>
@@ -112,7 +99,7 @@ const App: React.FC = () => {
         rel="me author noopener noreferrer"
         id="link-my-commercial-funding"
         className="link-row animate-fade-in"
-        style={{ animationDelay: '640ms' }}
+        style={{ animationDelay: '580ms' }}
       >
         <div className="link-row-icon">
           <span aria-hidden="true">💼</span>
@@ -135,7 +122,7 @@ const App: React.FC = () => {
         rel="noopener noreferrer"
         id="cta-schedule-call"
         className="btn-primary animate-fade-in mt-1"
-        style={{ animationDelay: '700ms' }}
+        style={{ animationDelay: '640ms' }}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -144,7 +131,7 @@ const App: React.FC = () => {
       </a>
 
       {/* ── Footer ── */}
-      <div className="mt-4 flex flex-col items-center gap-4 animate-fade-in" style={{ animationDelay: '760ms' }}>
+      <div className="mt-4 flex flex-col items-center gap-4 animate-fade-in" style={{ animationDelay: '700ms' }}>
         <div className="rule w-full" />
         <SocialFooter />
         <p className="text-[11px] font-mono text-on-surface-subtle text-center">

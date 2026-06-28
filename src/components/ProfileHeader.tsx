@@ -2,11 +2,10 @@ import React from 'react'
 import Avatar from './Avatar'
 
 const credentials = [
-  'CRO · Arcarius',
-  'VP · Whetstone',
-  '$27M+ Funded',
+  'Former VP and Executive Board - Whetstone Holdings (dba Everest Funding, Vader Funding, Granite Mountain Funding)',
+  'C-Suite Executive Experience',
+  '$100M+ Personally Funded',
   '15+ Yrs MCA',
-  'Licensed RE Agent',
 ]
 
 /** Profile hub: avatar, name, headline, credential pills */
