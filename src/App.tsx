@@ -69,29 +69,6 @@ const App: React.FC = () => {
         Ventures
       </p>
 
-      {/* ── Robbi Promotional ── */}
-      <a
-        href="https://robbi.com.au"
-        target="_blank"
-        rel="me author noopener noreferrer"
-        id="link-robbi-promotional"
-        className="link-row animate-fade-in"
-        style={{ animationDelay: '520ms' }}
-      >
-        <div className="link-row-icon">
-          <span aria-hidden="true">👕</span>
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="font-display font-semibold text-[14px] text-on-surface leading-snug">
-            Robbi Promotional
-          </p>
-          <p className="text-xs text-on-surface-muted mt-0.5">
-            Senior Sales Manager · Premium Branded Merchandise
-          </p>
-        </div>
-        <Chevron />
-      </a>
-
       {/* ── My Commercial Funding ── */}
       <a
         href="https://mycommercialfunding.com"
@@ -99,7 +76,7 @@ const App: React.FC = () => {
         rel="me author noopener noreferrer"
         id="link-my-commercial-funding"
         className="link-row animate-fade-in"
-        style={{ animationDelay: '580ms' }}
+        style={{ animationDelay: '520ms' }}
       >
         <div className="link-row-icon">
           <span aria-hidden="true">💼</span>
@@ -122,7 +99,7 @@ const App: React.FC = () => {
         rel="noopener noreferrer"
         id="cta-schedule-call"
         className="btn-primary animate-fade-in mt-1"
-        style={{ animationDelay: '640ms' }}
+        style={{ animationDelay: '580ms' }}
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -131,7 +108,7 @@ const App: React.FC = () => {
       </a>
 
       {/* ── Footer ── */}
-      <div className="mt-4 flex flex-col items-center gap-4 animate-fade-in" style={{ animationDelay: '700ms' }}>
+      <div className="mt-4 flex flex-col items-center gap-4 animate-fade-in" style={{ animationDelay: '640ms' }}>
         <div className="rule w-full" />
         <SocialFooter />
         <p className="text-[11px] font-mono text-on-surface-subtle text-center">
