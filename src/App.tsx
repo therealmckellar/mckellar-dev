@@ -30,7 +30,7 @@ const FinanceIcon = () => (
   </svg>
 )
 
-// ─── FAQ QA Pairs (AEO/GEO & Search Engine optimized) ─────────────────────────
+// ─── FAQ QA Pairs (Optimized for search engines and direct queries) ───────────────────
 interface FaqItem {
   question: string
   answer: string
@@ -39,7 +39,7 @@ interface FaqItem {
 const faqData: FaqItem[] = [
   {
     question: "What consulting services does Richard McKellar provide?",
-    answer: "Richard provides expert consulting through a dual Hub & Spoke system. Focus Spoke A covers AI Adoption & Integration, delivering custom intelligent agent deployments, backend workflow automation, and technical sales strategy. Focus Spoke B covers Merchant Cash Advance (MCA) advisory, helping investors launch direct funding operations or brokerages, and assisting existing MCA owners to scale sales teams, refine underwriting models, and adopt modern tech workflows."
+    answer: "Richard provides expert consulting across technology adoption and alternative asset finance. His practice areas include AI Adoption & Integration (delivering custom intelligent agent deployments, backend workflow automation, and technical sales strategy) and Merchant Cash Advance (MCA) advisory (assisting with direct lending operations, brokerages, CRM scaling, and underwriting workflows)."
   },
   {
     question: "What is Richard McKellar's professional background in Merchant Cash Advance (MCA)?",
@@ -47,11 +47,11 @@ const faqData: FaqItem[] = [
   },
   {
     question: "How does the AI Adoption consulting help businesses?",
-    answer: "Richard works with businesses to audit operations and identify workflow bottlenecks. He designs and deploys custom AI workflows, integrates autonomous AI agents (such as the Hermes AI Agent framework), and sets up sales intelligence pipelines to automate lead routing and client interactions, unlocking high-velocity growth."
+    answer: "Richard works with businesses to audit operations and identify workflow bottlenecks. He designs and deploys custom AI workflows, integrates autonomous AI agents, and sets up sales intelligence pipelines to automate routing and client interactions, unlocking high-velocity growth."
   },
   {
     question: "Where is Richard McKellar located and how can I book a call?",
-    answer: "Richard is based in Morristown, New Jersey, and consults globally. You can schedule a direct discovery call through his integrated Calendly link, or submit a custom advisory request using the glassmorphic lead capture form at the bottom of the page."
+    answer: "Richard is based in Morristown, New Jersey, and consults globally. You can schedule a direct discovery call through his integrated Calendly link, or submit a custom advisory request using the contact form at the bottom of the page."
   }
 ]
 
@@ -84,8 +84,8 @@ const App: React.FC = () => {
   // FAQ accordion open states (tracks index of open FAQ, null if none open)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0)
 
-  // Lead Form states
-  const [interest, setInterest] = useState<'ai' | 'mca' | 'both'>('both')
+  // Contact Form states
+  const [interest, setInterest] = useState<'ai' | 'mca_lending' | 'mca_brokerage'>('mca_lending')
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success'>('idle')
 
@@ -106,8 +106,8 @@ const App: React.FC = () => {
     }, 1200)
   }
 
-  const triggerSpokeInquiry = (spokeType: 'ai' | 'mca') => {
-    setInterest(spokeType)
+  const triggerPracticeInquiry = (practiceType: 'ai' | 'mca_lending' | 'mca_brokerage') => {
+    setInterest(practiceType)
     const element = document.getElementById('inquire')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -280,66 +280,90 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* ── 2. Spokes Section (Dual Offerings) ── */}
+        {/* ── 2. Advisory Areas Section ── */}
         <section id="focus" className="flex flex-col gap-6 animate-fade-in" style={{ animationDelay: '400ms' }}>
           <div className="text-center sm:text-left">
             <p className="section-label mb-2">Core Competencies</p>
             <h2 className="font-display font-extrabold text-[28px] sm:text-[34px] leading-tight text-on-surface">
-              Strategic Advisory Spokes
+              Strategic Advisory Areas
             </h2>
             <p className="text-sm text-on-surface-muted mt-2 max-w-xl">
-              Richard operates a high-impact Hub &amp; Spoke strategy, providing targeted advisory services for technology adoption and alternative asset finance.
+              Richard provides targeted advisory services for technology adoption and alternative asset finance.
             </p>
           </div>
 
-          {/* Side-by-side or stacked Grid layout */}
-          <div className="max-w-3xl mx-auto w-full mt-2">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          {/* 3-column responsive layout */}
+          <div className="max-w-5xl mx-auto w-full mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
               
-              {/* Spoke A: AI Adoption & Integration */}
+              {/* Practice A: AI Adoption & Integration */}
               <div className="flex flex-col">
                 <SpokeCard
                   accent="blue"
                   title="AI Consulting & Workflows"
-                  badge="Active Spoke"
-                  description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI agent adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
+                  badge="Active Practice"
+                  description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
                   links={[
-                    { label: 'AI Agent / Business Integration (Hermes, Openclaw, Kimi Claw)', href: 'https://hermes.mckellar.dev' },
+                    { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
                     { label: 'AI Strategy & Insights Blog', href: 'https://blog.mckellar.dev' },
                     { label: 'View Advisory Scope Below', href: '#inquire' },
                   ]}
                   useCases={[
-                    "Automated Lead Triage & Routing (Kimi Claw / Openclaw)",
-                    "Custom Context-Aware Agent Deployments (Hermes Agent)",
+                    "Automated Lead Triage & Routing",
+                    "Custom Context-Aware Agent Deployments",
                     "Slack/Feishu/WeCom Workflow Integration & Auditing",
-                    "Technical Adoption & Salesforce AI Integration"
+                    "Technical Adoption & CRM AI Integration"
                   ]}
                   animationDelay={100}
                   ctaLabel="Inquire about AI Consulting"
-                  onCtaClick={() => triggerSpokeInquiry('ai')}
+                  onCtaClick={() => triggerPracticeInquiry('ai')}
                 />
               </div>
 
-              {/* Spoke B: Merchant Cash Advance Platforms */}
+              {/* Practice B: MCA Direct Lending */}
               <div className="flex flex-col">
                 <SpokeCard
                   accent="gold"
-                  title="MCA Launch & Scaling Advisory"
-                  badge="15+ Yrs MCA Exec"
-                  description="Strategic consulting for investors launching direct funding operations or brokerages, and MCA owners looking to scale salesforce output, refine underwriting frameworks, and implement modern technology integrations."
+                  title="MCA Direct Lending"
+                  badge="15+ Yrs Exec"
+                  description="Strategic advisory for launching and scaling direct funding operations, refining underwriting models, establishing risk mitigation frameworks, and building syndication networks."
                   links={[
-                    { label: 'My Commercial Funding Brokerage', href: 'https://mycommercialfunding.com' },
-                    { label: 'Launch & Salesforce Scaling', href: '#inquire' },
+                    { label: 'My Commercial Funding', href: 'https://mycommercialfunding.com' },
+                    { label: 'Open Your Own Direct Funding Company', href: '#inquire' },
+                    { label: 'CRM Scaling', href: '#inquire' },
                   ]}
                   useCases={[
-                    "Direct Funder & Brokerage Setup for Investors",
-                    "Salesforce Acquisition & ISO Network Scaling",
+                    "Open Your Own Direct Funding Company",
+                    "CRM Scaling",
                     "Refining Underwriting & Risk Mitigation Models",
-                    "Tech Stack Adoption & Automated Deal Routing Pipelines"
+                    "Syndication & Capital Setup"
                   ]}
                   animationDelay={200}
-                  ctaLabel="Inquire about MCA Consulting"
-                  onCtaClick={() => triggerSpokeInquiry('mca')}
+                  ctaLabel="Inquire about Direct Lending"
+                  onCtaClick={() => triggerPracticeInquiry('mca_lending')}
+                />
+              </div>
+
+              {/* Practice C: MCA Brokerage */}
+              <div className="flex flex-col">
+                <SpokeCard
+                  accent="teal"
+                  title="MCA Brokerage"
+                  badge="15+ Yrs Exec"
+                  description="Advisory services focused on launching high-volume brokerages, building ISO networks, and implementing high-velocity lead-to-deal conversion processes."
+                  links={[
+                    { label: 'My Commercial Funding', href: 'https://mycommercialfunding.com' },
+                    { label: 'CRM Scaling', href: '#inquire' },
+                  ]}
+                  useCases={[
+                    "Setting up a Brokerage Operation",
+                    "CRM Scaling",
+                    "Salesforce Acquisition & ISO Network Expansion",
+                    "Lead Triage & Conversion Workflows"
+                  ]}
+                  animationDelay={300}
+                  ctaLabel="Inquire about Brokerage Advisory"
+                  onCtaClick={() => triggerPracticeInquiry('mca_brokerage')}
                 />
               </div>
 
@@ -347,10 +371,9 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* ── 3. Ventures & Partnerships Section ── */}
+        {/* ── 3. Ventures Section ── */}
         <section id="ventures" className="flex flex-col gap-5 animate-fade-in" style={{ animationDelay: '450ms' }}>
           <div>
-            <p className="section-label mb-1">Key Venture</p>
             <h2 className="font-display font-bold text-xl sm:text-2xl text-on-surface">
               Current Ventures
             </h2>
@@ -371,22 +394,21 @@ const App: React.FC = () => {
                 My Commercial Funding
               </p>
               <p className="text-xs text-on-surface-muted mt-0.5 font-mono uppercase tracking-wider">
-                Chief Revenue Officer · Premium MCA Brokerage &amp; Platform
+                Chief Revenue Officer · Premium MCA Platform
               </p>
             </div>
             <Chevron />
           </a>
         </section>
 
-        {/* ── 4. AEO & GEO FAQ Section (Answer Engine Optimization) ── */}
+        {/* ── 4. FAQ Section ── */}
         <section id="faq" className="flex flex-col gap-6 scroll-mt-24 animate-fade-in" style={{ animationDelay: '500ms' }}>
           <div className="text-center sm:text-left">
-            <p className="section-label mb-2">AEO / GEO Insights</p>
             <h2 className="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
               Expert Context &amp; FAQ
             </h2>
             <p className="text-sm text-on-surface-muted mt-2 max-w-xl">
-              Direct, entity-rich answers about Richard McKellar's background, consulting expertise, and industry credentials, designed for search engines and generative AI agents.
+              Direct, comprehensive answers about Richard McKellar's background, credentials, and consulting expertise.
             </p>
           </div>
 
@@ -427,15 +449,15 @@ const App: React.FC = () => {
           </div>
         </section>
 
-        {/* ── 5. High-Converting Lead Capture Form ── */}
+        {/* ── 5. Contact Form ── */}
         <section id="inquire" className="scroll-mt-24 flex flex-col gap-6 animate-fade-in" style={{ animationDelay: '550ms' }}>
           <div className="text-center sm:text-left">
-            <p className="section-label mb-2">Consulting Intake</p>
+            <p className="section-label mb-2">Contact</p>
             <h2 className="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-              Start a Strategy Discussion
+              Open A Line Of Communication
             </h2>
             <p className="text-sm text-on-surface-muted mt-2 max-w-xl">
-              Specify your project details and select an advisory Spoke. Richard will review your submission and contact you within 24 hours.
+              Specify your project details and select your area of interest. Richard will review your submission and contact you within 24 hours.
             </p>
           </div>
 
@@ -496,14 +518,14 @@ const App: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Spoke Selection / Area of Interest */}
+                {/* Selection / Area of Interest */}
                 <div className="flex flex-col gap-1.5">
                   <label htmlFor="interest" className="text-xs font-mono font-semibold uppercase tracking-wider text-on-surface-muted">Area of Interest</label>
                   <div className="grid grid-cols-3 gap-2">
                     {[
                       { value: 'ai', label: 'AI Consulting', icon: <BrainIcon /> },
-                      { value: 'mca', label: 'MCA Advisory', icon: <FinanceIcon /> },
-                      { value: 'both', label: 'Investors', icon: <span>💼</span> }
+                      { value: 'mca_lending', label: 'MCA Direct Lending', icon: <FinanceIcon /> },
+                      { value: 'mca_brokerage', label: 'MCA Brokerage', icon: <span>💼</span> }
                     ].map((opt) => (
                       <button
                         key={opt.value}
@@ -572,7 +594,7 @@ const App: React.FC = () => {
           <SocialFooter />
           <p className="text-[11px] font-mono text-on-surface-subtle text-center leading-relaxed">
             © {new Date().getFullYear()} McKellar.dev · Morristown, NJ<br />
-            Consulting Hub for Artificial Intelligence Adoption &amp; MCA Platforms
+            Consulting Practice for Artificial Intelligence Adoption &amp; MCA Platforms
           </p>
         </div>
 
