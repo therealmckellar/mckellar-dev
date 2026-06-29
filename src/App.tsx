@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProfileHeader from './components/ProfileHeader'
 import SpokeCard from './components/SpokeCard'
 import SocialFooter from './components/SocialFooter'
 
 // ─── Chevron icon ─────────────────────────────────────────────────────────────
 const Chevron: React.FC<{ className?: string }> = ({ className = '' }) => (
+  // ...
   <svg
     className={`flex-shrink-0 w-4 h-4 text-on-surface-subtle transition-transform duration-200 ${className}`}
     fill="none"
@@ -55,6 +56,28 @@ const faqData: FaqItem[] = [
 ]
 
 const App: React.FC = () => {
+  // Theme state
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme') as 'light' | 'dark' | null
+      if (saved) return saved
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+    return 'dark'
+  })
+
+  useEffect(() => {
+    const root = document.documentElement
+    if (theme === 'dark') {
+      root.classList.add('dark')
+      root.classList.remove('light')
+    } else {
+      root.classList.add('light')
+      root.classList.remove('dark')
+    }
+    localStorage.setItem('theme', theme)
+  }, [theme])
+
   // Navigation & Dropdown states
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   
@@ -94,7 +117,10 @@ const App: React.FC = () => {
   return (
     <div className="w-full flex flex-col items-center">
       {/* ── Top Navigation Header ── */}
-      <nav className="fixed top-0 w-full z-50 bg-[#050B14]/75 backdrop-blur-xl border-b border-white/5 shadow-lg transition-all duration-300">
+      <nav 
+        className="fixed top-0 w-full z-50 backdrop-blur-xl shadow-lg transition-all duration-300"
+        style={{ backgroundColor: 'var(--color-nav-bg)', borderBottom: '1px solid var(--color-border)' }}
+      >
         <div className="flex justify-between items-center px-4 sm:px-6 py-4 max-w-6xl mx-auto w-full">
           <a href="#home" className="font-display font-bold text-lg text-on-surface flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-neon-primary transition-transform group-hover:scale-105">
@@ -110,6 +136,24 @@ const App: React.FC = () => {
             <a href="#ventures" className="text-xs font-semibold text-on-surface-muted hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg">Ventures</a>
             <a href="#faq" className="text-xs font-semibold text-on-surface-muted hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg">Insights &amp; FAQ</a>
             <a href="#inquire" className="text-xs font-semibold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all px-3.5 py-2 rounded-lg border border-indigo-500/20">Inquire</a>
+            
+            {/* Theme Toggle Button (Desktop) */}
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="text-on-surface-muted hover:text-on-surface hover:bg-white/5 p-2 rounded-lg transition-all flex items-center justify-center cursor-pointer w-9 h-9 ml-1"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-4.5 h-4.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
+              ) : (
+                <svg className="w-4.5 h-4.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             <a 
               href="https://calendly.com/richmckellar" 
               target="_blank" 
@@ -120,25 +164,48 @@ const App: React.FC = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="md:hidden text-on-surface p-2 rounded-lg glass-button w-9 h-9 flex items-center justify-center"
-            aria-label="Toggle Menu"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          {/* Mobile Right Controls */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Theme Toggle Button (Mobile) */}
+            <button
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="text-on-surface-muted hover:text-on-surface hover:bg-white/5 p-2 rounded-lg transition-all flex items-center justify-center cursor-pointer w-9 h-9"
+              aria-label="Toggle Theme"
+            >
+              {theme === 'dark' ? (
+                <svg className="w-4.5 h-4.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+                </svg>
               ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                <svg className="w-4.5 h-4.5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
               )}
-            </svg>
-          </button>
+            </button>
+
+            {/* Mobile Menu Toggle */}
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+              className="text-on-surface p-2 rounded-lg glass-button w-9 h-9 flex items-center justify-center"
+              aria-label="Toggle Menu"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-[#050B14]/95 backdrop-blur-2xl border-t border-white/5 flex flex-col px-4 py-3 gap-2 shadow-2xl animate-fade-in">
+          <div 
+            className="md:hidden flex flex-col px-4 py-3 gap-2 shadow-2xl animate-fade-in"
+            style={{ backgroundColor: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }}
+          >
             <a 
               onClick={() => setMobileMenuOpen(false)} 
               href="#focus" 
@@ -186,29 +253,29 @@ const App: React.FC = () => {
         <section id="home" className="pt-8 md:pt-16 flex flex-col items-center">
           <ProfileHeader />
 
-          {/* Central CTAs row */}
-          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md justify-center mt-6 px-1 animate-fade-in" style={{ animationDelay: '350ms' }}>
+          {/* Central CTAs row - Shrunk, compact and inline-flex */}
+          <div className="flex flex-row flex-wrap gap-3 justify-center mt-5 px-1 animate-fade-in" style={{ animationDelay: '350ms' }}>
             <a
               href="https://calendly.com/richmckellar"
               target="_blank"
               rel="noopener noreferrer"
               id="cta-schedule-call"
-              className="btn-primary flex-1 shadow-neon-primary"
+              className="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary"
             >
-              <svg className="w-4.5 h-4.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              Schedule Discovery Call
+              Schedule Call
             </a>
             
             <a
               href="#inquire"
-              className="inline-flex items-center justify-center gap-2 flex-1 py-3 px-5 rounded-xl font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all"
+              className="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-lg font-semibold text-xs glass-button hover:bg-white/10 active:scale-[0.98] transition-all"
             >
-              <svg className="w-4.5 h-4.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Inquire Now
+              Inquire
             </a>
           </div>
         </section>
@@ -218,7 +285,7 @@ const App: React.FC = () => {
           <div className="text-center sm:text-left">
             <p className="section-label mb-2">Core Competencies</p>
             <h2 className="font-display font-extrabold text-[28px] sm:text-[34px] leading-tight text-on-surface">
-              Dual-Engine Consulting Focus
+              Strategic Advisory Spokes
             </h2>
             <p className="text-sm text-on-surface-muted mt-2 max-w-xl">
               Richard operates a high-impact Hub &amp; Spoke strategy, providing targeted advisory services for technology adoption and alternative asset finance.
@@ -285,7 +352,7 @@ const App: React.FC = () => {
           <div>
             <p className="section-label mb-1">Key Venture</p>
             <h2 className="font-display font-bold text-xl sm:text-2xl text-on-surface">
-              Affiliated Ventures
+              Current Ventures
             </h2>
           </div>
 

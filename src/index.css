@@ -56,10 +56,11 @@
   --color-primary: #4F6EF7;
   --color-secondary: #8B5CF6;
   --color-glow-opacity: 0.15;
+  --color-nav-bg: rgba(248, 250, 252, 0.85);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     /* Dark Mode Variables - Obsidian Workspace / Premium High-Tech Glass theme */
     --color-bg: #0d131f;
     --color-surface: rgba(255, 255, 255, 0.04);
@@ -113,7 +114,122 @@
     --color-primary: #6366F1;
     --color-secondary: #8B5CF6;
     --color-glow-opacity: 0.3;
+    --color-nav-bg: rgba(13, 19, 31, 0.85);
   }
+}
+
+:root.dark {
+  /* Dark Mode Variables - Obsidian Workspace / Premium High-Tech Glass theme */
+  --color-bg: #0d131f;
+  --color-surface: rgba(255, 255, 255, 0.04);
+  --color-surface-high: rgba(255, 255, 255, 0.08);
+  
+  --color-on-surface: #dde2f4;
+  --color-on-surface-muted: #a0aec0;
+  --color-on-surface-subtle: #718096;
+  
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+  
+  --color-accent-dim: rgba(99, 102, 241, 0.15);
+  --color-gold-dim: rgba(245, 158, 11, 0.15);
+  --color-teal-dim: rgba(16, 185, 129, 0.15);
+
+  --radial-opacity-1: 0.18;
+  --radial-opacity-2: 0.08;
+  
+  --btn-primary-border: rgba(255, 255, 255, 0.16);
+  --avatar-bg: #091220;
+  --avatar-border: rgba(255, 255, 255, 0.16);
+  
+  --cred-bg: rgba(255, 255, 255, 0.06);
+  --cred-border: rgba(255, 255, 255, 0.12);
+  --cred-text: #a0aec0;
+  
+  --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
+  --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
+  
+  --spoke-link-hover-bg: rgba(255, 255, 255, 0.08);
+  --spoke-link-hover-color: #F8FAFC;
+  
+  --link-row-bg: rgba(255, 255, 255, 0.03);
+  --link-row-border: rgba(255, 255, 255, 0.1);
+  --link-row-text: #dde2f4;
+  --link-row-hover-bg: rgba(255, 255, 255, 0.06);
+  --link-row-hover-border: rgba(255, 255, 255, 0.16);
+  --link-row-icon-bg: rgba(255, 255, 255, 0.06);
+  --link-row-icon-border: rgba(255, 255, 255, 0.1);
+  
+  --social-btn-bg: rgba(255, 255, 255, 0.04);
+  --social-btn-border: rgba(255, 255, 255, 0.1);
+  --social-btn-color: #a0aec0;
+  --social-btn-hover-bg: rgba(255, 255, 255, 0.1);
+  --social-btn-hover-border: rgba(255, 255, 255, 0.18);
+  --social-btn-hover-color: #F8FAFC;
+  
+  --divider-color: rgba(255, 255, 255, 0.1);
+  
+  --color-primary: #6366F1;
+  --color-secondary: #8B5CF6;
+  --color-glow-opacity: 0.3;
+  --color-nav-bg: rgba(13, 19, 31, 0.85);
+}
+
+:root.light {
+  /* Light Mode Variables - Slate/Slate Blue clean theme */
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-surface-high: #F1F5F9;
+  
+  --color-on-surface: #0F172A;
+  --color-on-surface-muted: #475569;
+  --color-on-surface-subtle: #64748B;
+  
+  --color-border: rgba(15, 23, 42, 0.06);
+  --color-border-strong: rgba(15, 23, 42, 0.12);
+  
+  --color-accent-dim: rgba(99, 102, 241, 0.07);
+  --color-gold-dim: rgba(245, 158, 11, 0.07);
+  --color-teal-dim: rgba(16, 185, 129, 0.07);
+
+  --radial-opacity-1: 0.025;
+  --radial-opacity-2: 0.015;
+  
+  --btn-primary-border: rgba(255, 255, 255, 0.1);
+  --avatar-bg: #FFFFFF;
+  --avatar-border: rgba(15, 23, 42, 0.08);
+  
+  --cred-bg: rgba(15, 23, 42, 0.04);
+  --cred-border: rgba(15, 23, 42, 0.07);
+  --cred-text: #475569;
+  
+  --spoke-hover-ai-bg: #F5F7FF;
+  --spoke-hover-mca-bg: #FCFAF5;
+  
+  --spoke-link-hover-bg: rgba(15, 23, 42, 0.04);
+  --spoke-link-hover-color: #0F172A;
+  
+  --link-row-bg: #FFFFFF;
+  --link-row-border: rgba(15, 23, 42, 0.07);
+  --link-row-text: #0F172A;
+  --link-row-hover-bg: #F8FAFC;
+  --link-row-hover-border: rgba(15, 23, 42, 0.12);
+  --link-row-icon-bg: rgba(15, 23, 42, 0.03);
+  --link-row-icon-border: rgba(15, 23, 42, 0.06);
+  
+  --social-btn-bg: rgba(15, 23, 42, 0.03);
+  --social-btn-border: rgba(15, 23, 42, 0.06);
+  --social-btn-color: #64748B;
+  --social-btn-hover-bg: rgba(15, 23, 42, 0.06);
+  --social-btn-hover-border: rgba(15, 23, 42, 0.12);
+  --social-btn-hover-color: #0F172A;
+  
+  --divider-color: rgba(15, 23, 42, 0.08);
+  
+  --color-primary: #4F6EF7;
+  --color-secondary: #8B5CF6;
+  --color-glow-opacity: 0.15;
+  --color-nav-bg: rgba(248, 250, 252, 0.85);
 }
 
 @layer base {
