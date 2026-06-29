@@ -6,12 +6,13 @@ export interface SpokeLinkItem {
   label: string
   href: string
   rel?: string
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void
 }
 
 export interface SpokeCardProps {
   accent: SpokeAccent
   title: string
-  badge: string
+  badge?: string
   description: string
   links: SpokeLinkItem[]
   animationDelay?: number
@@ -73,7 +74,7 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
           <h3 className={`font-display font-bold text-[14px] sm:text-[15px] leading-snug text-on-surface ${accentText}`}>
             {title}
           </h3>
-          <span className={`spoke-badge ${badgeClass} flex-shrink-0 mt-0.5`}>{badge}</span>
+          {badge && <span className={`spoke-badge ${badgeClass} flex-shrink-0 mt-0.5`}>{badge}</span>}
         </div>
 
         {/* Description */}
@@ -107,6 +108,7 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
             <a
               key={link.label}
               href={link.href}
+              onClick={link.onClick}
               target={link.href.startsWith('http') ? '_blank' : undefined}
               rel={link.rel ?? (link.href.startsWith('http') ? 'noopener noreferrer' : undefined)}
               id={`spoke-${link.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}

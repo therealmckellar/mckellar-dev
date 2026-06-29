@@ -32,6 +32,10 @@
   
   --spoke-hover-ai-bg: #F5F7FF;
   --spoke-hover-mca-bg: #FCFAF5;
+  --spoke-hover-teal-bg: #F0FDFA;
+  --color-glass-panel-bg: rgba(255, 255, 255, 0.6);
+  --color-glass-card-bg: rgba(255, 255, 255, 0.4);
+  --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
   
   --spoke-link-hover-bg: rgba(15, 23, 42, 0.04);
   --spoke-link-hover-color: #0F172A;
@@ -90,6 +94,10 @@
     
     --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
     --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
+    --spoke-hover-teal-bg: rgba(20, 184, 166, 0.06);
+    --color-glass-panel-bg: rgba(13, 19, 31, 0.45);
+    --color-glass-card-bg: rgba(255, 255, 255, 0.02);
+    --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
     
     --spoke-link-hover-bg: rgba(255, 255, 255, 0.08);
     --spoke-link-hover-color: #F8FAFC;
@@ -148,6 +156,10 @@
   
   --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
   --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
+  --spoke-hover-teal-bg: rgba(20, 184, 166, 0.06);
+  --color-glass-panel-bg: rgba(13, 19, 31, 0.45);
+  --color-glass-card-bg: rgba(255, 255, 255, 0.02);
+  --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
   
   --spoke-link-hover-bg: rgba(255, 255, 255, 0.08);
   --spoke-link-hover-color: #F8FAFC;
@@ -205,6 +217,10 @@
   
   --spoke-hover-ai-bg: #F5F7FF;
   --spoke-hover-mca-bg: #FCFAF5;
+  --spoke-hover-teal-bg: #F0FDFA;
+  --color-glass-panel-bg: rgba(255, 255, 255, 0.6);
+  --color-glass-card-bg: rgba(255, 255, 255, 0.4);
+  --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
   
   --spoke-link-hover-bg: rgba(15, 23, 42, 0.04);
   --spoke-link-hover-color: #0F172A;
@@ -286,7 +302,7 @@
 
   /* ── Glassmorphism & Depth Panels ────────────────────────────────────────── */
   .glass-panel {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--color-glass-panel-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--color-border);
@@ -294,7 +310,7 @@
   }
   
   .glass-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--color-glass-card-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--color-border);
@@ -403,7 +419,7 @@
   /* ── Pro card base ───────────────────────────────────────────────────────── */
   .pro-card {
     width: 100%;
-    background: rgba(255, 255, 255, 0.015);
+    background: var(--card-bg-gradient);
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
     padding: 1.125rem;
@@ -428,6 +444,15 @@
     background: var(--spoke-hover-mca-bg);
   }
   .spoke-mca-accent { color: #F59E0B; }
+
+  .spoke-re {
+    border-color: rgba(20, 184, 166, 0.2);
+  }
+  .spoke-re:hover {
+    border-color: rgba(20, 184, 166, 0.4);
+    background: var(--spoke-hover-teal-bg);
+  }
+  .spoke-re-accent { color: #14B8A6; }
 
   /* ── Spoke badge ─────────────────────────────────────────────────────────── */
   .spoke-badge {

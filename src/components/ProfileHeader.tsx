@@ -3,9 +3,10 @@ import Avatar from './Avatar'
 
 const credentials = [
   'Former VP & Executive Board Member at Whetstone Holdings',
-  'C-Suite Executive Experience',
+  'C-Suite',
   '$100M+ Personally Funded MCA/RBF',
   '15+ Years MCA Advisory',
+  'AI and Agent Adoption and Integration',
 ]
 
 /** Profile hub: avatar, name, headline, credential pills */
@@ -24,8 +25,8 @@ const ProfileHeader: React.FC = () => {
 
         {/* Headline — taken verbatim from LinkedIn but styled for high-end digital agency */}
         <p className="mt-3 text-sm sm:text-base text-on-surface-muted leading-relaxed max-w-xl mx-auto font-medium">
-          I help businesses adopt AI workflows and agents. 
-          Advising investors launching direct funders/brokerages and owners scaling MCA sales, underwriting, and tech.
+          I help businesses adopt AI workflows. 
+          Advising investors launching direct funding companies.
         </p>
 
         <p className="mt-2 text-xs text-indigo-400 font-mono tracking-wider uppercase flex items-center justify-center gap-2">
