@@ -12,12 +12,12 @@
   --color-on-surface-muted: #475569;
   --color-on-surface-subtle: #64748B;
   
-  --color-border: rgba(15, 23, 42, 0.08);
-  --color-border-strong: rgba(15, 23, 42, 0.14);
+  --color-border: rgba(15, 23, 42, 0.06);
+  --color-border-strong: rgba(15, 23, 42, 0.12);
   
-  --color-accent-dim: rgba(79, 110, 247, 0.07);
-  --color-gold-dim: rgba(201, 151, 58, 0.07);
-  --color-teal-dim: rgba(20, 184, 166, 0.07);
+  --color-accent-dim: rgba(99, 102, 241, 0.07);
+  --color-gold-dim: rgba(245, 158, 11, 0.07);
+  --color-teal-dim: rgba(16, 185, 129, 0.07);
 
   --radial-opacity-1: 0.025;
   --radial-opacity-2: 0.015;
@@ -52,59 +52,67 @@
   --social-btn-hover-color: #0F172A;
   
   --divider-color: rgba(15, 23, 42, 0.08);
+  
+  --color-primary: #4F6EF7;
+  --color-secondary: #8B5CF6;
+  --color-glow-opacity: 0.15;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Dark Mode Variables - Deep Space Blue/Indigo theme */
-    --color-bg: #07091A;
-    --color-surface: #0B0E20;
-    --color-surface-high: #111528;
+    /* Dark Mode Variables - Obsidian Workspace / Premium High-Tech Glass theme */
+    --color-bg: #050B14;
+    --color-surface: rgba(255, 255, 255, 0.03);
+    --color-surface-high: rgba(255, 255, 255, 0.06);
     
-    --color-on-surface: #E2E8F5;
-    --color-on-surface-muted: #7A8BAD;
-    --color-on-surface-subtle: #3B4A68;
+    --color-on-surface: #E2E8F0;
+    --color-on-surface-muted: #94A3B8;
+    --color-on-surface-subtle: #475569;
     
-    --color-border: rgba(255, 255, 255, 0.07);
-    --color-border-strong: rgba(255, 255, 255, 0.12);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-border-strong: rgba(255, 255, 255, 0.14);
     
-    --color-accent-dim: rgba(79, 110, 247, 0.12);
-    --color-gold-dim: rgba(201, 151, 58, 0.12);
-    --color-teal-dim: rgba(20, 184, 166, 0.12);
+    --color-accent-dim: rgba(99, 102, 241, 0.12);
+    --color-gold-dim: rgba(245, 158, 11, 0.12);
+    --color-teal-dim: rgba(16, 185, 129, 0.12);
 
-    --radial-opacity-1: 0.05;
-    --radial-opacity-2: 0.03;
+    --radial-opacity-1: 0.08;
+    --radial-opacity-2: 0.05;
     
     --btn-primary-border: rgba(255, 255, 255, 0.12);
-    --avatar-bg: #111528;
-    --avatar-border: rgba(255, 255, 255, 0.10);
+    --avatar-bg: #091220;
+    --avatar-border: rgba(255, 255, 255, 0.12);
     
     --cred-bg: rgba(255, 255, 255, 0.04);
     --cred-border: rgba(255, 255, 255, 0.09);
-    --cred-text: #7A8BAD;
+    --cred-text: #94A3B8;
     
-    --spoke-hover-ai-bg: #0C1026;
-    --spoke-hover-mca-bg: #0E0D1F;
+    --spoke-hover-ai-bg: rgba(99, 102, 241, 0.04);
+    --spoke-hover-mca-bg: rgba(245, 158, 11, 0.04);
     
-    --spoke-link-hover-bg: rgba(255, 255, 255, 0.04);
-    --spoke-link-hover-color: #E2E8F5;
+    --spoke-link-hover-bg: rgba(255, 255, 255, 0.06);
+    --spoke-link-hover-color: #F8FAFC;
     
-    --link-row-bg: #0B0E20;
-    --link-row-border: rgba(255, 255, 255, 0.07);
-    --link-row-text: #E2E8F5;
-    --link-row-hover-bg: #111528;
-    --link-row-hover-border: rgba(255, 255, 255, 0.13);
-    --link-row-icon-bg: rgba(255, 255, 255, 0.05);
-    --link-row-icon-border: rgba(255, 255, 255, 0.07);
+    --link-row-bg: rgba(255, 255, 255, 0.02);
+    --link-row-border: rgba(255, 255, 255, 0.06);
+    --link-row-text: #E2E8F0;
+    --link-row-hover-bg: rgba(255, 255, 255, 0.05);
+    --link-row-hover-border: rgba(255, 255, 255, 0.12);
+    --link-row-icon-bg: rgba(255, 255, 255, 0.04);
+    --link-row-icon-border: rgba(255, 255, 255, 0.08);
     
-    --social-btn-bg: rgba(255, 255, 255, 0.04);
-    --social-btn-border: rgba(255, 255, 255, 0.07);
-    --social-btn-color: #7A8BAD;
+    --social-btn-bg: rgba(255, 255, 255, 0.03);
+    --social-btn-border: rgba(255, 255, 255, 0.08);
+    --social-btn-color: #94A3B8;
     --social-btn-hover-bg: rgba(255, 255, 255, 0.08);
-    --social-btn-hover-border: rgba(255, 255, 255, 0.13);
-    --social-btn-hover-color: #E2E8F5;
+    --social-btn-hover-border: rgba(255, 255, 255, 0.14);
+    --social-btn-hover-color: #F8FAFC;
     
-    --divider-color: rgba(255, 255, 255, 0.06);
+    --divider-color: rgba(255, 255, 255, 0.08);
+    
+    --color-primary: #6366F1;
+    --color-secondary: #8B5CF6;
+    --color-glow-opacity: 0.25;
   }
 }
 
@@ -126,8 +134,8 @@
     min-height: 100vh;
     overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 25% 0%, rgba(79, 110, 247, var(--radial-opacity-1)) 0%, transparent 55%),
-      radial-gradient(ellipse at 75% 100%, rgba(79, 110, 247, var(--radial-opacity-2)) 0%, transparent 50%);
+      radial-gradient(ellipse at 20% 10%, rgba(99, 102, 241, var(--radial-opacity-1)) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 90%, rgba(139, 92, 246, var(--radial-opacity-2)) 0%, transparent 65%);
     background-attachment: fixed;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
@@ -137,6 +145,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
 }
 
@@ -146,25 +155,107 @@
     animation-fill-mode: forwards !important;
   }
 
+  .animate-fade-in-up {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Glassmorphism & Depth Panels ────────────────────────────────────────── */
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-border-strong);
+    transform: translateY(-2px);
+  }
+
+  .glass-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-on-surface);
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-border-strong);
+    color: var(--color-on-surface);
+    transform: translateY(-1px);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+  }
+
+  /* ── Neon Glow effects ───────────────────────────────────────────────────── */
+  .shadow-neon-primary {
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.18), inset 0 0 10px rgba(99, 102, 241, 0.05);
+  }
+  
+  .shadow-neon-secondary {
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.18), inset 0 0 10px rgba(139, 92, 246, 0.05);
+  }
+
+  .shadow-neon-gold {
+    box-shadow: 0 0 25px rgba(245, 158, 11, 0.12), inset 0 0 10px rgba(245, 158, 11, 0.05);
+  }
+
+  .text-glow-primary {
+    text-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+  }
+
+  .text-glow-secondary {
+    text-shadow: 0 0 12px rgba(139, 92, 246, 0.35);
+  }
+
   /* ── Avatar ──────────────────────────────────────────────────────────────── */
   .avatar-wrap {
-    width: 5rem;
-    height: 5rem;
+    width: 6.5rem;
+    height: 6.5rem;
     border-radius: 9999px;
-    border: 1px solid var(--avatar-border);
     background: var(--avatar-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    padding: 3px;
   }
 
   /* ── Credential pill ─────────────────────────────────────────────────────── */
   .cred-pill {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.65rem;
+    padding: 0.3rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.72rem;
     font-weight: 500;
@@ -177,44 +268,50 @@
     transition: all 0.2s ease;
   }
 
+  .cred-pill:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-border-strong);
+    color: var(--color-on-surface);
+  }
+
   /* ── Section label ───────────────────────────────────────────────────────── */
   .section-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.68rem;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-on-surface-subtle);
+    letter-spacing: 0.15em;
+    color: var(--color-on-surface-muted);
   }
 
   /* ── Pro card base ───────────────────────────────────────────────────────── */
   .pro-card {
     width: 100%;
-    background: var(--color-surface);
+    background: rgba(255, 255, 255, 0.015);
     border: 1px solid var(--color-border);
-    border-radius: 0.875rem;
-    padding: 1.125rem;
-    transition: border-color 0.2s ease, background 0.2s ease;
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
   }
 
   /* ── Spoke card variants ─────────────────────────────────────────────────── */
   .spoke-ai {
-    border-color: rgba(79, 110, 247, 0.22);
+    border-color: rgba(99, 102, 241, 0.2);
   }
   .spoke-ai:hover {
-    border-color: rgba(79, 110, 247, 0.42);
+    border-color: rgba(99, 102, 241, 0.4);
     background: var(--spoke-hover-ai-bg);
   }
   .spoke-ai-accent { color: #818CF8; }
 
   .spoke-mca {
-    border-color: rgba(201, 151, 58, 0.22);
+    border-color: rgba(245, 158, 11, 0.2);
   }
   .spoke-mca:hover {
-    border-color: rgba(201, 151, 58, 0.42);
+    border-color: rgba(245, 158, 11, 0.4);
     background: var(--spoke-hover-mca-bg);
   }
-  .spoke-mca-accent { color: #D4A843; }
+  .spoke-mca-accent { color: #F59E0B; }
 
   /* ── Spoke badge ─────────────────────────────────────────────────────────── */
   .spoke-badge {
@@ -222,7 +319,7 @@
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.15rem 0.5rem;
+    padding: 0.2rem 0.6rem;
     border-radius: 9999px;
     transition: all 0.2s ease;
   }
@@ -230,13 +327,13 @@
   .spoke-badge-blue {
     background: var(--color-accent-dim);
     color: #818CF8;
-    border: 1px solid rgba(79, 110, 247, 0.22);
+    border: 1px solid rgba(99, 102, 241, 0.2);
   }
 
   .spoke-badge-gold {
     background: var(--color-gold-dim);
-    color: #D4A843;
-    border: 1px solid rgba(201, 151, 58, 0.22);
+    color: #F59E0B;
+    border: 1px solid rgba(245, 158, 11, 0.2);
   }
 
   /* ── Spoke sub-link ──────────────────────────────────────────────────────── */
@@ -244,11 +341,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 0.625rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.625rem;
     text-decoration: none;
     color: var(--color-on-surface-muted);
-    font-size: 0.8125rem;
+    font-size: 0.85rem;
     transition: all 0.15s ease;
   }
 
@@ -263,24 +360,25 @@
     align-items: center;
     gap: 0.875rem;
     width: 100%;
-    padding: 0.875rem 1.125rem;
+    padding: 1rem 1.25rem;
     background: var(--link-row-bg);
     border: 1px solid var(--link-row-border);
-    border-radius: 0.875rem;
+    border-radius: 1rem;
     text-decoration: none;
     color: var(--link-row-text);
-    transition: border-color 0.2s ease, background 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     cursor: pointer;
   }
 
   .link-row:hover {
     border-color: var(--link-row-hover-border);
     background: var(--link-row-hover-bg);
+    transform: translateY(-1px);
   }
 
   .link-row-icon {
-    width: 2.375rem;
-    height: 2.375rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 0.5rem;
     background: var(--link-row-icon-bg);
     border: 1px solid var(--link-row-icon-border);
@@ -294,18 +392,17 @@
 
   /* ── Primary CTA button ──────────────────────────────────────────────────── */
   .btn-primary {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background: #4F6EF7;
+    padding: 0.875rem 1.75rem;
+    background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
     color: #fff;
     font-family: 'Inter', sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
-    border-radius: 0.875rem;
+    border-radius: 0.75rem;
     text-decoration: none;
     transition: all 0.2s ease;
     border: 1px solid var(--btn-primary-border);
