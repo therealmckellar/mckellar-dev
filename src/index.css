@@ -61,58 +61,58 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode Variables - Obsidian Workspace / Premium High-Tech Glass theme */
-    --color-bg: #050B14;
-    --color-surface: rgba(255, 255, 255, 0.03);
-    --color-surface-high: rgba(255, 255, 255, 0.06);
+    --color-bg: #0d131f;
+    --color-surface: rgba(255, 255, 255, 0.04);
+    --color-surface-high: rgba(255, 255, 255, 0.08);
     
-    --color-on-surface: #E2E8F0;
-    --color-on-surface-muted: #94A3B8;
-    --color-on-surface-subtle: #475569;
+    --color-on-surface: #dde2f4;
+    --color-on-surface-muted: #a0aec0;
+    --color-on-surface-subtle: #718096;
     
-    --color-border: rgba(255, 255, 255, 0.08);
-    --color-border-strong: rgba(255, 255, 255, 0.14);
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-strong: rgba(255, 255, 255, 0.2);
     
-    --color-accent-dim: rgba(99, 102, 241, 0.12);
-    --color-gold-dim: rgba(245, 158, 11, 0.12);
-    --color-teal-dim: rgba(16, 185, 129, 0.12);
+    --color-accent-dim: rgba(99, 102, 241, 0.15);
+    --color-gold-dim: rgba(245, 158, 11, 0.15);
+    --color-teal-dim: rgba(16, 185, 129, 0.15);
 
-    --radial-opacity-1: 0.08;
-    --radial-opacity-2: 0.05;
+    --radial-opacity-1: 0.18;
+    --radial-opacity-2: 0.08;
     
-    --btn-primary-border: rgba(255, 255, 255, 0.12);
+    --btn-primary-border: rgba(255, 255, 255, 0.16);
     --avatar-bg: #091220;
-    --avatar-border: rgba(255, 255, 255, 0.12);
+    --avatar-border: rgba(255, 255, 255, 0.16);
     
-    --cred-bg: rgba(255, 255, 255, 0.04);
-    --cred-border: rgba(255, 255, 255, 0.09);
-    --cred-text: #94A3B8;
+    --cred-bg: rgba(255, 255, 255, 0.06);
+    --cred-border: rgba(255, 255, 255, 0.12);
+    --cred-text: #a0aec0;
     
-    --spoke-hover-ai-bg: rgba(99, 102, 241, 0.04);
-    --spoke-hover-mca-bg: rgba(245, 158, 11, 0.04);
+    --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
+    --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
     
-    --spoke-link-hover-bg: rgba(255, 255, 255, 0.06);
+    --spoke-link-hover-bg: rgba(255, 255, 255, 0.08);
     --spoke-link-hover-color: #F8FAFC;
     
-    --link-row-bg: rgba(255, 255, 255, 0.02);
-    --link-row-border: rgba(255, 255, 255, 0.06);
-    --link-row-text: #E2E8F0;
-    --link-row-hover-bg: rgba(255, 255, 255, 0.05);
-    --link-row-hover-border: rgba(255, 255, 255, 0.12);
-    --link-row-icon-bg: rgba(255, 255, 255, 0.04);
-    --link-row-icon-border: rgba(255, 255, 255, 0.08);
+    --link-row-bg: rgba(255, 255, 255, 0.03);
+    --link-row-border: rgba(255, 255, 255, 0.1);
+    --link-row-text: #dde2f4;
+    --link-row-hover-bg: rgba(255, 255, 255, 0.06);
+    --link-row-hover-border: rgba(255, 255, 255, 0.16);
+    --link-row-icon-bg: rgba(255, 255, 255, 0.06);
+    --link-row-icon-border: rgba(255, 255, 255, 0.1);
     
-    --social-btn-bg: rgba(255, 255, 255, 0.03);
-    --social-btn-border: rgba(255, 255, 255, 0.08);
-    --social-btn-color: #94A3B8;
-    --social-btn-hover-bg: rgba(255, 255, 255, 0.08);
-    --social-btn-hover-border: rgba(255, 255, 255, 0.14);
+    --social-btn-bg: rgba(255, 255, 255, 0.04);
+    --social-btn-border: rgba(255, 255, 255, 0.1);
+    --social-btn-color: #a0aec0;
+    --social-btn-hover-bg: rgba(255, 255, 255, 0.1);
+    --social-btn-hover-border: rgba(255, 255, 255, 0.18);
     --social-btn-hover-color: #F8FAFC;
     
-    --divider-color: rgba(255, 255, 255, 0.08);
+    --divider-color: rgba(255, 255, 255, 0.1);
     
     --color-primary: #6366F1;
     --color-secondary: #8B5CF6;
-    --color-glow-opacity: 0.25;
+    --color-glow-opacity: 0.3;
   }
 }
 
@@ -134,7 +134,7 @@
     min-height: 100vh;
     overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse at 20% 10%, rgba(99, 102, 241, var(--radial-opacity-1)) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, var(--radial-opacity-1)) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 90%, rgba(139, 92, 246, var(--radial-opacity-2)) 0%, transparent 65%);
     background-attachment: fixed;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -289,8 +289,8 @@
     width: 100%;
     background: rgba(255, 255, 255, 0.015);
     border: 1px solid var(--color-border);
-    border-radius: 1.25rem;
-    padding: 1.75rem;
+    border-radius: 0.75rem;
+    padding: 1.125rem;
     transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
   }
 
@@ -315,11 +315,11 @@
 
   /* ── Spoke badge ─────────────────────────────────────────────────────────── */
   .spoke-badge {
-    font-size: 0.64rem;
+    font-size: 0.58rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
+    padding: 0.15rem 0.45rem;
     border-radius: 9999px;
     transition: all 0.2s ease;
   }
@@ -341,11 +341,11 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
+    padding: 0.35rem 0.5rem;
     border-radius: 0.625rem;
     text-decoration: none;
     color: var(--color-on-surface-muted);
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     transition: all 0.15s ease;
   }
 

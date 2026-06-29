@@ -226,55 +226,57 @@ const App: React.FC = () => {
           </div>
 
           {/* Side-by-side or stacked Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch mt-2">
-            
-            {/* Spoke A: AI Adoption & Integration */}
-            <div className="flex flex-col">
-              <SpokeCard
-                accent="blue"
-                title="AI Consulting & Workflows"
-                badge="Active Spoke"
-                description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI agent adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
-                links={[
-                  { label: 'AI Agent / Business Integration (Hermes, Openclaw, Kimi Claw)', href: 'https://hermes.mckellar.dev' },
-                  { label: 'AI Strategy & Insights Blog', href: 'https://blog.mckellar.dev' },
-                  { label: 'View Advisory Scope Below', href: '#inquire' },
-                ]}
-                useCases={[
-                  "Automated Lead Triage & Routing (Kimi Claw / Openclaw)",
-                  "Custom Context-Aware Agent Deployments (Hermes Agent)",
-                  "Slack/Feishu/WeCom Workflow Integration & Auditing",
-                  "Technical Adoption & Salesforce AI Integration"
-                ]}
-                animationDelay={100}
-                ctaLabel="Inquire about AI Consulting"
-                onCtaClick={() => triggerSpokeInquiry('ai')}
-              />
-            </div>
+          <div className="max-w-3xl mx-auto w-full mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+              
+              {/* Spoke A: AI Adoption & Integration */}
+              <div className="flex flex-col">
+                <SpokeCard
+                  accent="blue"
+                  title="AI Consulting & Workflows"
+                  badge="Active Spoke"
+                  description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI agent adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
+                  links={[
+                    { label: 'AI Agent / Business Integration (Hermes, Openclaw, Kimi Claw)', href: 'https://hermes.mckellar.dev' },
+                    { label: 'AI Strategy & Insights Blog', href: 'https://blog.mckellar.dev' },
+                    { label: 'View Advisory Scope Below', href: '#inquire' },
+                  ]}
+                  useCases={[
+                    "Automated Lead Triage & Routing (Kimi Claw / Openclaw)",
+                    "Custom Context-Aware Agent Deployments (Hermes Agent)",
+                    "Slack/Feishu/WeCom Workflow Integration & Auditing",
+                    "Technical Adoption & Salesforce AI Integration"
+                  ]}
+                  animationDelay={100}
+                  ctaLabel="Inquire about AI Consulting"
+                  onCtaClick={() => triggerSpokeInquiry('ai')}
+                />
+              </div>
 
-            {/* Spoke B: Merchant Cash Advance Platforms */}
-            <div className="flex flex-col">
-              <SpokeCard
-                accent="gold"
-                title="MCA Launch & Scaling Advisory"
-                badge="15+ Yrs MCA Exec"
-                description="Strategic consulting for investors launching direct funding operations or brokerages, and MCA owners looking to scale salesforce output, refine underwriting frameworks, and implement modern technology integrations."
-                links={[
-                  { label: 'My Commercial Funding Brokerage', href: 'https://mycommercialfunding.com' },
-                  { label: 'Launch & Salesforce Scaling', href: '#inquire' },
-                ]}
-                useCases={[
-                  "Direct Funder & Brokerage Setup for Investors",
-                  "Salesforce Acquisition & ISO Network Scaling",
-                  "Refining Underwriting & Risk Mitigation Models",
-                  "Tech Stack Adoption & Automated Deal Routing Pipelines"
-                ]}
-                animationDelay={200}
-                ctaLabel="Inquire about MCA Consulting"
-                onCtaClick={() => triggerSpokeInquiry('mca')}
-              />
-            </div>
+              {/* Spoke B: Merchant Cash Advance Platforms */}
+              <div className="flex flex-col">
+                <SpokeCard
+                  accent="gold"
+                  title="MCA Launch & Scaling Advisory"
+                  badge="15+ Yrs MCA Exec"
+                  description="Strategic consulting for investors launching direct funding operations or brokerages, and MCA owners looking to scale salesforce output, refine underwriting frameworks, and implement modern technology integrations."
+                  links={[
+                    { label: 'My Commercial Funding Brokerage', href: 'https://mycommercialfunding.com' },
+                    { label: 'Launch & Salesforce Scaling', href: '#inquire' },
+                  ]}
+                  useCases={[
+                    "Direct Funder & Brokerage Setup for Investors",
+                    "Salesforce Acquisition & ISO Network Scaling",
+                    "Refining Underwriting & Risk Mitigation Models",
+                    "Tech Stack Adoption & Automated Deal Routing Pipelines"
+                  ]}
+                  animationDelay={200}
+                  ctaLabel="Inquire about MCA Consulting"
+                  onCtaClick={() => triggerSpokeInquiry('mca')}
+                />
+              </div>
 
+            </div>
           </div>
         </section>
 
