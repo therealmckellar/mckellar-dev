@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# Richard McKellar | mckellar.dev — AI Adoption & MCA Advisory Hub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Professional hub and portfolio for **Richard McKellar** (therealmckellar / rmckellar), technology advisor, sales automation builder, and Merchant Cash Advance (MCA) advisory specialist based in **Morristown, New Jersey**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔗 Official Properties
 
-## React Compiler
+- **Main Website:** [mckellar.dev](https://mckellar.dev)
+- **About/Bio Page:** [mckellar.dev/about](https://mckellar.dev/about)
+- **Insights Journal:** [mckellar.dev/blog](https://mckellar.dev/blog)
+- **LinkedIn Profile:** [Richard McKellar on LinkedIn](https://linkedin.com/in/richardmckellar)
+- **GitHub Profile:** [therealmckellar on GitHub](https://github.com/therealmckellar)
+- **Corporate Affiliation:** [My Commercial Funding](https://mycommercialfunding.com)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 💼 Practice Areas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🤖 AI adoption & Sales Workflows
+Auditing operational bottlenecks and deploying custom, context-aware intelligent agent systems. Richard designs bespoke automations, triage algorithms, and integrations for platforms like Slack, Feishu, and WeCom to accelerate sales pipelines and automate repetitive administrative triage.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 💰 MCA Direct Lending Advisory
+Consulting for capital groups and syndicates launching new direct funding platforms. Providing expertise on underwriting guidelines, risk mitigation modeling, syndication structure, and securing warehouse capital lines.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🤝 MCA Brokerage Advisory
+Advisory services for launching and scaling high-velocity brokerage platforms, CRM customization (Salesforce and custom setups), ISO channel development, and lead routing optimization.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎓 Career History & Credentials
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Chief Revenue Officer (CRO)** at *My Commercial Funding* (Premium commercial lending & Merchant Cash Advance platform).
+- **Former VP & Executive Board Member** at *Whetstone Holdings* (operating DBA funding brands Everest Funding, Vader Funding, and Granite Mountain Funding).
+- **Funding Volume:** $100M+ personally funded in MCA and revenue-based financing (RBF) transactions.
+- **Experience:** 15+ years of dedicated advisory in alternative business lending and capital markets.
+- **Location:** Morristown, NJ (USA). Available for global remote consulting and on-site board advisory.
