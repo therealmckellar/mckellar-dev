@@ -21,7 +21,7 @@ He currently serves as the Chief Revenue Officer (CRO) of My Commercial Funding 
 ### AI adoption and Integration
 - **AI Implementation & Workforce Training**: Implementing custom context-aware AI agent integrations and training teams on adoption in daily operations.
 - **Custom Agent Deployments**: Building and deploying context-aware LLM agents that triage documents, extract financial metrics, and cross-reference tax transcripts.
-- **Enterprise Integrations**: Hooking AI pipelines into Slack, Feishu, and WeCom channels and training teams on their use.
+- **Enterprise Integrations**: Hooking AI pipelines into collaboration and messaging platforms and training teams on their use.
 
 ### MCA Direct Lending Advisory
 - **Setup & Launch**: Building direct funding underwriting criteria, establishing syndication, and securing warehouse lines.
@@ -48,7 +48,7 @@ Additionally, leveraging technology to automate deal routing and ISO triage allo
 
 ### Workflow Audits: Mapping Automated Lead Triage Pipelines (June 15, 2026)
 In many organizations, lead response times are hindered by fragmented channels and manual distribution. A lead that sits for hours is highly likely to convert elsewhere, making real-time triage a critical business competency.
-Conducting an operational workflow audit helps identify where pipeline latency occurs. By integrating tools like Slack, Feishu, or WeCom directly with your CRM, incoming leads can be automatically analyzed, graded, and routed to the correct sales representative instantly.
+Conducting an operational workflow audit helps identify where pipeline latency occurs. By integrating collaboration systems directly with your CRM, incoming leads can be automatically analyzed, graded, and routed to the correct sales representative instantly.
 Automating this triage phase ensures that high-intent inquiries are prioritized and contacted within minutes. Deployed correctly, these automated integrations reduce operational overhead, eliminate routing errors, and maximize sales pipeline conversion rates.
 
 ### CRM Setup and Buildout: CRM Scaling for MCA Operations (June 10, 2026)
