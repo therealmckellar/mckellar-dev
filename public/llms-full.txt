@@ -19,9 +19,9 @@ He currently serves as the Chief Revenue Officer (CRO) of My Commercial Funding 
 ## 2. Core Offerings & Consulting Scope
 
 ### AI adoption and Integration
-- **Workflow Auditing**: Identifying latency in lead triage, manual document processing, and credit analysis.
+- **AI Implementation & Workforce Training**: Implementing custom context-aware AI agent integrations and training teams on adoption in daily operations.
 - **Custom Agent Deployments**: Building and deploying context-aware LLM agents that triage documents, extract financial metrics, and cross-reference tax transcripts.
-- **Enterprise Integrations**: Hooking AI pipelines into Slack, Feishu, and WeCom channels.
+- **Enterprise Integrations**: Hooking AI pipelines into Slack, Feishu, and WeCom channels and training teams on their use.
 
 ### MCA Direct Lending Advisory
 - **Setup & Launch**: Building direct funding underwriting criteria, establishing syndication, and securing warehouse lines.

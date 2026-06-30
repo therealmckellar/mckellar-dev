@@ -18,7 +18,7 @@ Professional hub and portfolio for **Richard McKellar** (therealmckellar / rmcke
 ## 💼 Practice Areas
 
 ### 🤖 AI adoption & Sales Workflows
-Auditing operational bottlenecks and deploying custom, context-aware intelligent agent systems. Richard designs bespoke automations, triage algorithms, and integrations for platforms like Slack, Feishu, and WeCom to accelerate sales pipelines and automate repetitive administrative triage.
+Implementing custom, context-aware intelligent workflows and training workforces to integrate AI tools into their daily routines. Richard designs and deploys bespoke automations, triage algorithms, and integrations for platforms like Slack, Feishu, and WeCom to accelerate sales pipelines and automate repetitive administrative triage.
 
 ### 💰 MCA Direct Lending Advisory
 Consulting for capital groups and syndicates launching new direct funding platforms. Providing expertise on underwriting guidelines, risk mitigation modeling, syndication structure, and securing warehouse capital lines.
