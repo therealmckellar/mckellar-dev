@@ -1,6 +1,6 @@
 import React from 'react'
 
-export type SpokeAccent = 'blue' | 'gold' | 'teal'
+export type SpokeAccent = 'blue' | 'gold' | 'teal' | 'purple'
 
 export interface SpokeLinkItem {
   label: string
@@ -26,6 +26,7 @@ const accentMap: Record<SpokeAccent, { card: string; accentText: string; badge: 
   blue: { card: 'spoke-ai', accentText: 'spoke-ai-accent text-glow-primary', badge: 'spoke-badge-blue', shadow: 'shadow-neon-primary', checkColor: 'text-indigo-400' },
   gold: { card: 'spoke-mca', accentText: 'spoke-mca-accent text-glow-secondary', badge: 'spoke-badge-gold', shadow: 'shadow-neon-gold', checkColor: 'text-amber-400' },
   teal: { card: 'spoke-re', accentText: 'spoke-re-accent', badge: 'spoke-badge-teal', shadow: 'shadow-neon-primary', checkColor: 'text-teal-400' },
+  purple: { card: 'spoke-corp', accentText: 'spoke-corp-accent text-glow-primary', badge: 'spoke-badge-purple', shadow: 'shadow-neon-primary', checkColor: 'text-purple-400' },
 }
 
 const ChevronRight: React.FC = () => (
@@ -63,32 +64,32 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
   ctaHref,
   useCases = [],
 }) => {
-  const { card, accentText, badge: badgeClass, shadow, checkColor } = accentMap[accent]
+  const { card: cardClass, accentText, badge: badgeClass, shadow: shadowClass, checkColor } = accentMap[accent]
 
   return (
     <div
-      className={`pro-card ${card} ${shadow} flex flex-col justify-between h-full bg-gradient-to-b from-white/[0.03] to-transparent hover:scale-[1.01] transition-all duration-300 animate-fade-in-up`}
+      className={`pro-card ${cardClass} ${shadowClass} flex flex-col justify-between h-full bg-gradient-to-b from-white/[0.03] to-transparent hover:scale-[1.01] transition-all duration-300 animate-fade-in-up`}
       style={{ animationDelay: `${animationDelay}ms` }}
     >
-      <div>
-        {/* Header row */}
-        <div className="flex items-start justify-between gap-3 mb-2.5">
-          <h3 className={`font-display font-bold text-[14px] sm:text-[15px] leading-snug text-on-surface ${accentText}`}>
-            {title}
-          </h3>
-          {badge && <span className={`spoke-badge ${badgeClass} flex-shrink-0 mt-0.5`}>{badge}</span>}
+      <div className="flex flex-col gap-3">
+        {/* Title & Badge */}
+        <div>
+          <div className="flex items-start justify-between gap-3 mb-2.5">
+            <h3 className={`font-display font-bold text-[14px] sm:text-[15px] leading-snug text-on-surface ${accentText}`}>
+              {title}
+            </h3>
+            {badge && <span className={`spoke-badge ${badgeClass} flex-shrink-0 mt-0.5`}>{badge}</span>}
+          </div>
+          <p className="text-[12px] text-on-surface-muted leading-relaxed mb-3">
+            {description}
+          </p>
         </div>
 
-        {/* Description */}
-        <p className="text-[12px] text-on-surface-muted leading-relaxed mb-3">
-          {description}
-        </p>
-
-        {/* Use cases bullet block */}
+        {/* Use Cases Checklist */}
         {useCases.length > 0 && (
           <div className="mb-3.5 flex flex-col gap-1.5">
             <p className="text-[9px] font-mono font-semibold uppercase tracking-wider text-on-surface-subtle">
-              Key Use Cases
+              Key Focus Areas
             </p>
             <ul className="flex flex-col gap-1">
               {useCases.map((uc, i) => (
@@ -101,20 +102,19 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
           </div>
         )}
 
-        {/* Divider */}
-        <div className="rule mb-2.5" />
+        <div className="rule mb-2.5"></div>
 
-        {/* Links */}
+        {/* Nested Links */}
         <div className="flex flex-col gap-1 mb-3.5">
-          {links.map((link) => (
+          {links.map((link, idx) => (
             <a
-              key={link.label}
+              key={idx}
               href={link.href}
               onClick={link.onClick}
-              target={link.href.startsWith('http') ? '_blank' : undefined}
-              rel={link.rel ?? (link.href.startsWith('http') ? 'noopener noreferrer' : undefined)}
               id={`spoke-${link.label.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}`}
               className="spoke-link group"
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.rel ?? (link.href.startsWith('http') ? 'noopener noreferrer' : undefined)}
             >
               <ChevronRight />
               <span className="group-hover:text-on-surface transition-colors duration-150 font-medium text-[12px]">
@@ -135,6 +135,10 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
             className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 hover:bg-white/10 transition-all active:scale-[0.98] no-underline ${
               accent === 'blue' 
                 ? 'hover:border-indigo-500/50 hover:shadow-[0_0_10px_rgba(99,102,241,0.15)]' 
+                : accent === 'purple'
+                ? 'hover:border-purple-500/50 hover:shadow-[0_0_10px_rgba(168,85,247,0.15)]'
+                : accent === 'teal'
+                ? 'hover:border-teal-500/50 hover:shadow-[0_0_10px_rgba(20,184,166,0.15)]'
                 : 'hover:border-amber-500/50 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
             }`}
           >
@@ -146,9 +150,13 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
         ) : (
           <button
             onClick={onCtaClick}
-            className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 group-hover:bg-white/10 transition-all active:scale-[0.98] ${
+            className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 hover:bg-white/10 transition-all active:scale-[0.98] ${
               accent === 'blue' 
                 ? 'hover:border-indigo-500/50 hover:shadow-[0_0_10px_rgba(99,102,241,0.15)]' 
+                : accent === 'purple'
+                ? 'hover:border-purple-500/50 hover:shadow-[0_0_10px_rgba(168,85,247,0.15)]'
+                : accent === 'teal'
+                ? 'hover:border-teal-500/50 hover:shadow-[0_0_10px_rgba(20,184,166,0.15)]'
                 : 'hover:border-amber-500/50 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
             }`}
           >

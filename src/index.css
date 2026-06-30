@@ -33,6 +33,7 @@
   --spoke-hover-ai-bg: #F5F7FF;
   --spoke-hover-mca-bg: #FCFAF5;
   --spoke-hover-teal-bg: #F0FDFA;
+  --spoke-hover-purple-bg: #FAF5FF;
   --color-glass-panel-bg: rgba(255, 255, 255, 0.6);
   --color-glass-card-bg: rgba(255, 255, 255, 0.4);
   --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
@@ -95,6 +96,7 @@
     --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
     --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
     --spoke-hover-teal-bg: rgba(20, 184, 166, 0.06);
+    --spoke-hover-purple-bg: rgba(168, 85, 247, 0.06);
     --color-glass-panel-bg: rgba(13, 19, 31, 0.45);
     --color-glass-card-bg: rgba(255, 255, 255, 0.02);
     --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
@@ -157,6 +159,7 @@
   --spoke-hover-ai-bg: rgba(99, 102, 241, 0.06);
   --spoke-hover-mca-bg: rgba(245, 158, 11, 0.06);
   --spoke-hover-teal-bg: rgba(20, 184, 166, 0.06);
+  --spoke-hover-purple-bg: rgba(168, 85, 247, 0.06);
   --color-glass-panel-bg: rgba(13, 19, 31, 0.45);
   --color-glass-card-bg: rgba(255, 255, 255, 0.02);
   --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 100%);
@@ -218,6 +221,7 @@
   --spoke-hover-ai-bg: #F5F7FF;
   --spoke-hover-mca-bg: #FCFAF5;
   --spoke-hover-teal-bg: #F0FDFA;
+  --spoke-hover-purple-bg: #FAF5FF;
   --color-glass-panel-bg: rgba(255, 255, 255, 0.6);
   --color-glass-card-bg: rgba(255, 255, 255, 0.4);
   --card-bg-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
@@ -454,6 +458,15 @@
   }
   .spoke-re-accent { color: #14B8A6; }
 
+  .spoke-corp {
+    border-color: rgba(168, 85, 247, 0.2);
+  }
+  .spoke-corp:hover {
+    border-color: rgba(168, 85, 247, 0.4);
+    background: var(--spoke-hover-purple-bg);
+  }
+  .spoke-corp-accent { color: #C084FC; }
+
   /* ── Spoke badge ─────────────────────────────────────────────────────────── */
   .spoke-badge {
     font-size: 0.58rem;
@@ -475,6 +488,12 @@
     background: var(--color-gold-dim);
     color: #F59E0B;
     border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  .spoke-badge-purple {
+    background: rgba(168, 85, 247, 0.1);
+    color: #C084FC;
+    border: 1px solid rgba(168, 85, 247, 0.2);
   }
 
   /* ── Spoke sub-link ──────────────────────────────────────────────────────── */

@@ -94,7 +94,7 @@ const faqSchema = {
 
     <!-- 3-column responsive layout -->
     <div class="max-w-5xl mx-auto w-full mt-2">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         
         {/* Practice A: AI Adoption & Integration */}
         <div class="flex flex-col">
@@ -161,6 +161,29 @@ const faqSchema = {
             animationDelay={300}
             ctaLabel="Inquire about Brokerage Advisory"
             ctaHref="mailto:richard@mckellar.dev?subject=Brokerage Advisory"
+          />
+        </div>
+
+        {/* Practice D: Start & Scale Advisory */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="purple"
+            title="Start & Scale Advisory"
+            description="Bespoke advisory frameworks for launching and scaling high-velocity MCA brokerages, direct funding networks, and custom AI operational frameworks."
+            links={[
+              { label: 'Growth & Expansion Strategy', href: 'mailto:richard@mckellar.dev?subject=Growth and Expansion Strategy' },
+              { label: 'Capitalization & Warehousing', href: 'mailto:richard@mckellar.dev?subject=Capitalization Setup' },
+              { label: 'Workforce AI Onboarding', href: 'mailto:richard@mckellar.dev?subject=AI Workforce Adoption' },
+            ]}
+            useCases={[
+              "New Entity Setup & Launch Plans",
+              "Warehouse Lines & Equity Sourcing",
+              "Workforce Training & Scale Frameworks",
+              "Cross-Functional Scaling Strategy"
+            ]}
+            animationDelay={400}
+            ctaLabel="Inquire about Start & Scale Advisory"
+            ctaHref="mailto:richard@mckellar.dev?subject=Start and Scale Advising"
           />
         </div>
 

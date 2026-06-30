@@ -26,6 +26,9 @@ Consulting for capital groups and syndicates launching new direct funding platfo
 ### 🤝 MCA Brokerage Advisory
 Advisory services for launching and scaling high-velocity brokerage platforms, CRM customization (Salesforce and custom setups), ISO channel development, and lead routing optimization.
 
+### 📈 Start & Scale Advisory
+Bespoke organizational advisory for launching and scaling new alternative finance entities, conducting launch setup audits, securing warehousing lines, and designing cross-functional scaling strategies.
+
 ---
 
 ## 🎓 Career History & Credentials

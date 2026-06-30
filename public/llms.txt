@@ -14,6 +14,7 @@ Richard McKellar is an AI adoption consultant, sales workflow automation builder
 - **AI Adoption Consulting**: Implementing custom context-aware AI agent structures, training workforces on integrating AI tools into daily work, automating lead triage and routing, and workflow integration.
 - **MCA Direct Lending Advisory**: Operational frameworks for launching and scaling direct funding operations, risk mitigation underwriting models, syndication capital networks.
 - **MCA Brokerage Advisory**: Launching high-velocity brokerages, CRM setups and buildouts, ISO channel strategy, Salesforce/CRM scaling.
+- **Start & Scale Advisory**: Launch plans and setups for new brokerages/funders, setup audits, capitalization and warehouse line strategies, and workforce onboarding frameworks.
 
 ## Professional Experience
 - **Chief Revenue Officer (CRO)** at My Commercial Funding (Premium commercial lending & MCA platform)
