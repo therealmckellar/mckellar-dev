@@ -1,0 +1,195 @@
+---
+import Navigation from '../components/Navigation';
+import SocialFooter from '../components/SocialFooter';
+import '../index.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  faqSchema?: Record<string, any>;
+  articleSchema?: Record<string, any>;
+}
+
+const {
+  title = "Richard McKellar | mckellar.dev — AI Adoption & MCA Advisory Hub",
+  description = "Richard McKellar (mckellar.dev) is an advisor & technology consultant based in Morristown, NJ. Hub for AI Consulting & agent adoption, and Merchant Cash Advance (MCA) platform advisory.",
+  canonicalPath = "/",
+  faqSchema,
+  articleSchema,
+} = Astro.props;
+
+const siteUrl = "https://mckellar.dev";
+const canonicalURL = new URL(canonicalPath, siteUrl).toString();
+const ogImageUrl = new URL("/og-image.png", siteUrl).toString();
+
+// Primary Person Entity Schema
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Richard McKellar",
+  "alternateName": ["therealmckellar", "rmckellar"],
+  "url": siteUrl,
+  "image": new URL("/avatar.jpg", siteUrl).toString(),
+  "jobTitle": "AI Adoption Consultant & Merchant Cash Advance Advisor",
+  "description": "Richard McKellar is an entrepreneur, builder, and strategic consultant specialising in AI agent integration, sales automation, and Merchant Cash Advance platform advisory.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Morristown",
+    "addressRegion": "NJ",
+    "addressCountry": "US"
+  },
+  "knowsAbout": [
+    "Artificial Intelligence Adoption",
+    "AI Agents & Intelligent Workflows",
+    "Merchant Cash Advance Underwriting",
+    "ISO Channel Strategy",
+    "Revenue Based Financing Platforms",
+    "Investor Reporting Systems"
+  ],
+  "affiliation": [
+    {
+      "@type": "Organization",
+      "name": "My Commercial Funding",
+      "url": "https://mycommercialfunding.com"
+    },
+    {
+      "@type": "Organization",
+      "name": "Whetstone Holdings",
+      "description": "DBA Everest Funding, Vader Funding, Granite Mountain Funding"
+    }
+  ],
+  "sameAs": [
+    "https://github.com/therealmckellar",
+    "https://linkedin.com/in/richardmckellar"
+  ],
+  "hasCredential": [
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Executive",
+      "name": "VP & Executive Board Member at Whetstone Holdings"
+    }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "name": "AI Adoption Consulting",
+      "description": "Workflow audits, custom intelligent agent deployment, lead triage automation, and workflow integration."
+    },
+    {
+      "@type": "Offer",
+      "name": "MCA Direct Lending Advisory",
+      "description": "Underwriting models refinement, risk mitigation frameworks, CRM scaling, and syndication setup."
+    },
+    {
+      "@type": "Offer",
+      "name": "MCA Brokerage Advisory",
+      "description": "Setting up brokerage operations, CRM setup and buildout, salesforce acquisition, and lead triage workflows."
+    }
+  ]
+};
+
+// Website Schema
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Richard McKellar | mckellar.dev",
+  "url": siteUrl,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": `${siteUrl}/blog?q={search_term_string}`,
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const schemas = [personSchema, websiteSchema];
+if (faqSchema) {
+  schemas.push(faqSchema);
+}
+if (articleSchema) {
+  schemas.push(articleSchema);
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#051424" media="(prefers-color-scheme: dark)" />
+    
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Richard McKellar, Richard McKellar NJ, therealmckellar, rmckellar, mckellar.dev, AI consulting, AI agent adoption, Merchant Cash Advance, MCA consultant, Whetstone Holdings, My Commercial Funding, Morristown NJ" />
+    
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageUrl} />
+
+    <!-- Google Fonts: Space Grotesk + Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Inline script to set correct theme before content paints to prevent flash -->
+    <script is:inline>
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+      
+      const root = document.documentElement;
+      if (theme === 'dark') {
+        root.classList.add('dark');
+        root.classList.remove('light');
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+      }
+    </script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+  </head>
+  <body>
+    <div id="root" class="w-full flex flex-col items-center">
+      <!-- Top Navigation Header -->
+      <Navigation client:load currentPath={canonicalPath} />
+
+      <!-- Main Content Canvas -->
+      <main class="w-full max-w-5xl px-4 sm:px-6 py-24 flex flex-col gap-16 sm:gap-24 relative z-10">
+        
+        <slot />
+
+        <!-- Footer / Copyright -->
+        <div class="mt-8 flex flex-col items-center gap-6 animate-fade-in" style="animation-delay: 600ms;">
+          <div class="rule w-full"></div>
+          <SocialFooter />
+          <p class="text-[11px] font-mono text-on-surface-subtle text-center leading-relaxed">
+            © {new Date().getFullYear()} McKellar.dev · Morristown, NJ<br />
+            Consulting Practice for Artificial Intelligence Adoption &amp; MCA Platforms
+          </p>
+        </div>
+
+      </main>
+    </div>
+  </body>
+</html>

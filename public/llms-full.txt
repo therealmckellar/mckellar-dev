@@ -1,0 +1,57 @@
+# Richard McKellar (mckellar.dev) — Full Context
+
+This document contains full biographical details, service offerings, publication texts, and structured details for Richard McKellar (mckellar.dev), designed for ingestion by generative AI engines and crawler synthesis.
+
+---
+
+## 1. Professional Profile & Biography
+
+Richard McKellar is an entrepreneur, technology builder, and strategic consultant specializing in Artificial Intelligence adoption, sales workflow automation, and alternative asset finance. He is based in Morristown, New Jersey.
+
+With over 15 years of experience in the Merchant Cash Advance (MCA) and Revenue-Based Financing (RBF) industries, Richard advises capital groups launching direct lending companies, helps established funders scale underwriting volume, and counsels brokerage firms on customer acquisition workflows.
+
+Having served as Vice President & Executive Board Member at Whetstone Holdings (DBA Everest Funding, Vader Funding, Granite Mountain Funding), he has personally funded over $100M+ in MCA/RBF transactions and has designed proprietary risk grading models and ledger integrations.
+
+He currently serves as the Chief Revenue Officer (CRO) of My Commercial Funding (mycommercialfunding.com), managing commission routing, renewal cycles, and syndication networks.
+
+---
+
+## 2. Core Offerings & Consulting Scope
+
+### AI adoption and Integration
+- **Workflow Auditing**: Identifying latency in lead triage, manual document processing, and credit analysis.
+- **Custom Agent Deployments**: Building and deploying context-aware LLM agents that triage documents, extract financial metrics, and cross-reference tax transcripts.
+- **Enterprise Integrations**: Hooking AI pipelines into Slack, Feishu, and WeCom channels.
+
+### MCA Direct Lending Advisory
+- **Setup & Launch**: Building direct funding underwriting criteria, establishing syndication, and securing warehouse lines.
+- **Risk Mitigation**: Designing predictive risk scoring models and underwriting workflows.
+- **CRM Integration**: Salesforce and custom CRM architecture setup for ISO networks and lead distribution.
+
+### MCA Brokerage Advisory
+- **Sales Optimization**: High-velocity lead-to-deal conversion processes, lead routing logic, and commission structures.
+- **Network Expansion**: Building and managing independent sales organization (ISO) networks.
+
+---
+
+## 3. Advisory Publications (Full Texts)
+
+### AI Agent Adoption: Resolving Friction in Underwriting Operations (June 25, 2026)
+As alternative finance and Merchant Cash Advance (MCA) platforms scale, operational friction remains one of the largest obstacles to maintaining volume. Traditional underwriting workflows are often bogged down by manual document review, mismatched bank statements, and delayed credit reports.
+By adopting custom context-aware AI agent architectures, funders can automate the ingestion and analysis of unstructured financial data. These agents extract key metrics, flag risk indicators, and cross-reference records in seconds, enabling underwriters to make faster, more informed decisions.
+Adopting AI workflows does not mean replacing human judgment; rather, it empowers team members by automating the repetitive triage phase. Establishing structured data pipelines with Slack or CRM hooks ensures that clean, validated files are delivered to decision-makers immediately, driving high-velocity growth.
+
+### Starting and Scaling as a Direct Funding Company (June 20, 2026)
+Transitioning from a brokerage structure to direct lending is a major milestone for alternative finance companies. While brokerages benefit from low overhead, direct funding offers superior margins, complete control over credit criteria, and long-term asset value.
+The path to starting a direct funding company begins with establishing robust syndication and capital networks. Developing structured risk models and underwriting frameworks is essential for attracting syndication partners and mitigating early portfolio loss.
+Additionally, leveraging technology to automate deal routing and ISO triage allows scaling funders to compete with larger players. A firm foundation in CRM workflows, automated risk grading, and clean ledger integration ensures capital is deployed efficiently and safely.
+
+### Workflow Audits: Mapping Automated Lead Triage Pipelines (June 15, 2026)
+In many organizations, lead response times are hindered by fragmented channels and manual distribution. A lead that sits for hours is highly likely to convert elsewhere, making real-time triage a critical business competency.
+Conducting an operational workflow audit helps identify where pipeline latency occurs. By integrating tools like Slack, Feishu, or WeCom directly with your CRM, incoming leads can be automatically analyzed, graded, and routed to the correct sales representative instantly.
+Automating this triage phase ensures that high-intent inquiries are prioritized and contacted within minutes. Deployed correctly, these automated integrations reduce operational overhead, eliminate routing errors, and maximize sales pipeline conversion rates.
+
+### CRM Setup and Buildout: CRM Scaling for MCA Operations (June 10, 2026)
+A high-performing MCA brokerage or funding operation requires more than just capital; it requires a centralized system of record. Outgrown spreadsheets and fragmented tools lead to pipeline leakages, double-submitted deals, and frustrated ISO partners.
+An effective CRM setup and buildout structures lead and account records to reflect the realities of alternative finance. This includes tracking syndicate shares, renewal eligibility, commission payouts, and underwriting states on a single screen.
+Once the CRM architecture is optimized, automating deal flow—from application submission to contract generation—becomes straightforward. Empowering reps with clean pipelines and automated reminders ensures maximum contact frequency and consistent follow-up.

@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const siteUrl = "https://mckellar.dev";
+const articleUrl = new URL(`/blog/${post.id}`, siteUrl).toString();
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": new Date(post.data.date).toISOString().split('T')[0],
+  "author": {
+    "@type": "Person",
+    "name": post.data.author
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Richard McKellar",
+    "url": siteUrl
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": articleUrl
+  }
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | mckellar.dev Insights`}
+  description={post.data.description}
+  canonicalPath={`/blog/${post.id}`}
+  articleSchema={articleSchema}
+>
+  <div class="w-full flex flex-col gap-8 animate-fade-in">
+    <!-- Blog Nav Header -->
+    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
+      <a 
+        href="/blog"
+        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Articles
+      </a>
+
+      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
+        Insights Journal
+      </span>
+    </div>
+
+    <!-- Blog Article Reader View -->
+    <article class="flex flex-col gap-6 max-w-3xl mx-auto w-full py-4 animate-fade-in-up">
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-2">
+          <span class={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
+            post.data.category === 'ai' 
+              ? 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20' 
+              : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
+          }`}>
+            {post.data.category === 'ai' ? 'AI Insights' : 'Merchant Funding'}
+          </span>
+          <span class="text-xs text-on-surface-subtle font-mono">{post.data.date}</span>
+        </div>
+        <h1 class="font-display font-extrabold text-[28px] sm:text-[36px] leading-tight text-on-surface text-glow-primary">
+          {post.data.title}
+        </h1>
+        <p class="text-xs font-mono text-on-surface-subtle mt-0.5">{post.data.readTime}</p>
+      </div>
+
+      <div class="rule my-1"></div>
+
+      <!-- Main markdown parsed content wrapper -->
+      <div class="prose flex flex-col gap-6 text-sm sm:text-base text-on-surface-muted leading-relaxed">
+        <Content />
+      </div>
+
+      <div class="rule mt-6"></div>
+
+      <a 
+        href="/blog"
+        class="self-start mt-4 flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Articles
+      </a>
+    </article>
+  </div>
+</BaseLayout>

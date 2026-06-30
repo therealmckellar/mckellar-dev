@@ -18,6 +18,7 @@ export interface SpokeCardProps {
   animationDelay?: number
   ctaLabel?: string
   onCtaClick?: () => void
+  ctaHref?: string
   useCases?: string[]
 }
 
@@ -59,6 +60,7 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
   animationDelay = 0,
   ctaLabel,
   onCtaClick,
+  ctaHref,
   useCases = [],
 }) => {
   const { card, accentText, badge: badgeClass, shadow, checkColor } = accentMap[accent]
@@ -124,20 +126,38 @@ const SpokeCard: React.FC<SpokeCardProps> = ({
       </div>
 
       {/* Spoke CTA Button */}
-      {ctaLabel && onCtaClick && (
-        <button
-          onClick={onCtaClick}
-          className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 group-hover:bg-white/10 transition-all active:scale-[0.98] ${
-            accent === 'blue' 
-              ? 'hover:border-indigo-500/50 hover:shadow-[0_0_10px_rgba(99,102,241,0.15)]' 
-              : 'hover:border-amber-500/50 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
-          }`}
-        >
-          <span>{ctaLabel}</span>
-          <svg className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </button>
+      {ctaLabel && (ctaHref || onCtaClick) && (
+        ctaHref ? (
+          <a
+            href={ctaHref}
+            target={ctaHref.startsWith('http') ? '_blank' : undefined}
+            rel={ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 hover:bg-white/10 transition-all active:scale-[0.98] no-underline ${
+              accent === 'blue' 
+                ? 'hover:border-indigo-500/50 hover:shadow-[0_0_10px_rgba(99,102,241,0.15)]' 
+                : 'hover:border-amber-500/50 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
+            }`}
+          >
+            <span>{ctaLabel}</span>
+            <svg className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        ) : (
+          <button
+            onClick={onCtaClick}
+            className={`w-full py-2 px-3.5 rounded-lg text-[11px] font-semibold glass-button flex items-center justify-center gap-1.5 group-hover:bg-white/10 transition-all active:scale-[0.98] ${
+              accent === 'blue' 
+                ? 'hover:border-indigo-500/50 hover:shadow-[0_0_10px_rgba(99,102,241,0.15)]' 
+                : 'hover:border-amber-500/50 hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]'
+            }`}
+          >
+            <span>{ctaLabel}</span>
+            <svg className="w-2.5 h-2.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        )
       )}
     </div>
   )

@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileHeader from '../components/ProfileHeader';
+import SpokeCard from '../components/SpokeCard';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Richard McKellar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Richard McKellar is an AI adoption consultant, sales automation builder, and Merchant Cash Advance (MCA) advisory specialist based in Morristown, New Jersey."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Richard McKellar's background in the Merchant Cash Advance industry?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Richard McKellar has over 15 years of experience in alternative business lending and MCA platform advisory, including serving as a VP and Executive Board Member at Whetstone Holdings. He has personally funded over $100M+ in MCA/RBF transactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What AI adoption services does Richard McKellar provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Richard McKellar provides AI workflow auditing, custom intelligent agent deployment, automated lead triage and routing, and integration with enterprise messaging channels like Slack, Feishu, and WeCom."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is Richard McKellar based?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Richard McKellar is based in Morristown, New Jersey (NJ), USA, and is available for global technology consulting and advisory projects."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Richard McKellar | mckellar.dev — AI Adoption & MCA Advisory Hub"
+  description="Richard McKellar is a technology consultant and advisor in Morristown, NJ. Hub for AI agent integration, sales workflow automation, and Merchant Cash Advance platform advisory."
+  canonicalPath="/"
+  faqSchema={faqSchema}
+>
+  <!-- 1. Profile & Hero -->
+  <section id="home" class="pt-8 md:pt-16 flex flex-col items-center">
+    <ProfileHeader />
+
+    <!-- Central CTAs row -->
+    <div class="flex flex-row flex-wrap gap-3 justify-center mt-5 px-1 animate-fade-in" style="animation-delay: 350ms;">
+      <a
+        href="https://calendly.com/richmckellar"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="cta-schedule-call"
+        class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Schedule Call
+      </a>
+      
+      <a
+        href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
+        class="inline-flex items-center justify-center gap-1.5 py-2 px-4 rounded-lg font-semibold text-xs glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+      >
+        <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Inquire
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. Advisory Areas Section -->
+  <section id="focus" class="flex flex-col gap-6 animate-fade-in" style="animation-delay: 400ms;">
+    <div class="text-center sm:text-left">
+      <p class="section-label mb-2">Core Competencies</p>
+      <h2 class="font-display font-extrabold text-[28px] sm:text-[34px] leading-tight text-on-surface">
+        Strategic Advisory Areas
+      </h2>
+      <p class="text-sm text-on-surface-muted mt-2 max-w-xl">
+        Richard provides targeted advisory services for technology adoption and alternative asset finance.
+      </p>
+    </div>
+
+    <!-- 3-column responsive layout -->
+    <div class="max-w-5xl mx-auto w-full mt-2">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        
+        {/* Practice A: AI Adoption & Integration */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="blue"
+            title="AI Consulting & Workflows"
+            description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
+            links={[
+              { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
+              { label: 'AI Strategy & Insights Blog', href: '/blog' },
+              { label: 'View Advisory Scope Below', href: 'mailto:richard@mckellar.dev?subject=AI Advisory' },
+            ]}
+            useCases={[
+              "AI and Agent Adoption and Integration",
+              "Automated Lead Triage & Routing",
+              "Custom Context-Aware Agent Deployments",
+              "Slack/Feishu/WeCom Workflow Integration & Auditing"
+            ]}
+            animationDelay={100}
+            ctaLabel="Inquire about AI Consulting"
+            ctaHref="https://calendly.com/richmckellar"
+          />
+        </div>
+
+        {/* Practice B: MCA Direct Lending */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="gold"
+            title="MCA Direct Lending"
+            description="Strategic advisory for launching and scaling direct funding operations, refining underwriting models, establishing risk mitigation frameworks, and building syndication networks."
+            links={[
+              { label: 'My Commercial Funding', href: 'https://mycommercialfunding.com' },
+              { label: 'Starting and Scaling As A Direct Funding Company', href: 'mailto:richard@mckellar.dev?subject=Direct Lending Setup' },
+              { label: 'CRM Setup and Buildout', href: 'mailto:richard@mckellar.dev?subject=CRM Setup' },
+            ]}
+            useCases={[
+              "Starting and Scaling As A Direct Funding Company",
+              "CRM Setup and Buildout",
+              "Refining Underwriting & Risk Mitigation Models",
+              "Syndication & Capital Setup"
+            ]}
+            animationDelay={200}
+            ctaLabel="Inquire about Direct Lending"
+            ctaHref="mailto:richard@mckellar.dev?subject=Direct Lending Setup"
+          />
+        </div>
+
+        {/* Practice C: MCA Brokerage */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="teal"
+            title="MCA Brokerage"
+            description="Advisory services focused on launching high-volume brokerages, building ISO networks, and implementing high-velocity lead-to-deal conversion processes."
+            links={[
+              { label: 'My Commercial Funding', href: 'https://mycommercialfunding.com' },
+              { label: 'CRM Setup and Buildout', href: 'mailto:richard@mckellar.dev?subject=CRM Setup' },
+            ]}
+            useCases={[
+              "Setting up a Brokerage Operation",
+              "CRM Setup and Buildout",
+              "Salesforce Acquisition & ISO Network Expansion",
+              "Lead Triage & Conversion Workflows"
+            ]}
+            animationDelay={300}
+            ctaLabel="Inquire about Brokerage Advisory"
+            ctaHref="mailto:richard@mckellar.dev?subject=Brokerage Advisory"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Ventures Section -->
+  <section id="ventures" class="flex flex-col gap-5 animate-fade-in" style="animation-delay: 450ms;">
+    <div>
+      <h2 class="font-display font-bold text-xl sm:text-2xl text-on-surface">
+        Current Ventures
+      </h2>
+    </div>
+
+    <a
+      href="https://mycommercialfunding.com"
+      target="_blank"
+      rel="me author noopener noreferrer"
+      id="link-my-commercial-funding"
+      class="link-row hover:scale-[1.005] bg-gradient-to-r from-amber-500/[0.02] to-transparent border-amber-500/10 hover:border-amber-500/30 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)] transition-all duration-300 no-underline"
+    >
+      <div class="link-row-icon bg-amber-500/10 border-amber-500/20 text-amber-500">
+        <span aria-hidden="true">💼</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="font-display font-semibold text-sm sm:text-base text-on-surface leading-snug">
+          My Commercial Funding
+        </p>
+        <p class="text-xs text-on-surface-muted mt-0.5 font-mono uppercase tracking-wider">
+          Chief Revenue Officer · Premium MCA Platform
+        </p>
+      </div>
+      <svg
+        class="flex-shrink-0 w-4 h-4 text-on-surface-subtle transition-transform duration-200"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </section>
+</BaseLayout>

@@ -1,0 +1,3 @@
+Contact: mailto:richard@mckellar.dev
+Preferred-Languages: en
+Canonical: https://mckellar.dev/.well-known/security.txt

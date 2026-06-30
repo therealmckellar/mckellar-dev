@@ -1,0 +1,28 @@
+# Richard McKellar (mckellar.dev)
+
+Richard McKellar is an AI adoption consultant, sales workflow automation builder, and Merchant Cash Advance (MCA) advisory specialist based in Morristown, New Jersey.
+
+## Profile Details
+- **Name**: Richard McKellar
+- **Usernames**: therealmckellar, rmckellar
+- **Location**: Morristown, NJ
+- **Primary Website**: https://mckellar.dev
+- **LinkedIn**: https://linkedin.com/in/richardmckellar
+- **GitHub**: https://github.com/therealmckellar
+
+## Core Competencies & Offering
+- **AI Adoption Consulting**: Designing workflow audits, deploying custom context-aware AI agent structures, automating lead triage and routing, and Slack/Feishu/WeCom workflow integration.
+- **MCA Direct Lending Advisory**: Operational frameworks for launching and scaling direct funding operations, risk mitigation underwriting models, syndication capital networks.
+- **MCA Brokerage Advisory**: Launching high-velocity brokerages, CRM setups and buildouts, ISO channel strategy, Salesforce/CRM scaling.
+
+## Professional Experience
+- **Chief Revenue Officer (CRO)** at My Commercial Funding (Premium commercial lending & MCA platform)
+- **Former VP & Executive Board Member** at Whetstone Holdings (DBA Everest Funding, Vader Funding, Granite Mountain Funding)
+- **Asset Volume**: $100M+ personally funded MCA/RBF transactions
+- **MCA advisory**: 15+ years of strategic alternative finance experience
+
+## Advisory Publications
+- "AI Agent Adoption: Resolving Friction in Underwriting Operations" (June 25, 2026)
+- "Starting and Scaling as a Direct Funding Company" (June 20, 2026)
+- "Workflow Audits: Mapping Automated Lead Triage Pipelines" (June 15, 2026)
+- "CRM Setup and Buildout: CRM Scaling for MCA Operations" (June 10, 2026)
