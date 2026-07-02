@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Richard McKellar | AI Consulting for Small Businesses</title>
+    <style>
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #16161a;
+            --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+            --text-main: #f4f4f5;
+            --text-muted: #a1a1aa;
+            --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        .nav-links a:hover { opacity: 0.7; }
+        
+        .hero {
+            padding: 8rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            background: var(--accent-gradient);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 99px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid #27272a;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .service-card:hover {
+            border-color: #8b5cf6;
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+        .service-card p { color: var(--text-muted); }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            background: var(--bg-card);
+            padding: 4rem 2rem;
+            border-radius: 32px;
+            margin: 4rem 0;
+            border: 1px solid #27272a;
+        }
+        .stat-item h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-item p { color: var(--text-muted); font-weight: 500; }
+
+        .who-is-it-for {
+            text-align: center;
+            background: #111114;
+            border-radius: 32px;
+            padding: 4rem 2rem;
+            border: 1px solid #27272a;
+        }
+        .who-is-it-for h2 { margin-bottom: 2rem; font-size: 2rem; }
+        .target-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .target-list li {
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border-left: 4px solid #8b5cf6;
+            color: var(--text-main);
+        }
+
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid #27272a;
+            margin-top: 4rem;
+        }
+        .linkedin-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s;
+        }
+        .linkedin-link:hover { opacity: 0.7; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .stats { flex-direction: column; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Richard McKellar</div>
+        <nav class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="https://www.linkedin.com/in/richardmckellar" target="_blank">LinkedIn</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Scalable <span>AI Consulting</span> for Small Businesses</h1>
+        <p>Stop wasting hours on repetitive tasks. I help small businesses implement cutting-edge AI Agent Systems and automate workflows to recapture hundreds of hours of productivity.</p>
+        <a href="#book" class="cta-button">Book a Consultation</a>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Specialized AI Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>AI Agent Systems</h3>
+                <p>Custom AI Agents that handle customer support, lead qualification, and complex task execution autonomously, allowing your team to focus on high-value work.</p>
+            </div>
+            <div class="service-card">
+                <h3>Workflow Automation</h3>
+                <p>End-to-end automation of business processes. Connect your tools and let AI handle the data entry, scheduling, and coordination between platforms.</p>
+            </div>
+            <div class="service-card">
+                <h3>AI Strategy Advisory</h3>
+                <p>Not sure where to start? I provide a roadmap for AI adoption, identifying the highest ROI opportunities for your specific business model.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="stats">
+            <div class="stat-item">
+                <h2>200+</h2>
+                <p>Hours Saved/Mo</p>
+            </div>
+            <div class="stat-item">
+                <h2>10x</h2>
+                <p>Faster Workflows</p>
+            </div>
+            <div class="stat-item">
+                <h2>$50k+</h2>
+                <p>OpEx Reduction</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="who-is-it-for">
+            <h2>Who is this for?</h2>
+            <ul class="target-list">
+                <li>Agency owners scaling output without adding headcount.</li>
+                <li>Service providers with high volumes of repetitive admin.</li>
+                <li>E-commerce brands automating customer journeys.</li>
+                <li>Small businesses looking to modernize their operations.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="book" class="section" style="text-align: center;">
+        <h2 class="section-title">Ready to Automate?</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">Let's build the AI systems that let you grow without the grind.</p>
+        <a href="#" class="cta-button">Schedule Your Free Discovery Call</a>
+    </section>
+
+    <footer>
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">&copy; 2024 Richard McKellar. All rights reserved.</p>
+        <a href="https://www.linkedin.com/in/richardmckellar" target="_blank" class="linkedin-link">
+            Connect on LinkedIn &rarr;
+        </a>
+    </footer>
+</body>
+</html>
