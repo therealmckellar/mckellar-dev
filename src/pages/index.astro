@@ -94,7 +94,7 @@ const faqSchema = {
 
     <!-- 3-column responsive layout -->
     <div class="max-w-5xl mx-auto w-full mt-2">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
         
         {/* Practice A: AI Adoption & Integration */}
         <div class="flex flex-col">
@@ -184,6 +184,31 @@ const faqSchema = {
             animationDelay={400}
             ctaLabel="Inquire about Start & Scale Advisory"
             ctaHref="mailto:richard@mckellar.dev?subject=Start and Scale Advising"
+          />
+        </div>
+
+        {/* Practice E: Funding Consulting (borrower-side advisory) */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="teal"
+            title="Funding Consulting"
+            description="Independent, borrower-side advisory for business owners evaluating capital offers. Richard reviews terms, benchmarks proposals, and helps structure the right funding decision without broker bias."
+            links={[
+              { label: 'Book a Funding Review', href: 'https://calendly.com/richmckellar' },
+              { label: 'Send Your Offer for Review', href: 'mailto:richard@mckellar.dev?subject=Funding Offer Review' },
+              { label: 'General Funding Consultation', href: 'mailto:richard@mckellar.dev?subject=Funding Consultation' },
+            ]}
+            useCases={[
+              "Loan offer review and term analysis",
+              "Negotiation and funding strategy support",
+              "Application and document preparation",
+              "Offer comparison and decision support",
+              "Refinance and restructure review",
+              "General funding consultation"
+            ]}
+            animationDelay={500}
+            ctaLabel="Inquire about Funding Consulting"
+            ctaHref="mailto:richard@mckellar.dev?subject=Funding Consulting"
           />
         </div>
 
