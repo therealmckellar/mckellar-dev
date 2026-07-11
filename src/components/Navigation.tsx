@@ -74,6 +74,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
             Blog
           </a>
           <a 
+            href="/fractional-caio" 
+            className={`text-xs font-semibold hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline ${
+              currentPath === '/fractional-caio' ? 'text-on-surface bg-white/5' : 'text-on-surface-muted'
+            }`}
+          >
+            Fractional CAIO
+          </a>
+          <a 
             href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
             className="text-xs font-semibold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all px-3.5 py-2 rounded-lg border border-indigo-500/20 no-underline"
           >
@@ -169,6 +177,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
             className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
           >
             Blog
+          </a>
+          <a 
+            href="/fractional-caio" 
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
+          >
+            Fractional CAIO
           </a>
           <a 
             href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"

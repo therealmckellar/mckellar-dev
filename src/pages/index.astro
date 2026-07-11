@@ -94,7 +94,7 @@ const faqSchema = {
 
     <!-- 3-column responsive layout -->
     <div class="max-w-5xl mx-auto w-full mt-2">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 items-stretch">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         
         {/* Practice A: AI Adoption & Integration */}
         <div class="flex flex-col">
@@ -103,6 +103,7 @@ const faqSchema = {
             title="AI Consulting & Workflows"
             description="Implementing AI integrations and training workforces on daily adoption. Richard delivers bespoke automations, AI adoption strategies, and technical sales training to streamline operational overhead and accelerate pipelines."
             links={[
+              { label: 'Fractional Chief AI Officer', href: '/fractional-caio' },
               { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
               { label: 'AI Strategy & Insights Blog', href: '/blog' },
               { label: 'View Advisory Scope Below', href: 'mailto:richard@mckellar.dev?subject=AI Advisory' },
@@ -209,6 +210,30 @@ const faqSchema = {
             animationDelay={500}
             ctaLabel="Inquire about Funding Consulting"
             ctaHref="mailto:richard@mckellar.dev?subject=Funding Consulting"
+          />
+        </div>
+
+        {/* Practice F: Fractional Chief AI Officer */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="purple"
+            title="Fractional Chief AI Officer"
+            badge="Focus"
+            description="A senior AI operator on a fractional basis. Richard builds a clear 90-day AI operating plan with governance, prioritization, and executive accountability — measurable ROI without a full-time CAIO hire."
+            links={[
+              { label: 'Explore the Fractional CAIO Practice', href: '/fractional-caio' },
+              { label: 'Schedule Executive Briefing', href: 'https://calendly.com/richmckellar' },
+              { label: 'Inquire about Fractional CAIO', href: 'mailto:richard@mckellar.dev?subject=Fractional%20Chief%20AI%20Officer' },
+            ]}
+            useCases={[
+              "Executive AI Council & governance charter",
+              "Prioritized 90-day AI operating plan",
+              "ROI measurement tied to decision gates",
+              "Workforce enablement & ownership transfer"
+            ]}
+            animationDelay={600}
+            ctaLabel="Inquire about Fractional CAIO"
+            ctaHref="https://calendly.com/richmckellar"
           />
         </div>
 

@@ -104,6 +104,12 @@ const App: React.FC = () => {
               Blog
             </button>
             <a 
+              href="/fractional-caio" 
+              className="text-xs font-semibold text-on-surface-muted hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline"
+            >
+              Fractional CAIO
+            </a>
+            <a 
               href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
               className="text-xs font-semibold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all px-3.5 py-2 rounded-lg border border-indigo-500/20"
             >
@@ -204,6 +210,12 @@ const App: React.FC = () => {
               Blog
             </button>
             <a 
+              href="/fractional-caio" 
+              className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
+            >
+              Fractional CAIO
+            </a>
+            <a 
               href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
               className="text-left text-sm font-medium text-indigo-400 py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors"
             >
@@ -271,7 +283,7 @@ const App: React.FC = () => {
 
               {/* 3-column responsive layout */}
               <div className="max-w-5xl mx-auto w-full mt-2">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
                   
                   {/* Practice A: AI Adoption & Integration */}
                   <div className="flex flex-col">
@@ -280,6 +292,7 @@ const App: React.FC = () => {
                       title="AI Consulting & Workflows"
                       description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
                       links={[
+                        { label: 'Fractional Chief AI Officer', href: '/fractional-caio' },
                         { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
                         { label: 'AI Strategy & Insights Blog', href: '#blog', onClick: () => setCurrentView('blog') },
                         { label: 'View Advisory Scope Below', href: 'mailto:richard@mckellar.dev?subject=AI Advisory' },
@@ -293,6 +306,30 @@ const App: React.FC = () => {
                       animationDelay={100}
                       ctaLabel="Inquire about AI Consulting"
                       onCtaClick={() => triggerPracticeInquiry('ai')}
+                    />
+                  </div>
+
+                  {/* Practice A2: Fractional Chief AI Officer */}
+                  <div className="flex flex-col">
+                    <SpokeCard
+                      accent="purple"
+                      title="Fractional Chief AI Officer"
+                      badge="Focus"
+                      description="A senior AI operator on a fractional basis. Richard builds a clear 90-day AI operating plan with governance, prioritization, and executive accountability — measurable ROI without a full-time CAIO hire."
+                      links={[
+                        { label: 'Explore the Fractional CAIO Practice', href: '/fractional-caio' },
+                        { label: 'Schedule Executive Briefing', href: 'https://calendly.com/richmckellar' },
+                        { label: 'Inquire about Fractional CAIO', href: 'mailto:richard@mckellar.dev?subject=Fractional%20Chief%20AI%20Officer' },
+                      ]}
+                      useCases={[
+                        "Executive AI Council & governance charter",
+                        "Prioritized 90-day AI operating plan",
+                        "ROI measurement tied to decision gates",
+                        "Workforce enablement & ownership transfer"
+                      ]}
+                      animationDelay={150}
+                      ctaLabel="Inquire about Fractional CAIO"
+                      ctaHref="https://calendly.com/richmckellar"
                     />
                   </div>
 
