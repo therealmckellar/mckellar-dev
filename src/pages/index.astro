@@ -104,7 +104,6 @@ const faqSchema = {
             description="Implementing AI integrations and training workforces on daily adoption. Richard delivers bespoke automations, AI adoption strategies, and technical sales training to streamline operational overhead and accelerate pipelines."
             links={[
               { label: 'Fractional Chief AI Officer', href: '/fractional-caio' },
-              { label: 'Institute for AI Adoption', href: '/institute-for-ai-adoption' },
               { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
               { label: 'AI Strategy & Insights Blog', href: '/blog' },
               { label: 'View Advisory Scope Below', href: 'mailto:richard@mckellar.dev?subject=AI Advisory' },
@@ -238,30 +237,6 @@ const faqSchema = {
           />
         </div>
 
-        {/* Practice G: Institute for AI Adoption */}
-        <div class="flex flex-col">
-          <SpokeCard
-            accent="purple"
-            title="Institute for AI Adoption"
-            badge="Institute"
-            description="The authority body for operational AI adoption. Richard owns the C.A.P.™ Operating Model, publishes the AI Adoption Standard, and provides the governance backbone leaders use to turn AI pressure into measurable results."
-            links={[
-              { label: 'Explore the Institute', href: '/institute-for-ai-adoption' },
-              { label: 'Schedule Executive Briefing', href: 'https://calendly.com/richmckellar' },
-              { label: 'Inquire about the Institute', href: 'mailto:richard@mckellar.dev?subject=Institute%20for%20AI%20Adoption' },
-            ]}
-            useCases={[
-              "C.A.P.™ Operating Model (owned IP)",
-              "AI Adoption Standard & governance",
-              "Executive AI Council governance",
-              "Home of the Fractional CAIO practice"
-            ]}
-            animationDelay={650}
-            ctaLabel="Explore the Institute"
-            ctaHref="https://calendly.com/richmckellar"
-          />
-        </div>
-
       </div>
     </div>
   </section>
@@ -302,5 +277,21 @@ const faqSchema = {
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M9 5l7 7-7 7" />
       </svg>
     </a>
+
+    <div
+      class="link-row bg-gradient-to-r from-purple-500/[0.02] to-transparent border-purple-500/10 hover:border-purple-500/30 hover:shadow-[0_0_20px_rgba(168,85,247,0.15)] transition-all duration-300"
+    >
+      <div class="link-row-icon bg-purple-500/10 border-purple-500/20 text-purple-400">
+        <span aria-hidden="true">🎓</span>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="font-display font-semibold text-sm sm:text-base text-on-surface leading-snug">
+          Institute for AI Adoption
+        </p>
+        <p class="text-xs text-on-surface-muted mt-0.5 font-mono uppercase tracking-wider">
+          Founder · AI Adoption Standards Body
+        </p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
