@@ -1,0 +1,399 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Institute for AI Adoption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Institute for AI Adoption is Richard McKellar's authority body for operational AI adoption. It owns the C.A.P. Operating Model, publishes the AI Adoption Standard, and runs an Executive Council that gives leaders a shared language, governance backbone, and repeatable system for turning AI pressure into measurable results."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Institute an accreditation or certification body?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not yet. The Institute is being built as an authority and standards body first — establishing the framework, the Standard, and the Executive Council. Formal accreditation and credentialing tracks are planned and will be announced when available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the Institute relate to the Fractional Chief AI Officer practice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Fractional Chief AI Officer practice operates under the Institute's framework. Engagements are delivered using the C.A.P. Operating Model and measured against the AI Adoption Standard, so every client engagement is grounded in a consistent, defensible methodology."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who should engage with the Institute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mid-market operators, private-equity-backed portfolio companies, professional services firms, and family offices that feel pressure to adopt AI but lack an operating model, governance, or a way to measure results. Engagements are available across NJ, NYC, FL, CT, MA, and MD."
+      }
+    }
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Institute for AI Adoption",
+  "url": "https://mckellar.dev/institute-for-ai-adoption",
+  "founder": {
+    "@type": "Person",
+    "name": "Richard McKellar",
+    "url": "https://mckellar.dev"
+  },
+  "areaServed": ["New Jersey", "New York City", "Florida", "Connecticut", "Massachusetts", "Maryland"],
+  "description": "The Institute for AI Adoption is an authority body for operational AI adoption, owning the C.A.P. Operating Model and the AI Adoption Standard, and home to the Fractional Chief AI Officer practice."
+};
+---
+
+<BaseLayout
+  title="Institute for AI Adoption | Richard McKellar — The Authority for Operational AI"
+  description="The Institute for AI Adoption is the authority body for operational AI adoption. It owns the C.A.P. Operating Model, publishes the AI Adoption Standard, and runs an Executive Council for leaders turning AI pressure into measurable results."
+  canonicalPath="/institute-for-ai-adoption"
+  faqSchema={faqSchema}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+
+  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
+
+    <!-- Header / Back -->
+    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
+      <a
+        href="/"
+        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Home
+      </a>
+      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
+        The Institute
+      </span>
+    </div>
+
+    <!-- 1. Hero -->
+    <section class="flex flex-col items-center text-center gap-6 pt-4">
+      <span class="cred-pill">AI Adoption · Standards · Executive Council</span>
+      <h1 class="font-display font-extrabold text-[34px] sm:text-[46px] leading-[1.05] text-on-surface text-glow-primary max-w-3xl">
+        Institute for AI Adoption
+      </h1>
+      <p class="text-base sm:text-lg text-on-surface-muted max-w-2xl leading-relaxed">
+        The authority body for operational AI adoption. We own the C.A.P.™ Operating Model, publish the AI Adoption Standard, and run an Executive Council that gives leaders a repeatable system for turning AI pressure into measurable results.
+      </p>
+
+      <div class="flex flex-row flex-wrap gap-3 justify-center mt-2">
+        <a
+          href="https://calendly.com/richmckellar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Join the Executive Council
+        </a>
+        <a
+          href="/fractional-caio"
+          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+        >
+          Explore the Fractional CAIO Practice
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-2 text-xs font-mono uppercase tracking-wider text-on-surface-subtle">
+        <span>Owns the C.A.P.™ Model</span>
+        <span class="hidden sm:inline text-indigo-400">•</span>
+        <span>Publishes the AI Adoption Standard</span>
+        <span class="hidden sm:inline text-indigo-400">•</span>
+        <span>Home of the Fractional CAIO</span>
+      </div>
+    </section>
+
+    <!-- 2. The Problem -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">The Problem</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          Everyone Feels AI Pressure. Few Have a System.
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
+          Boards, investors, and customers are demanding AI outcomes — but most organizations have no shared language, no governance backbone, and no repeatable operating model. The result is scattered pilots, budget cuts, and stalled momentum.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">No Shared Language</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Executives, operators, and technical teams talk past each other. Without a common framework, AI decisions stall at the top.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Governance Gap</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Risk, data, and vendor controls are bolted on after the fact — if they exist at all. The board has nothing to sign off on.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Pilot Graveyard</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Demos impress, then die. Without an operating model, promising experiments never reach production or scale.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Unmeasured Spend</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            AI budgets get cut because no one can defend the ROI. The CFO sees cost, not return.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. The Institute's Role -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">What We Are</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          An Authority Body for Operational AI
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
+          The Institute exists to make AI adoption operational — not theoretical. We set the standard, own the methodology, and convene the leaders putting it to work.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Standard-Setter</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            We publish the AI Adoption Standard — the definition of what "adopted" actually means, with governance and measurement built in.
+          </p>
+        </div>
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Methodology Owner</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            The C.A.P.™ Operating Model is our intellectual property — a repeatable 90-day system any organization can run.
+          </p>
+        </div>
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Convening Body</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            The Executive Council brings operators together to share patterns, pressure-test decisions, and raise the bar.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Pillars -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">What the Institute Delivers</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          Three Pillars of the Institute
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">The C.A.P.™ Operating Model</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Our proprietary 90-day system — Council, Align, Perform — that turns AI intent into measured outcomes.</p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">The AI Adoption Standard</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">A published definition of operational AI adoption, with governance, ownership, and ROI measurement at its core.</p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Executive Council</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">A convening body for leaders running the model — shared patterns, peer accountability, and raised standards.</p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Fractional CAIO Practice</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Hands-on delivery of the framework inside your organization — a Chief AI Officer, fractionally.</p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Research & Field Notes</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Patterns, benchmarks, and lessons from real engagements — published to raise the baseline for everyone.</p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Adoption Playbooks</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Repeatable enablement material so your teams own the system long after the engagement ends.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Framework Ownership -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">The Framework</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          The C.A.P.™ Operating Model, Owned by the Institute
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
+          Every Fractional CAIO engagement is delivered on the Institute's methodology. The model runs in 90-day cycles, aligning governance, ownership, and ROI from day one.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
+          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 1–30 · Council</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Stand Up the Executive AI Council</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Define decision rights, baseline current state, and establish the governance charter — executive sponsorship locked before deployment.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
+          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 31–60 · Align</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Prioritize the Roadmap</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Rank use cases by impact and feasibility. Build the 90-day plan with owners, metrics, and decision gates.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
+          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 61–90 · Perform</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Deploy, Measure, Scale</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Ship high-impact workflows, report measured ROI, and transfer ownership to your team so capability compounds.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Who It's For -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Who It's For</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          Built for Mid-Market Operators
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="link-row no-underline">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">🏭</span></div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Manufacturers</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Mid-market manufacturers operationalizing AI on the floor and in the back office.</p>
+          </div>
+        </div>
+        <div class="link-row no-underline">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">💼</span></div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Professional Services</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Firms needing leverage without headcount — faster delivery, lower overhead.</p>
+          </div>
+        </div>
+        <div class="link-row no-underline">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">📈</span></div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">PE-Backed Portcos</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Portfolio companies under mandate to scale efficiently with measurable ROI.</p>
+          </div>
+        </div>
+        <div class="link-row no-underline">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">🏛️</span></div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Family Offices &amp; Funds</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Operators who want an AI operating model without building a full-time team.</p>
+          </div>
+        </div>
+      </div>
+      <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">
+        Available across NJ · NYC · FL · CT · MA · MD
+      </p>
+    </section>
+
+    <!-- 7. Why an Institute (vs a consultancy) -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Why an Institute</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          A Standard, Not a Slide Deck
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Defensible Methodology</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">The C.A.P. Model is owned IP, not borrowed buzzwords. Every engagement runs on the same backbone.</p>
+        </div>
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Measured, Not Vague</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Adoption is defined by outcomes the CFO and board can defend — not activity.</p>
+        </div>
+        <div class="pro-card spoke-corp shadow-neon-primary flex flex-col gap-2">
+          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-corp-accent">Built to Transfer</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">We convene and enable so your teams own the system — capability compounds without dependency.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. How to Engage -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Get Involved</p>
+        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+          Three Ways to Engage
+        </h2>
+      </div>
+      <div class="flex flex-col gap-3">
+        <div class="link-row no-underline hover:scale-[1.005] transition-all">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">1</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Join the Executive Council</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Convene with operators running the model. Share patterns, pressure-test decisions.</p>
+          </div>
+        </div>
+        <div class="link-row no-underline hover:scale-[1.005] transition-all">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">2</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Engage the Fractional CAIO</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Put the framework to work inside your organization — a Chief AI Officer, fractionally.</p>
+          </div>
+        </div>
+        <div class="link-row no-underline hover:scale-[1.005] transition-all">
+          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">3</div>
+          <div class="flex-1 min-w-0">
+            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Adopt the Standard</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Use the AI Adoption Standard as your internal definition of what "adopted" means.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Final CTA -->
+    <section class="flex flex-col items-center text-center gap-5 py-6">
+      <div class="rule w-full"></div>
+      <h2 class="font-display font-extrabold text-[24px] sm:text-[30px] leading-tight text-on-surface">
+        Put a standard behind your AI adoption.
+      </h2>
+      <p class="text-sm text-on-surface-muted max-w-xl">
+        Join the Executive Council or explore the Fractional CAIO practice — and turn AI pressure into a measurable operating system.
+      </p>
+      <div class="flex flex-row flex-wrap gap-3 justify-center mt-1">
+        <a
+          href="https://calendly.com/richmckellar"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+        >
+          Join the Executive Council
+        </a>
+        <a
+          href="/fractional-caio"
+          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+        >
+          Explore the Fractional CAIO Practice
+        </a>
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>
