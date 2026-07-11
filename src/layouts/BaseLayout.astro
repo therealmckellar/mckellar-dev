@@ -1,7 +1,9 @@
 ---
 import Navigation from '../components/Navigation';
 import SocialFooter from '../components/SocialFooter';
+import InquiryModal from '../components/InquiryModal';
 import '../index.css';
+import '../styles/inquiry.css';
 
 interface Props {
   title?: string;
@@ -206,6 +208,10 @@ if (articleSchema) {
         </div>
 
       </main>
+
+      <!-- Global Inquiry Modal (mounted once, opened by any Inquire button) -->
+      <InquiryModal client:load />
+
     </div>
   </body>
 </html>

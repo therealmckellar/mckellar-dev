@@ -1,0 +1,117 @@
+/* ── Inquiry Modal (global, mounted once in BaseLayout) ───────────────────── */
+.inquiry-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(2, 6, 16, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: inquiry-fade 0.18s ease forwards;
+}
+
+.inquiry-modal {
+  width: 100%;
+  max-width: 28rem;
+  max-height: 92vh;
+  overflow-y: auto;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, rgba(15, 23, 42, 0.12));
+  border-radius: 1rem;
+  padding: 1.4rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  animation: inquiry-pop 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.inquiry-close {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  line-height: 1;
+  background: transparent;
+  border: 1px solid var(--color-border, rgba(15, 23, 42, 0.12));
+  color: var(--color-on-surface-muted, #475569);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.inquiry-close:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--color-on-surface, #0f172a);
+}
+
+.inquiry-input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--color-border, rgba(15, 23, 42, 0.12));
+  color: var(--color-on-surface, #0f172a);
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.inquiry-input::placeholder {
+  color: var(--color-on-surface-subtle, #64748b);
+}
+.inquiry-input:focus {
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+.inquiry-textarea {
+  min-height: 6.5rem;
+  resize: vertical;
+}
+
+.inquiry-submit {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  border: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #fff;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+.inquiry-submit:hover {
+  opacity: 0.95;
+}
+.inquiry-submit:active {
+  transform: translateY(1px);
+}
+.inquiry-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.inquiry-success {
+  text-align: center;
+  padding: 1rem 0.5rem;
+}
+.inquiry-success-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+}
+
+@keyframes inquiry-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes inquiry-pop {
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

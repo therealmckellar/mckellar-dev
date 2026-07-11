@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { openInquiry } from '../lib/inquiry';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -103,15 +104,16 @@ const serviceSchema = {
           </svg>
           Schedule Executive Briefing
         </a>
-        <a
-          href="mailto:richard@mckellar.dev?subject=Fractional%20Chief%20AI%20Officer%20Inquiry"
+        <button
+          type="button"
+          onClick={() => openInquiry({ subject: 'Fractional Chief AI Officer Inquiry', source: 'fractional-caio-hero' })}
           class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
         >
           <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           Inquire
-        </a>
+        </button>
       </div>
 
       <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-2 text-xs font-mono uppercase tracking-wider text-on-surface-subtle">
@@ -396,12 +398,13 @@ const serviceSchema = {
         >
           Schedule Executive Briefing
         </a>
-        <a
-          href="mailto:richard@mckellar.dev?subject=Fractional%20Chief%20AI%20Officer%20Inquiry"
+        <button
+          type="button"
+          onClick={() => openInquiry({ subject: 'Fractional Chief AI Officer Inquiry', source: 'fractional-caio-bottom' })}
           class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
         >
           Inquire
-        </a>
+        </button>
       </div>
     </section>
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { openInquiry } from '../lib/inquiry'
 
 interface NavigationProps {
   currentPath?: string
@@ -81,12 +82,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           >
             Fractional CAIO
           </a>
-          <a 
-            href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
-            className="text-xs font-semibold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all px-3.5 py-2 rounded-lg border border-indigo-500/20 no-underline"
+          <button
+            type="button"
+            onClick={() => openInquiry({ subject: 'Advisory Discussion', source: 'nav-desktop' })}
+            className="text-xs font-semibold text-indigo-300 bg-indigo-500/10 hover:bg-indigo-500/20 transition-all px-3.5 py-2 rounded-lg border border-indigo-500/20 no-underline cursor-pointer"
           >
             Inquire
-          </a>
+          </button>
           
           {/* Theme Toggle Button (Desktop) */}
           <button
@@ -185,12 +187,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           >
             Fractional CAIO
           </a>
-          <a 
-            href="mailto:richard@mckellar.dev?subject=Advisory discussion inquiry"
-            className="text-left text-sm font-medium text-indigo-400 py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors no-underline"
+          <button
+            type="button"
+            onClick={() => openInquiry({ subject: 'Advisory Discussion', source: 'nav-mobile' })}
+            className="text-left text-sm font-medium text-indigo-400 py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors no-underline cursor-pointer bg-transparent border-none"
           >
             Inquire
-          </a>
+          </button>
           <a 
             href="https://calendly.com/richmckellar" 
             target="_blank" 
