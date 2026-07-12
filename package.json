@@ -12,10 +12,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/node": "^11.0.2",
     "@astrojs/react": "^6.0.0",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/tailwind": "^6.0.2",
+    "@vercel/node": "^5.8.23",
     "astro": "^7.0.3",
     "nodemailer": "^9.0.3",
     "react": "^19.2.5",

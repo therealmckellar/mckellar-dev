@@ -2,20 +2,20 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
-import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://mckellar.dev',
-  // Astro 7: 'static' output now also serves server API routes (e.g. /api/inquiry)
-  // when run via the node standalone adapter.
+  // Pure static. Pages build to dist/ root (Vercel outputDirectory: "dist").
+  // The /api/inquiry lead-capture route is served as a standalone Vercel
+  // serverless function from api/inquiry.ts (see repo root), so no server
+  // adapter is required and Inquire submissions still work on Vercel.
   output: 'static',
-  adapter: node({ mode: 'standalone' }),
   integrations: [
     react(),
     tailwind({
       configFile: './tailwind.config.js',
     }),
-    sitemap(),
+    sitemap()
   ],
 });
