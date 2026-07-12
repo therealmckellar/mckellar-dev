@@ -30,6 +30,16 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
 
   // Mobile menu state
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  // Ventures dropdown state
+  const [venturesOpen, setVenturesOpen] = useState(false)
+
+  const VENTURES = [
+    { label: 'My Commercial Funding', sub: 'CRO · Premium MCA Platform', href: 'https://mycommercialfunding.com', external: true },
+    { label: 'Robbi Promotional', sub: 'Promo & Merch', href: 'https://robbipromotional.com', external: true },
+    { label: 'Fractional CAIO', sub: 'AI Consulting & Advisory', href: '/fractional-caio', external: false },
+    { label: 'The Institute for AI Adoption', sub: 'AI Adoption Facilitation', href: '/institute-for-ai-adoption', external: false },
+    { label: 'Fathom Realty', sub: 'Real Estate Sales', href: 'https://fathomrealty.com', external: true },
+  ]
 
   const isHome = currentPath === '/' || currentPath === ''
 
@@ -60,12 +70,42 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           >
             Expertise
           </a>
-          <a 
-            href={isHome ? '#ventures' : '/#ventures'}
-            className="text-xs font-semibold text-on-surface-muted hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline"
-          >
-            Ventures
-          </a>
+          <div className="relative" onMouseLeave={() => setVenturesOpen(false)}>
+            <button
+              type="button"
+              onClick={() => setVenturesOpen((v) => !v)}
+              className={`text-xs font-semibold hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline flex items-center gap-1 ${
+                currentPath === '/fractional-caio' || currentPath === '/institute-for-ai-adoption' ? 'text-on-surface' : 'text-on-surface-muted'
+              }`}
+              aria-expanded={venturesOpen}
+            >
+              Ventures
+              <svg className={`w-3 h-3 transition-transform ${venturesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {venturesOpen && (
+              <div
+                className="absolute left-0 mt-1 w-72 rounded-xl border border-white/10 shadow-2xl py-2 z-50 animate-fade-in"
+                style={{ backgroundColor: 'var(--color-surface)' }}
+                onMouseEnter={() => setVenturesOpen(true)}
+              >
+                {VENTURES.map((v) => (
+                  <a
+                    key={v.label}
+                    href={v.href}
+                    target={v.external ? '_blank' : undefined}
+                    rel={v.external ? 'noopener noreferrer' : undefined}
+                    onClick={() => setVenturesOpen(false)}
+                    className="flex flex-col gap-0.5 px-4 py-2.5 hover:bg-white/5 transition-colors no-underline"
+                  >
+                    <span className="text-sm font-semibold text-on-surface">{v.label}</span>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-on-surface-muted">{v.sub}</span>
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
           <a 
             href="/blog" 
             className={`text-xs font-semibold hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline ${
@@ -166,13 +206,33 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           >
             Expertise
           </a>
-          <a 
-            href={isHome ? '#ventures' : '/#ventures'}
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
+          <button
+            type="button"
+            onClick={() => setVenturesOpen((v) => !v)}
+            className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline flex items-center justify-between w-full"
           >
             Ventures
-          </a>
+            <svg className={`w-4 h-4 transition-transform ${venturesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {venturesOpen && (
+            <div className="flex flex-col pl-3">
+              {VENTURES.map((v) => (
+                <a
+                  key={v.label}
+                  href={v.href}
+                  target={v.external ? '_blank' : undefined}
+                  rel={v.external ? 'noopener noreferrer' : undefined}
+                  onClick={() => { setVenturesOpen(false); setMobileMenuOpen(false); }}
+                  className="text-left text-sm font-medium text-on-surface-muted py-2 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
+                >
+                  {v.label}
+                  <span className="block text-[10px] font-mono uppercase tracking-wider text-on-surface-subtle">{v.sub}</span>
+                </a>
+              ))}
+            </div>
+          )}
           <a 
             href="/blog" 
             onClick={() => setMobileMenuOpen(false)}
