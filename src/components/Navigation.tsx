@@ -35,10 +35,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
 
   const VENTURES = [
     { label: 'My Commercial Funding', sub: 'CRO · Premium MCA Platform', href: 'https://mycommercialfunding.com', external: true },
-    { label: 'Robbi Promotional', sub: 'Promo & Merch', href: 'https://robbipromotional.com', external: true },
-    { label: 'Fractional CAIO', sub: 'AI Consulting & Advisory', href: '/fractional-caio', external: false },
     { label: 'The Institute for AI Adoption', sub: 'AI Adoption Facilitation', href: '/institute-for-ai-adoption', external: false },
-    { label: 'Fathom Realty', sub: 'Real Estate Sales', href: 'https://fathomrealty.com', external: true },
   ]
 
   const isHome = currentPath === '/' || currentPath === ''
