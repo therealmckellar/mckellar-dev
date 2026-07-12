@@ -82,6 +82,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           >
             Fractional CAIO
           </a>
+          <a 
+            href="/institute-for-ai-adoption" 
+            className={`text-xs font-semibold hover:bg-white/5 hover:text-on-surface transition-all px-3.5 py-2 rounded-lg no-underline ${
+              currentPath === '/institute-for-ai-adoption' ? 'text-on-surface bg-white/5' : 'text-on-surface-muted'
+            }`}
+          >
+            The Institute
+          </a>
           <button
             type="button"
             onClick={() => openInquiry({ subject: 'Advisory Discussion', source: 'nav-desktop' })}
@@ -186,6 +194,13 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
             className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
           >
             Fractional CAIO
+          </a>
+          <a 
+            href="/institute-for-ai-adoption" 
+            onClick={() => setMobileMenuOpen(false)}
+            className="text-left text-sm font-medium text-on-surface-muted py-2.5 px-3 rounded-lg hover:bg-white/5 hover:text-on-surface transition-colors no-underline"
+          >
+            The Institute
           </a>
           <button
             type="button"
