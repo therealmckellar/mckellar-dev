@@ -86,8 +86,9 @@ const InquiryModal: React.FC = () => {
     e.preventDefault();
     setStatus('scheduling');
     const ok = await postInquiry();
-    // Open booking in a new tab regardless; if submit failed, still let them book.
-    window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
+    // Open booking in a NEW TAB (no features string -> browser opens a tab, not a popup window).
+    // The original tab keeps the success screen as a fallback.
+    window.open(CALENDAR_URL, '_blank');
     setStatus(ok ? 'success' : 'error');
   };
 
