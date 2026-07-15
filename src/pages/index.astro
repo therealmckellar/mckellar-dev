@@ -119,7 +119,7 @@ const faqSchema = {
             ]}
             animationDelay={100}
             ctaLabel="Inquire about AI Consulting"
-            ctaHref="https://calendar.mckellar.dev/richard/30min"
+            onCtaClick={() => openInquiry({ subject: 'AI Consulting Inquiry', source: 'spoke-ai-consulting' })}
           />
         </div>
 
@@ -223,7 +223,7 @@ const faqSchema = {
             ]}
             animationDelay={600}
             ctaLabel="Inquire about Fractional CAIO"
-            ctaHref="https://calendar.mckellar.dev/richard/30min"
+            onCtaClick={() => openInquiry({ subject: 'Fractional CAIO Inquiry', source: 'spoke-fractional-caio' })}
           />
         </div>
 
