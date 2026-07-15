@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { CALENDAR_URL } from '../lib/inquiry';
 
 interface OpenDetail {
   subject?: string;
@@ -12,7 +13,7 @@ const InquiryModal: React.FC = () => {
   const [presetSubject, setPresetSubject] = useState('General Advisory Inquiry');
   const [source, setSource] = useState('website');
   const [form, setForm] = useState(EMPTY);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'sending' | 'scheduling' | 'success' | 'error'>('idle');
   const [error, setError] = useState('');
 
   // Listen for the global open-inquiry event dispatched by any Inquire button
@@ -43,14 +44,13 @@ const InquiryModal: React.FC = () => {
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Single POST to /api/inquiry. Returns true on success.
+  const postInquiry = async (): Promise<boolean> => {
     if (!form.name || !form.email || !form.message) {
       setError('Name, email, and message are required.');
       setStatus('error');
-      return;
+      return false;
     }
-    setStatus('sending');
     setError('');
     try {
       const res = await fetch('/api/inquiry', {
@@ -62,17 +62,33 @@ const InquiryModal: React.FC = () => {
           source,
         }),
       });
-      const data = await res.json();
-      if (res.ok && data.ok) {
-        setStatus('success');
-      } else {
-        setStatus('error');
-        setError(data.error || 'Something went wrong. Please try again.');
-      }
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) return true;
+      setStatus('error');
+      setError(data.error || 'Something went wrong. Please try again.');
+      return false;
     } catch {
       setStatus('error');
       setError('Network error. Please try again.');
+      return false;
     }
+  };
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('sending');
+    const ok = await postInquiry();
+    if (ok) setStatus('success');
+  };
+
+  // Submit the inquiry AND open the calendar in a new tab to book a 30-min call.
+  const submitAndSchedule = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus('scheduling');
+    const ok = await postInquiry();
+    // Open booking in a new tab regardless; if submit failed, still let them book.
+    window.open(CALENDAR_URL, '_blank', 'noopener,noreferrer');
+    setStatus(ok ? 'success' : 'error');
   };
 
   if (!open) return null;
@@ -112,8 +128,16 @@ const InquiryModal: React.FC = () => {
             <input className="inquiry-input" placeholder="Subject (optional)" value={form.subject} onChange={update('subject')} />
             <textarea required className="inquiry-input inquiry-textarea" placeholder="How can Rich help? *" value={form.message} onChange={update('message')} />
             {status === 'error' && <p className="text-xs text-red-400">{error}</p>}
-            <button type="submit" disabled={status === 'sending'} className="inquiry-submit">
+            <button type="submit" disabled={status === 'sending' || status === 'scheduling'} className="inquiry-submit">
               {status === 'sending' ? 'Sending…' : 'Send Inquiry'}
+            </button>
+            <button
+              type="button"
+              onClick={submitAndSchedule}
+              disabled={status === 'sending' || status === 'scheduling'}
+              className="inquiry-schedule"
+            >
+              {status === 'scheduling' ? 'Sending & Opening Calendar…' : 'Send Inquiry & Book a Call'}
             </button>
             <p className="text-[10px] text-on-surface-subtle text-center">
               We'll notify Rich instantly via ntfy, email, and webhook.
