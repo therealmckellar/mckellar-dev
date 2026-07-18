@@ -45,7 +45,7 @@ const SocialFooter: React.FC = () => {
       </SocialLink>
 
       {/* Calendly — quick access */}
-      <SocialLink href="https://calendar.mckellar.dev/richard/30min" label="Schedule a Call">
+      <SocialLink href="https://calendly.com/richmckellar" label="Schedule a Call">
         <svg className="w-4.5 h-4.5" style={{ width: '1.125rem', height: '1.125rem' }} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>

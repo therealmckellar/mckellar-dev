@@ -49,7 +49,7 @@ const App: React.FC = () => {
 
   const triggerPracticeInquiry = (practiceType: 'ai' | 'mca_lending' | 'mca_brokerage') => {
     if (practiceType === 'ai') {
-      window.open('https://calendar.mckellar.dev/richard/30min', '_blank')
+      window.open('https://calendly.com/richmckellar', '_blank')
     } else {
       window.location.href = 'mailto:richard@mckellar.dev?subject=MCA Advisory Inquiry'
     }
@@ -134,7 +134,7 @@ const App: React.FC = () => {
             </button>
 
             <a 
-              href="https://calendar.mckellar.dev/richard/30min" 
+              href="https://calendly.com/richmckellar" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-95 shadow-neon-primary transition-all px-4 py-2 rounded-lg ml-2"
@@ -222,7 +222,7 @@ const App: React.FC = () => {
               Inquire
             </a>
             <a 
-              href="https://calendar.mckellar.dev/richard/30min" 
+              href="https://calendly.com/richmckellar" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-sm font-bold text-center text-white bg-gradient-to-r from-indigo-500 to-purple-600 py-3 rounded-xl shadow-neon-primary mt-2"
@@ -245,7 +245,7 @@ const App: React.FC = () => {
               {/* Central CTAs row - Shrunk, compact and inline-flex */}
               <div className="flex flex-row flex-wrap gap-3 justify-center mt-5 px-1 animate-fade-in" style={{ animationDelay: '350ms' }}>
                 <a
-                  href="https://calendar.mckellar.dev/richard/30min"
+                  href="https://calendly.com/richmckellar"
                   target="_blank"
                   rel="noopener noreferrer"
                   id="cta-schedule-call"
@@ -318,7 +318,7 @@ const App: React.FC = () => {
                       description="A senior AI operator on a fractional basis. Richard builds a clear 90-day AI operating plan with governance, prioritization, and executive accountability — measurable ROI without a full-time CAIO hire."
                       links={[
                         { label: 'Explore the Fractional CAIO Practice', href: '/fractional-caio' },
-                        { label: 'Schedule Executive Briefing', href: 'https://calendar.mckellar.dev/richard/30min' },
+                        { label: 'Schedule Executive Briefing', href: 'https://calendly.com/richmckellar' },
                         { label: 'Inquire about Fractional CAIO', href: 'mailto:richard@mckellar.dev?subject=Fractional%20Chief%20AI%20Officer' },
                       ]}
                       useCases={[
@@ -329,7 +329,7 @@ const App: React.FC = () => {
                       ]}
                       animationDelay={150}
                       ctaLabel="Inquire about Fractional CAIO"
-                      ctaHref="https://calendar.mckellar.dev/richard/30min"
+                      ctaHref="https://calendly.com/richmckellar"
                     />
                   </div>
 

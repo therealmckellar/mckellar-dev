@@ -145,7 +145,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
           </button>
 
           <a 
-            href="https://calendar.mckellar.dev/richard/30min" 
+            href="https://calendly.com/richmckellar" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-xs font-bold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:opacity-95 shadow-neon-primary transition-all px-4 py-2 rounded-lg ml-2 no-underline"
@@ -252,7 +252,7 @@ const Navigation: React.FC<NavigationProps> = ({ currentPath = '/' }) => {
             Inquire
           </button>
           <a 
-            href="https://calendar.mckellar.dev/richard/30min" 
+            href="https://calendly.com/richmckellar" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-sm font-bold text-center text-white bg-gradient-to-r from-indigo-500 to-purple-600 py-3 rounded-xl shadow-neon-primary mt-2 no-underline"
