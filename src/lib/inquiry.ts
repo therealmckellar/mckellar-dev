@@ -1,5 +1,5 @@
 // Rich's booking link — opens the 30-minute advisory call directly.
-export const CALENDAR_URL = 'https://calendly.com/richmckellar';
+export const CALENDAR_URL = 'https://calendar.mckellar.dev/richard/30min';
 
 // Dispatch the global "open inquiry modal" event. Any Inquire button can call
 // this instead of a mailto: link. `subject` pre-fills the modal context;
