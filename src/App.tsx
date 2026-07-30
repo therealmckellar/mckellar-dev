@@ -292,7 +292,6 @@ const App: React.FC = () => {
                       title="AI Consulting & Workflows"
                       description="Auditing workflows and deploying custom intelligent agent structures. Richard delivers bespoke automations, AI adoption strategies, and technical sales advisory to streamline operational overhead and accelerate pipelines."
                       links={[
-                        { label: 'Fractional Chief AI Officer', href: '/fractional-caio' },
                         { label: 'AI Agent / Business Integration', href: 'https://hermes.mckellar.dev' },
                         { label: 'AI Strategy & Insights Blog', href: '#blog', onClick: () => setCurrentView('blog') },
                         { label: 'View Advisory Scope Below', href: 'mailto:richard@mckellar.dev?subject=AI Advisory' },
