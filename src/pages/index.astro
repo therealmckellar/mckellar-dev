@@ -226,6 +226,29 @@ const faqSchema = {
             onCtaClick={() => openInquiry({ subject: 'Fractional CAIO Inquiry', source: 'spoke-fractional-caio' })}
           />
         </div>
+        {/* Practice G: Fractional Forward Deployed Engineer */}
+        <div class="flex flex-col">
+          <SpokeCard
+            accent="blue"
+            title="Fractional FDE"
+            badge="New"
+            description="Embedded AI engineer to map workflows and deploy agents on your existing stack. Diagnostic audits, pilot builds, and ongoing retainers."
+            links={[
+              { label: 'Explore the Fractional FDE Practice', href: '/fractional-fde' },
+              { label: 'Book FDE Scoping Call', href: 'https://calendar.mckellar.dev/richard/30min' },
+              { label: 'Inquire about Fractional FDE', href: 'mailto:richard@mckellar.dev?subject=Fractional%20FDE' },
+            ]}
+            useCases={[
+              "AI workflow audit & ROI matrix",
+              "Custom agent build on existing stack",
+              "Shadow → production deployment",
+              "Documentation & team handoff"
+            ]}
+            animationDelay={700}
+            ctaLabel="Inquire about Fractional FDE"
+            onCtaClick={() => openInquiry({ subject: 'Fractional FDE Inquiry', source: 'spoke-fractional-fde' })}
+          />
+        </div>
 
       </div>
     </div>
