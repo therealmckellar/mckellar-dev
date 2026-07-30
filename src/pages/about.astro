@@ -40,6 +40,26 @@ const faqSchema = {
   canonicalPath="/about"
   faqSchema={faqSchema}
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Richard McKellar",
+    "url": "https://mckellar.dev",
+    "jobTitle": "Fractional AI Executive & Multi-Venture Founder",
+    "description": "Richard McKellar is an AI adoption consultant, multi-venture founder, and Merchant Cash Advance specialist based in Morristown, NJ. He operates across AI advisory, commercial funding, real estate, and promotional products.",
+    "sameAs": [
+      "https://linkedin.com/in/richmckellar",
+      "https://github.com/therealmckellar"
+    ],
+    "worksFor": [
+      { "@type": "Organization", "name": "My Commercial Funding", "url": "https://mycommercialfunding.com" },
+      { "@type": "Organization", "name": "Robbi Promotional", "url": "https://robbipromotional.com" },
+      { "@type": "Organization", "name": "Fathom Realty" },
+      { "@type": "Organization", "name": "Institute for AI Adoption" }
+    ],
+    "areaServed": ["New Jersey", "New York", "Florida", "Connecticut", "Massachusetts", "Maryland"]
+  })} />
+
   <div class="w-full flex flex-col gap-8 animate-fade-in">
     <!-- Blog Nav Header -->
     <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
