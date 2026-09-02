@@ -22,6 +22,7 @@ const articleSchema = {
   "headline": post.data.title,
   "description": post.data.description,
   "datePublished": new Date(post.data.date).toISOString().split('T')[0],
+  "dateModified": new Date(post.data.dateModified || post.data.date).toISOString().split('T')[0],
   "author": {
     "@type": "Person",
     "name": post.data.author
