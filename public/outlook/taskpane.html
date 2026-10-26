@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <title>Inbox Retina (mckellar.dev)</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+  <script src="https://mckellar.dev/outlook/retina-shared.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      margin: 0;
+      padding: 16px;
+      color: #0f172a;
+      background: #fff;
+      font-size: 14px;
+    }
+    h1 { font-size: 16px; margin: 0 0 4px; }
+    .sub { color: #64748b; font-size: 12px; margin-bottom: 16px; }
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #f8fafc;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .label { font-weight: 600; font-size: 13px; }
+    .hint { color: #64748b; font-size: 12px; margin-top: 6px; line-height: 1.4; }
+    .switch {
+      position: relative;
+      width: 48px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: #cbd5e1;
+      border-radius: 999px;
+      transition: 0.15s;
+    }
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      top: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.15s;
+      box-shadow: 0 1px 3px rgba(0,0,0,.2);
+    }
+    input:checked + .slider { background: #059669; }
+    input:checked + .slider:before { transform: translateX(20px); }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .on { background: #ecfdf5; color: #047857; }
+    .off { background: #f1f5f9; color: #64748b; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    .stat {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat .n { font-size: 22px; font-weight: 800; color: #059669; }
+    .stat .k { font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.04em; }
+    a.btn {
+      display: inline-block;
+      background: #059669;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .mode {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #059669;
+      margin-bottom: 8px;
+    }
+    .muted { color: #94a3b8; font-size: 12px; }
+    #statusBox { display: none; }
+  </style>
+</head>
+<body>
+  <div class="mode" id="modeLabel">Compose</div>
+  <h1>Inbox Retina · mckellar.dev</h1>
+  <div class="sub" id="senderLine">—</div>
+
+  <div class="card" id="composeBox">
+    <div class="row">
+      <div>
+        <div class="label">Track this email</div>
+        <div class="hint">When on, Send auto-registers the message and injects an open pixel + click-wrapped links.</div>
+      </div>
+      <label class="switch" title="Toggle tracking">
+        <input type="checkbox" id="trackToggle" checked />
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <span class="badge on" id="trackBadge">Tracking ON</span>
+      <span class="muted" id="senderTag"></span>
+    </div>
+    <p class="hint" style="margin-top:12px">
+      Default is <strong>on for every account</strong> in this Outlook profile once the add-in is installed.
+      Toggle off only for messages you don’t want tracked.
+    </p>
+  </div>
+
+  <div class="card" id="statusBox">
+    <div class="label" style="margin-bottom:6px">Tracking status</div>
+    <div class="muted" id="statusSubject">—</div>
+    <div class="stats">
+      <div class="stat"><div class="n" id="openCount">0</div><div class="k">Opens</div></div>
+      <div class="stat"><div class="n" id="clickCount">0</div><div class="k">Clicks</div></div>
+    </div>
+    <div class="hint" id="statusDetail" style="margin-top:10px">Loading…</div>
+  </div>
+
+  <p>
+    <a class="btn" href="https://mckellar.dev/email-logs/" target="_blank" rel="noopener">
+      Full dashboard (mckellar.dev)
+    </a>
+  </p>
+  <p class="muted" id="hostNote">Classic &amp; New Outlook · OnMessageSend auto-track</p>
+
+  <script>
+    function $(id) { return document.getElementById(id); }
+
+    function applyTrackUi(on) {
+      $("trackToggle").checked = !!on;
+      var b = $("trackBadge");
+      b.textContent = on ? "Tracking ON" : "Tracking OFF";
+      b.className = "badge " + (on ? "on" : "off");
+    }
+
+    function initCompose() {
+      $("modeLabel").textContent = "Compose";
+      $("composeBox").style.display = "";
+      $("statusBox").style.display = "none";
+      var sender = "";
+      try { sender = (typeof retinaGetSenderEmail === "function") ? retinaGetSenderEmail() : ""; } catch (e) {}
+      $("senderLine").textContent = sender || "Compose window";
+      $("senderTag").textContent = sender || "";
+
+      var on = true;
+      try { on = (typeof retinaGetTrackEnabled === "function") ? retinaGetTrackEnabled() : true; } catch (e) {}
+      applyTrackUi(on);
+
+      $("trackToggle").addEventListener("change", function () {
+        var next = $("trackToggle").checked;
+        try {
+          if (typeof retinaSetTrackEnabled === "function") retinaSetTrackEnabled(next);
+        } catch (e) {}
+        applyTrackUi(next);
+      });
+    }
+
+    function initRead(item) {
+      $("modeLabel").textContent = "Sent item";
+      $("composeBox").style.display = "none";
+      $("statusBox").style.display = "";
+      var sender = "";
+      try { sender = (typeof retinaGetSenderEmail === "function") ? retinaGetSenderEmail() : ""; } catch (e) {}
+      $("senderLine").textContent = sender || "Reading message";
+
+      var subject = "";
+      var toStr = "";
+      var bodyHtml = "";
+
+      function finishLookup() {
+        var uid = "";
+        try {
+          if (typeof retinaExtractUidFromBody === "function") uid = retinaExtractUidFromBody(bodyHtml);
+        } catch (e) {}
+
+        $("statusSubject").textContent = subject || "(no subject)";
+
+        var password = "";
+        try { password = sessionStorage.getItem("retina_password") || ""; } catch (e) {}
+
+        var params = {};
+        if (uid) params.uid = uid;
+        else {
+          params.subject = subject;
+          params.to = toStr;
+        }
+
+        if (typeof retinaFetchStatus !== "function") {
+          $("statusDetail").textContent = "Shared helper not loaded.";
+          return;
+        }
+
+        retinaFetchStatus(params, password, function (err, data) {
+          if (err || !data || !data.found) {
+            $("openCount").textContent = "0";
+            $("clickCount").textContent = "0";
+            $("statusDetail").textContent =
+              "No Retina record for this message yet (not sent via tracked Outlook, or still registering).";
+            return;
+          }
+          $("openCount").textContent = String(data.openCount || 0);
+          $("clickCount").textContent = String(data.clickCount || 0);
+          var bits = [];
+          if (data.lastOpen) bits.push("Last open " + new Date(data.lastOpen).toLocaleString());
+          if (data.source) bits.push("via " + data.source);
+          if (data.senderEmail) bits.push(data.senderEmail);
+          $("statusDetail").textContent = bits.join(" · ") || "Tracked";
+        });
+      }
+
+      item.subject.getAsync(function (sr) {
+        if (sr.status === Office.AsyncResultStatus.Succeeded) subject = sr.value || "";
+        item.to.getAsync(function (tr) {
+          if (tr.status === Office.AsyncResultStatus.Succeeded && tr.value && tr.value.length) {
+            toStr = tr.value
+              .map(function (r) { return r.emailAddress || r.displayName || ""; })
+              .filter(Boolean)
+              .join(", ");
+          }
+          if (item.body && typeof item.body.getAsync === "function") {
+            item.body.getAsync(Office.CoercionType.Html, function (br) {
+              if (br.status === Office.AsyncResultStatus.Succeeded) bodyHtml = br.value || "";
+              finishLookup();
+            });
+          } else {
+            finishLookup();
+          }
+        });
+      });
+    }
+
+    Office.onReady(function () {
+      try {
+        var item = Office.context.mailbox && Office.context.mailbox.item;
+        if (!item) {
+          $("modeLabel").textContent = "Inbox Retina";
+          $("composeBox").style.display = "none";
+          $("statusBox").style.display = "";
+          $("statusDetail").textContent = "Open a message or compose window to use Retina.";
+          return;
+        }
+        if (item.displayMode) {
+          if (item.displayMode === "edit") initCompose();
+          else initRead(item);
+        } else if (item.body && typeof item.body.setAsync === "function" && !item.subject) {
+          initCompose();
+        } else {
+          try {
+            if (Office.context.mailbox.item.displayMode === "edit") initCompose();
+            else initRead(item);
+          } catch (e) {
+            initCompose();
+          }
+        }
+      } catch (e) {
+        initCompose();
+      }
+    });
+  </script>
+</body>
+</html>
