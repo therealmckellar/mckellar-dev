@@ -4,7 +4,13 @@
  */
 /* global Office */
 
-var RETINA_HOST = 'https://mckellar.dev';
+var RETINA_HOST =
+    typeof window !== 'undefined' &&
+    window.location &&
+    window.location.origin &&
+    window.location.origin.indexOf('mckellar.dev') !== -1
+        ? window.location.origin
+        : 'https://www.mckellar.dev';
 var TRACK_KEY = 'retina_outlook_track_enabled'; // '1' | '0'
 
 function retinaGetTrackEnabled() {

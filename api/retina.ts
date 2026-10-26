@@ -348,7 +348,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const clickMap = await getEmailLinkClicksMap();
             const clicks = clickMap[uid] || [];
 
-            return res.status(200).json({\n                found: true,
+            return res.status(200).json({
+                found: true,
                 uid,
                 subject: sent?.subject,
                 to: sent?.to,
@@ -383,7 +384,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const uid = `m-${Date.now()}`;
             const timestamp = new Date().toISOString();
             const proto = getHeader(req, 'x-forwarded-proto') || 'https';
-            const host = getHeader(req, 'host') || 'mckellar.dev';
+            const host = getHeader(req, 'host') || 'www.mckellar.dev';
             const origin = `${proto}://${host}`;
 
             const urlRegex = /(https?:\/\/[^\s<"'\\(\)]+)/g;
@@ -588,7 +589,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
             let triggeredCount = 0;
             let cancelledCount = 0;
-            const dashboardUrl = 'https://mckellar.dev/email-logs/';
+            const dashboardUrl = 'https://www.mckellar.dev/email-logs/';
 
             for (const rule of pendingDue) {
                 const opens = await getOpenEventsForUid(rule.uid);
