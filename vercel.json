@@ -10,9 +10,87 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/email-logs.php",
+      "has": [
+        {
+          "type": "query",
+          "key": "register_sent"
+        }
+      ],
+      "destination": "/api/pixel"
+    },
+    {
+      "source": "/email-logs.php",
+      "destination": "/email-logs"
+    },
+    {
+      "source": "/links.php",
+      "destination": "/links"
+    },
+    {
+      "source": "/pixel.php",
+      "destination": "/api/pixel"
+    },
+    {
+      "source": "/api/pixel/",
+      "destination": "/api/pixel"
+    },
+    {
+      "source": "/l.php",
+      "destination": "/api/l"
+    },
+    {
+      "source": "/api/l/",
+      "destination": "/api/l"
+    },
+    {
+      "source": "/l/:slug",
+      "destination": "/api/l?id=:slug"
+    },
+    {
+      "source": "/outlook/icon-:size.png",
+      "destination": "/api/retina?__route=icon&size=:size"
+    },
+    {
+      "source": "/api/retina/:path*/",
+      "destination": "/api/retina?__route=:path*"
+    },
+    {
+      "source": "/api/retina/:path*",
+      "destination": "/api/retina?__route=:path*"
+    }
+  ],
   "headers": [
     {
-      "source": "/(.*)",
+      "source": "/outlook/manifest.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/outlook/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    },
+    {
+      "source": "/((?!outlook/).*)",
       "headers": [
         {
           "key": "X-Content-Type-Options",
