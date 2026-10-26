@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getShortLink, registerLinkClick, registerEmailLinkClick, getSentEmailByUid } from './_lib/kv';
-import { sendNtfyNotification } from './_lib/ntfy';
-import { sendRetinaEmail } from './_lib/retinaEmail';
+import { getShortLink, registerLinkClick, registerEmailLinkClick, getSentEmailByUid } from './_lib/kv.js';
+import { sendNtfyNotification } from './_lib/ntfy.js';
+import { sendRetinaEmail } from './_lib/retinaEmail.js';
 
 function getHeader(req: VercelRequest, name: string): string | undefined {
     const val = req.headers[name.toLowerCase()];

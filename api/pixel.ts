@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { registerOpenEvent, registerSentEmail, getSentEmailByUid } from './_lib/kv';
-import type { SentEmail } from './_lib/kv';
-import { sendNtfyNotification } from './_lib/ntfy';
-import { sendRetinaEmail } from './_lib/retinaEmail';
+import { registerOpenEvent, registerSentEmail, getSentEmailByUid } from './_lib/kv.js';
+import type { SentEmail } from './_lib/kv.js';
+import { sendNtfyNotification } from './_lib/ntfy.js';
+import { sendRetinaEmail } from './_lib/retinaEmail.js';
 
 const GIF_BASE64 = 'R0lGODlhAQABAJAAAP8AAAAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==';
 const GIF_BUFFER = Buffer.from(GIF_BASE64, 'base64');

@@ -19,10 +19,10 @@ import {
     getFollowUpRules,
     deleteFollowUpRule,
     runRedisCommand,
-} from './_lib/kv';
-import type { FollowUpRule } from './_lib/kv';
-import { sendNtfyNotification } from './_lib/ntfy';
-import { sendRetinaEmail } from './_lib/retinaEmail';
+} from './_lib/kv.js';
+import type { FollowUpRule } from './_lib/kv.js';
+import { sendNtfyNotification } from './_lib/ntfy.js';
+import { sendRetinaEmail } from './_lib/retinaEmail.js';
 
 const ICON_BASE64: Record<string, string> = {
     '16': 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEzSURBVDhPtVItT8RAEG3C7nHyZCUSiTyJRCJxd4rO1BwSyT9oQnansvIk8iQSefIkPwGJhLxZOmm3cCQkvGRF33z0vZkpiv/ALPK1j9x44ef0qHWRKc+botksnHDnhJ6c0N1JW13ioRhNfOSXItRlXpagxbT3oVrnoR5OaOmED7PH2/M8VrjIWy90k/M50ESVDIFCNBiRR4D5wKIR8P2TdMyg6FbzERfqKy+0MyJ5ry+GSSiCXy/84YXeRsNrNgvlerjIr6dtdWYEZIZqnYrTc4HuLdit5j7yu31jbdi9EUCoSyRZA6FlH4JaqLZcDASDMeILWJeP/ADPQ36ar35p/+1+c4S61L/nB2Wy8sAQaXi7id0eerbCBz3dwVbUCm5Ft/LbsaW/tLpaG6A23R5V91d8Albwkl4BkMQZAAAAAElFTkSuQmCC',
@@ -348,8 +348,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const clickMap = await getEmailLinkClicksMap();
             const clicks = clickMap[uid] || [];
 
-            return res.status(200).json({
-                found: true,
+            return res.status(200).json({\n                found: true,
                 uid,
                 subject: sent?.subject,
                 to: sent?.to,
@@ -387,7 +386,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             const host = getHeader(req, 'host') || 'mckellar.dev';
             const origin = `${proto}://${host}`;
 
-            const urlRegex = /(https?:\/\/[^\s<"'\(\)]+)/g;
+            const urlRegex = /(https?:\/\/[^\s<"'\\(\)]+)/g;
             let hasLinks = false;
             let htmlBody = String(message).replace(/\n/g, '<br />');
 
