@@ -1,5 +1,6 @@
 ---
 title: "What a Fractional FDE Actually Does: The Audit, Evaluate, Deploy Method Explained"
+seoTitle: "What a Fractional FDE Does | Richard McKellar"
 description: "Richard McKellar explains the Fractional FDE role — how the Audit, Evaluate, Deploy methodology works to ship AI agents into existing business systems."
 date: "July 29, 2026"
 category: "ai"

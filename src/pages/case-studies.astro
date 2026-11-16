@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const caseStudies = [
+  {
+    code: "CASE STUDY 01",
+    badge: "AI Underwriting & MCA Triage",
+    badgeClass: "exec-badge-indigo",
+    cardClass: "exec-bento-card-indigo",
+    title: "AI Underwriting & Document Triage for Commercial Lending & MCA Shops",
+    domain: "Alternative Business Lending · Fractional FDE + Revenue Ops",
+    challenge:
+      "Commercial funding platforms and MCA brokerages lose hours every day to unstructured broker packages arriving via email, SMS, and portals—followed by 45 minutes of manual bank statement review, duplicate deal checks, and inconsistent stip follow-up.",
+    architecture:
+      "Built intake and underwriting triage agents directly on top of the existing CRM and messaging tools. Agents pull merchant details, average monthly deposits, NSF/overdraft counts, and competing ACH positions, then drop clean summaries into Slack and CRM records.",
+    outcomes: [
+      { metric: "3–5 hrs/wk", detail: "Saved per rep on manual CRM deal intake & data entry" },
+      { metric: "2× Throughput", detail: "Initial underwriting prep cut from ~45 min down to minutes" },
+      { metric: "40–60% Fewer", detail: "Dropped deals via automated stip and follow-up reminders" },
+    ],
+    relatedLink: "/blog/richard-mckellar-my-commercial-funding-mca-underwriting",
+    relatedLabel: "Read My Commercial Funding Underwriting Playbook",
+    inquirySubject: "Case Study Inquiry — AI Underwriting & Triage",
+  },
+  {
+    code: "CASE STUDY 02",
+    badge: "Direct Lending Scale · $100M+",
+    badgeClass: "exec-badge-gold",
+    cardClass: "exec-bento-card-gold",
+    title: "Scaling Direct Lending & Multi-Brand ISO Channels Past $100M+ Funded Volume",
+    domain: "Whetstone Holdings · My Commercial Funding · Capital Advisory",
+    challenge:
+      "Moving from a brokerage into a scaled direct funding shop exposes credit blind spots, ledger mismatches, and ISO channel friction that slow down warehouse capital and syndication partners.",
+    architecture:
+      "Drawing on Richard McKellar's time as VP & Executive Board Member at Whetstone Holdings (Everest Funding, Vader Funding, Granite Mountain Funding) and current CRO role at My Commercial Funding, we paired proprietary risk grading with unified CRM syndicate/renewal tracking and clean origination-to-ledger math.",
+    outcomes: [
+      { metric: "$100M+ Volume", detail: "Personally funded MCA & revenue-based financing deals" },
+      { metric: "15+ Years", detail: "Direct lender, ISO network & warehouse capitalization experience" },
+      { metric: "Single Screen", detail: "Syndicate shares, renewals, commissions & underwriting in one view" },
+    ],
+    relatedLink: "/blog/richard-mckellar-whetstone-everest-lessons-scaling-100m",
+    relatedLabel: "Read Whetstone & Everest Scaling Lessons",
+    inquirySubject: "Case Study Inquiry — Direct Lending & ISO Scaling",
+  },
+  {
+    code: "CASE STUDY 03",
+    badge: "Enterprise Stack FDE",
+    badgeClass: "exec-badge-emerald",
+    cardClass: "exec-bento-card-emerald",
+    title: "AI Integrations Across NetSuite, Salesforce & HubSpot Without Rip-and-Replace",
+    domain: "Mid-Market Distribution, Merch, Cannabis, Liquor & Field Services",
+    challenge:
+      "20–250 person businesses running 4–10 SaaS tools (Salesforce, NetSuite, HubSpot, POS/PMS, quoting spreadsheets) lose hours every week to manual re-entry and compliance reporting—and don't want a disruptive platform migration.",
+    architecture:
+      "Connected directly into Salesforce REST/Webhooks, NetSuite SuiteScript 2.0 / RESTlets, HubSpot APIs, and Node.js/Python glue services. Every agent started in Shadow Mode before moving to live production with human approval gates and full logs.",
+    outcomes: [
+      { metric: "0 Migrations", detail: "Built directly onto the ERP, CRM, and APIs already in use" },
+      { metric: "10–15 → 2–3 hrs", detail: "Weekly multi-state compliance review workload cut way down" },
+      { metric: "80% Fewer Errors", detail: "Automated multi-SKU order intake validation (15 min → 2 min)" },
+    ],
+    relatedLink: "/blog/ai-integration-netsuite-salesforce-hubspot",
+    relatedLabel: "Read NetSuite, Salesforce & HubSpot Field Guide",
+    inquirySubject: "Case Study Inquiry — Enterprise CRM/ERP Integration",
+  },
+  {
+    code: "CASE STUDY 04",
+    badge: "90-Day C.A.P.™ Rollout",
+    badgeClass: "exec-badge-violet",
+    cardClass: "exec-bento-card-violet",
+    title: "90-Day C.A.P.™ AI Rollout for Mid-Market & PE Portfolio Teams",
+    domain: "The Institute for AI Adoption · Fractional Chief AI Officer (CAIO)",
+    challenge:
+      "Leadership teams feel pressure to use AI, but end up stuck with disconnected demos, skeptical CFOs, and outside consultants who never transfer ownership to the team.",
+    architecture:
+      "Rolled out the 90-day C.A.P.™ model: Days 1–30 Council (get leaders aligned and set clear rules), Days 31–60 Align (rank projects by real payback vs. deterministic code vs. human judgment), Days 61–90 Perform (ship the first high-ROI workflow and hand the playbook to internal staff).",
+    outcomes: [
+      { metric: "90-Day Cycle", detail: "Clear ROI tracked and reviewed with leadership inside Q1" },
+      { metric: "From $5K / Cycle", detail: "Fraction of the cost of a $150K–$300K/yr full-time CAIO" },
+      { metric: "Full Ownership", detail: "Runbooks and tools handed off cleanly to your internal team" },
+    ],
+    relatedLink: "/blog/richard-mckellar-ai-adoption-framework-nj",
+    relatedLabel: "Read the 90-Day C.A.P. Framework Guide",
+    inquirySubject: "Case Study Inquiry — 90-Day C.A.P. Rollout",
+  }
+];
+
+const faqs = [
+  {
+    q: "How are Richard McKellar's engagement blueprints structured for ROI?",
+    a: "Every engagement separates strategy from execution into clear, measurable stages. Whether starting with a $999 AI Audit (5–7 days on 1 workflow), a 90-day C.A.P.™ Fractional CAIO cycle (starting at $5,000), or a Fractional FDE build ($7.5K–$12.5K diagnostic, $20K–$40K pilot, $12K–$25K/month retainer), initiatives are gated against baseline metrics including hours saved, error reduction, and revenue throughput."
+  },
+  {
+    q: "Do companies need to replace NetSuite, Salesforce, or HubSpot to deploy these AI workflows?",
+    a: "No. A core rule across Richard McKellar's Fractional FDE engagements is zero rip-and-replace. Agents connect directly to existing CRMs, ERPs, funding platforms, and custom REST/GraphQL endpoints via APIs and webhooks."
+  },
+  {
+    q: "How does Richard McKellar de-risk production AI deployments in regulated or financial workflows?",
+    a: "Every AI workflow follows a graduated deployment curve: Shadow Mode (agents observe and draft recommendations), Supervised Mode (low-risk routing executes automatically while high-risk credit or compliance decisions require human sign-off), and Production Mode backed by least-privilege access, encrypted secrets, and full audit trails."
+  },
+  {
+    q: "Which regions and industries do these operational blueprints serve?",
+    a: "Richard McKellar operates from Morristown, New Jersey and serves companies across NJ, NYC, FL, CT, MA, MD, and globally—focusing on commercial lenders and MCA shops, mid-market manufacturers, PE-backed portfolio companies, professional services firms, promotional distributors, cannabis MSOs, liquor, hospitality, and field services."
+  }
+];
+
+const itemListSchema = {
+  "@type": "ItemList",
+  "@id": "https://mckellar.dev/case-studies#itemlist",
+  "name": "Richard McKellar — Operational Case Studies & Client Results",
+  "numberOfItems": caseStudies.length,
+  "itemListElement": caseStudies.map((cs, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "CreativeWork",
+      "name": cs.title,
+      "description": `${cs.challenge} ${cs.architecture}`,
+      "url": `https://mckellar.dev${cs.relatedLink}`,
+      "author": { "@id": "https://mckellar.dev/#richard-mckellar" }
+    }
+  }))
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Case Studies & Results | AI & Lending | Richard McKellar"
+  description="Real-world case studies from Richard McKellar: AI underwriting triage, $100M+ direct lending scale, NetSuite/Salesforce AI builds, and 90-day C.A.P. plans."
+  canonicalPath="/case-studies"
+  keywords="Richard McKellar Case Studies, AI underwriting MCA case study, Whetstone Holdings $100M scaling, NetSuite Salesforce HubSpot AI integration, 90-day CAP Operating Model, Fractional FDE examples"
+  breadcrumbs={[
+    { name: "Richard McKellar", path: "/" },
+    { name: "Case Studies", path: "/case-studies" },
+  ]}
+  itemListSchema={itemListSchema}
+  faqSchema={faqSchema}
+>
+  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
+    <!-- Top Nav Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
+        href="/richard-mckellar"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Richard McKellar Profile
+      </a>
+      <span class="exec-badge exec-badge-emerald">
+        Case Studies &amp; Results
+      </span>
+    </div>
+
+    <!-- 1. Hero -->
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10 flex flex-col gap-5">
+      <p class="exec-kicker">Case Studies · mckellar.dev</p>
+      <h1 class="font-display font-bold text-[34px] sm:text-[48px] leading-[1.06] tracking-tight text-on-surface text-glow-primary max-w-4xl">
+        Case Studies &amp; Real-World Results
+      </h1>
+      <p class="text-base sm:text-lg text-on-surface-muted max-w-3xl leading-relaxed">
+        How <strong class="text-on-surface">Richard McKellar</strong> combines 15+ years of commercial lending experience ($100M+ personally funded) with practical AI strategy and hands-on engineering to save teams hours every week.
+      </p>
+      <div class="flex flex-wrap gap-3 pt-1">
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-primary"
+        >
+          Start With the $999 AI Audit
+        </a>
+        <button
+          type="button"
+          data-inquiry-subject="Case Study Discussion"
+          data-inquiry-source="case-studies-hero"
+          class="exec-btn-secondary"
+        >
+          Ask About a Similar Project
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. Four Detailed Case Studies -->
+    <section class="flex flex-col gap-8">
+      <div>
+        <p class="section-label mb-2">Examples</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Projects, Builds &amp; Measured Results
+        </h2>
+      </div>
+
+      <div class="flex flex-col gap-6">
+        {caseStudies.map((cs) => (
+          <article class={`exec-bento-card ${cs.cardClass} flex flex-col gap-6 p-6 sm:p-8`}>
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="font-mono text-xs font-bold tracking-widest text-on-surface-subtle">{cs.code}</span>
+                <span class={`exec-badge ${cs.badgeClass}`}>{cs.badge}</span>
+              </div>
+              <span class="font-mono text-[11px] uppercase tracking-wider text-on-surface-subtle">
+                {cs.domain}
+              </span>
+            </div>
+
+            <h3 class="font-display font-bold text-xl sm:text-2xl text-on-surface leading-snug">
+              {cs.title}
+            </h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+                <p class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-amber-700 dark:text-amber-400 font-semibold">
+                  The Problem
+                </p>
+                <p class="text-sm text-on-surface-muted leading-relaxed">
+                  {cs.challenge}
+                </p>
+              </div>
+              <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+                <p class="font-mono text-[10.5px] uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400 font-semibold">
+                  What We Built
+                </p>
+                <p class="text-sm text-on-surface-muted leading-relaxed">
+                  {cs.architecture}
+                </p>
+              </div>
+            </div>
+
+            <!-- Outcomes Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {cs.outcomes.map((o) => (
+                <div class="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 flex flex-col gap-1">
+                  <span class="font-display font-bold text-lg sm:text-xl text-on-surface">{o.metric}</span>
+                  <span class="text-xs text-on-surface-muted leading-relaxed">{o.detail}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-4 pt-3 border-t border-[var(--color-border)]">
+              <a
+                href={cs.relatedLink}
+                class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline inline-flex items-center gap-1.5"
+              >
+                {cs.relatedLabel}
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <button
+                type="button"
+                data-inquiry-subject={cs.inquirySubject}
+                data-inquiry-source={`case-study-${cs.code.toLowerCase().replace(/\s+/g, '-')}`}
+                class="exec-btn-secondary !py-2 !px-3.5 !text-xs"
+              >
+                Talk About a Similar Project
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Rollout Process -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">How It Works</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          How Every Build Goes Live Without Breaking Your Operations
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Stage 01 · Shadow Mode</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Test Quietly First</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            New workflows read live inputs and draft outputs alongside your team so we verify accuracy before anything touches customers or records.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-amber-700 dark:text-amber-400 font-bold uppercase tracking-wider">Stage 02 · Supervised Mode</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Humans Stay in Control</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Routine sorting and CRM updates run automatically while credit calls, pricing exceptions, and judgment calls route to your team for approval.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider">Stage 03 · Production &amp; Handoff</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Clean Handoff to Your Team</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Full documentation, clear tracking, and training so your staff understands and owns everything long after launch.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FAQs -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Questions &amp; Answers</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Common Questions About Case Studies
+        </h2>
+      </div>
+      <div class="exec-faq-list">
+        {faqs.map((item, idx) => (
+          <details class="exec-faq-item" open={idx === 0}>
+            <summary class="exec-faq-trigger">{item.q}</summary>
+            <div class="exec-faq-panel">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Final CTA -->
+    <section class="exec-bento-card exec-bento-card-indigo flex flex-col items-center text-center gap-4 py-8 px-6">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+        Want to Map Out Your First 90 Days?
+      </h2>
+      <p class="text-sm text-on-surface-muted max-w-xl">
+        Start with the $999 AI Audit—1 workflow in 1 system over 5–7 days—or book a 30-minute call with Richard McKellar.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-1">
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-primary"
+        >
+          Book a 30-Min Call
+        </a>
+        <a href="/fractional-caio-vs-fde" class="exec-btn-secondary">
+          Compare CAIO vs FDE →
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

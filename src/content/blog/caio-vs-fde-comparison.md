@@ -1,5 +1,6 @@
 ---
 title: "Fractional CAIO vs Fractional FDE: How Richard McKellar Deploys AI in Growing Businesses"
+seoTitle: "Fractional CAIO vs FDE Guide | Richard McKellar"
 description: "A practical comparison of Fractional Chief AI Officer and Fractional FDE — two complementary AI leadership models from Richard McKellar for growing businesses."
 date: "July 29, 2026"
 category: "ai"

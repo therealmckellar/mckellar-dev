@@ -1,6 +1,7 @@
 ---
 title: "Deploying AI Into Existing Systems: A Field Guide for NetSuite, Salesforce, and HubSpot"
-description: "Richard McKellar explains how Fractional FDE deploys AI agents into NetSuite, Salesforce, HubSpot, and custom stacks — without migrations or rip-and-replace."
+seoTitle: "AI for NetSuite, Salesforce & HubSpot | Richard McKellar"
+description: "Richard McKellar explains how Fractional FDE deploys AI agents into NetSuite, Salesforce, HubSpot, and custom stacks — without rip-and-replace."
 date: "July 29, 2026"
 category: "ai"
 readTime: "6 min read"

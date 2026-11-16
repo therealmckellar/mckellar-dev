@@ -1,15 +1,34 @@
 {
-  "short_name": "McKellar",
-  "name": "Richard McKellar | mckellar.dev",
+  "id": "/",
+  "short_name": "Richard McKellar",
+  "name": "Richard McKellar | Fractional CAIO, FDE & Funding Advisor",
+  "description": "Richard McKellar in Morristown, NJ: Fractional CAIO, Forward Deployed Engineer, CRO at My Commercial Funding & Founder of The Institute for AI Adoption.",
   "icons": [
     {
-      "src": "favicon.svg",
+      "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "theme_color": "#0E0D16",
-  "background_color": "#0E0D16"
+  "lang": "en-US",
+  "dir": "ltr",
+  "theme_color": "#060B14",
+  "background_color": "#060B14",
+  "categories": ["business", "consulting", "technology", "finance"]
 }

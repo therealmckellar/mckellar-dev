@@ -1,437 +1,439 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { openInquiry } from '../lib/inquiry';
+
+const faqs = [
+  {
+    question: "What is a Fractional Chief AI Officer?",
+    answer:
+      "A Fractional Chief AI Officer (CAIO) delivers the executive strategy, governance, and board-level accountability of a full-time CAIO without the six-figure overhead. Richard McKellar embeds with mid-market leadership teams as a senior AI operator to establish a repeatable AI operating model and deliver measurable ROI in 90-day cycles.",
+  },
+  {
+    question: "Who is Richard McKellar's Fractional Chief AI Officer service built for?",
+    answer:
+      "Mid-market manufacturers, professional services firms, family offices, and private-equity-backed portfolio companies under mandate to adopt AI responsibly but lacking an internal operating model, clear decision rights, or CFO-defensible ROI tracking. Engagements are available across Morristown NJ, New York City (NYC), Florida (FL), Connecticut (CT), Massachusetts (MA), Maryland (MD), and remote nationwide.",
+  },
+  {
+    question: "How fast can we see measurable ROI with the C.A.P.™ Operating Model?",
+    answer:
+      "Richard builds a prioritized 90-day AI operating plan with executive governance and financial decision gates from week one. Most organizations reach measurable, audited ROI within the initial 90-day C.A.P.™ cycle (Council → Align → Perform).",
+  },
+  {
+    question: "How is a Fractional CAIO different from hiring a full-time CAIO or general consultant?",
+    answer:
+      "A full-time CAIO carries a $200K–$400K+ compensation package and long ramp time, while traditional consultants deliver slide decks without operational ownership. Richard embeds as an operator: standing up your Executive AI Council, running the C.A.P.™ Operating Model, gating every initiative to P&L impact, and transferring capability to your internal team.",
+  },
+];
 
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a Fractional Chief AI Officer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Fractional Chief AI Officer delivers the strategy, governance, and executive accountability of a full-time CAIO without the full-time cost. Richard McKellar serves mid-market companies as a senior AI operator on a fractional basis, building a repeatable AI operating model and measurable ROI in 90-day cycles."
-      }
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
     },
-    {
-      "@type": "Question",
-      "name": "Who is the Fractional Chief AI Officer service for?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mid-market manufacturers, professional services firms, family offices, and private-equity-backed portfolio companies that feel pressure to adopt AI but lack an internal operating model, ownership, or a way to measure results. Engagements are available across NJ, NYC, FL, CT, MA, and MD."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How fast can we see measurable ROI?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Richard builds a clear 90-day AI operating plan with governance, prioritization, and executive accountability. Most engagements produce a measurable, decision-gated ROI outcome within the first 90-day cycle using the C.A.P. Operating Model."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is this different from hiring a full-time Chief AI Officer or a general consultant?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A full-time CAIO is a six-figure hire with a long ramp. A general consultant delivers a slide deck and leaves. Richard embeds as an operator: he stands up an executive AI council, builds the operating model, ties every initiative to ROI with clear decision gates, and transfers ownership to your team so you are not dependent on outside help."
-      }
-    }
-  ]
+  })),
 };
 
 const serviceSchema = {
-  "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Fractional Chief AI Officer",
-  "serviceType": "AI Strategy & Governance Advisory",
-  "provider": {
-    "@type": "Person",
-    "name": "Richard McKellar",
-    "url": "https://mckellar.dev"
-  },
+  "name": "Fractional Chief AI Officer (CAIO)",
+  "serviceType": "AI Strategy, Executive Governance & C.A.P. Operating Model Advisory",
+  "url": "https://mckellar.dev/fractional-caio",
   "areaServed": ["New Jersey", "New York City", "Florida", "Connecticut", "Massachusetts", "Maryland"],
-  "description": "Fractional Chief AI Officer services: AI strategy, governance design, executive AI operating models, and measurable 90-day ROI for mid-market companies."
+  "description":
+    "Fractional Chief AI Officer services led by Richard McKellar in Morristown, NJ: Executive AI Council governance, 90-day C.A.P. Operating Model, vendor discipline, and CFO-defensible ROI starting at $5,000 per 90-day cycle.",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Single-Workflow AI Audit",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "999",
+      },
+    },
+    {
+      "@type": "Offer",
+      "name": "Fractional Chief AI Officer — 90-Day C.A.P. Cycle",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD",
+        "price": "5000",
+        "priceType": "Starting",
+      },
+    },
+  ],
 };
 ---
 
 <BaseLayout
-  title="Fractional Chief AI Officer | Richard McKellar — AI Strategy, Governance & Measurable ROI"
-  description="Richard McKellar serves as your Fractional Chief AI Officer — building a clear 90-day AI operating plan with governance, prioritization, and executive accountability. Measurable ROI without hiring a full-time CAIO."
+  title="Fractional Chief AI Officer | Richard McKellar (NJ)"
+  description="Work with Richard McKellar as your Fractional Chief AI Officer across NJ, NYC & the East Coast. 90-day AI operating plan & governance from $5K/cycle."
   canonicalPath="/fractional-caio"
+  ogType="website"
   faqSchema={faqSchema}
+  serviceSchema={serviceSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-
-  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
-
-    <!-- Header / Back -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a
-        href="/"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  <div class="w-full flex flex-col gap-14 animate-fade-in">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </a>
-      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        Fractional CAIO
-      </span>
+      <div class="flex items-center gap-3 text-xs font-mono">
+        <a href="/fractional-fde" class="text-on-surface-muted hover:text-on-surface no-underline">Fractional FDE</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/fractional-caio-vs-fde" class="text-on-surface-muted hover:text-on-surface no-underline">CAIO vs FDE</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/institute-for-ai-adoption" class="text-on-surface-muted hover:text-on-surface no-underline">Institute</a>
+      </div>
     </div>
 
     <!-- 1. Hero -->
-    <section class="flex flex-col items-center text-center gap-6 pt-4">
-      <span class="cred-pill">AI Strategy · Governance · Measurable ROI</span>
-      <h1 class="font-display font-extrabold text-[34px] sm:text-[46px] leading-[1.05] text-on-surface text-glow-primary max-w-3xl">
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10 flex flex-col items-center text-center gap-6">
+      <span class="exec-badge exec-badge-violet">AI Strategy · Governance · Measurable 90-Day ROI</span>
+      <h1 class="font-display font-bold text-3xl sm:text-5xl leading-[1.06] text-on-surface text-glow-primary max-w-3xl">
         Fractional Chief AI Officer
       </h1>
       <p class="text-base sm:text-lg text-on-surface-muted max-w-2xl leading-relaxed">
-        Build a clear 90-day AI operating plan with governance, prioritization, and executive accountability — without hiring a full-time Chief AI Officer. Richard McKellar embeds as your senior AI operator and delivers measurable ROI.
+        Build a clear 90-day AI operating plan with executive governance, prioritized use cases, and CFO-defensible accountability — led by <a href="/richard-mckellar" class="text-accent font-semibold hover:underline no-underline">Richard McKellar</a> from Morristown, NJ, without hiring a full-time CAIO.
       </p>
 
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-2">
+      <div class="flex flex-wrap gap-3 justify-center">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
-          Schedule Executive Briefing
+          Schedule a 30-Min Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'Fractional Chief AI Officer Inquiry', source: 'fractional-caio-hero' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="Fractional Chief AI Officer Inquiry"
+          data-inquiry-source="fractional-caio-hero"
+          class="exec-btn-secondary"
         >
-          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
-          Inquire
+          Ask About Fractional CAIO
         </button>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-2 text-xs font-mono uppercase tracking-wider text-on-surface-subtle">
-        <span>ROI measured within 90 days</span>
-        <span class="hidden sm:inline text-indigo-400">•</span>
-        <span>No full-time hire required</span>
-        <span class="hidden sm:inline text-indigo-400">•</span>
-        <span>Executive accountability</span>
+      <div class="exec-telemetry-strip w-full mt-2">
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Timeline</span>
+          <span class="font-display font-bold text-lg text-on-surface">90-Day C.A.P.™</span>
+          <span class="text-[11px] text-on-surface-muted">Clear ROI inside quarter one</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Pricing</span>
+          <span class="font-display font-bold text-lg text-on-surface">From $5,000 / Cycle</span>
+          <span class="text-[11px] text-on-surface-muted">Or $999 5–7 day AI Audit</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Framework</span>
+          <span class="font-display font-bold text-lg text-on-surface">Institute Backed</span>
+          <span class="text-[11px] text-on-surface-muted">The Institute for AI Adoption</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Service Area</span>
+          <span class="font-display font-bold text-lg text-on-surface">NJ · NYC · East Coast</span>
+          <span class="text-[11px] text-on-surface-muted">NJ, NYC, FL, CT, MA, MD</span>
+        </div>
       </div>
     </section>
 
     <!-- 2. The Problem -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">The Problem</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Pressure to Act on AI Without a Clear Plan
+        <p class="exec-kicker mb-1.5">The Diagnostic Gap</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Pressure to Act on AI Without a Clear Operating Plan
         </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Most AI initiatives stall because there is no operating model, no ownership, and no way to measure results. A Fractional CAIO fixes that.
+        <p class="text-sm text-on-surface-muted mt-1.5 max-w-2xl">
+          Most mid-market AI initiatives stall because there is no executive operating model, no clear ownership, and no way to defend ROI to finance.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="exec-bento-card">
           <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Stalled Pilots</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            AI pilots don't scale without a repeatable operating model and clear ownership across teams.
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            AI pilots don't scale without a repeatable operating model and explicit decision rights across departments.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">CFO Skepticism</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Without measurable ROI, AI is treated as cost, not an investment. The budget gets cut.
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">CFO &amp; Board Skepticism</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Without measurable financial baselines and decision gates, AI spend is treated as discretionary cost and cut.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Wrong Priorities</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Teams prioritize tools and demos over business-critical use cases that drive real impact.
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Tool-First Priorities</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Teams chase flashy demos instead of high-leverage revenue, underwriting, and back-office bottlenecks.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">No Framework</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Without a defined framework, AI efforts stay disconnected and fail to scale across the organization.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. The Approach -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">The Approach</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Build Sustainable AI Capability Without Consultant Dependency
-        </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Sustainable AI capability requires ownership, governance, and a repeatable operating model. Not tools. Not vendors. Internal leadership.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Executive Ownership</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            AI sits at the executive level with clear decision rights and accountability — not buried in IT.
-          </p>
-        </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Operating Model</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Adoption follows a repeatable system with defined governance, ownership, and scale paths.
-          </p>
-        </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Financial Discipline</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Every AI initiative is tied to measurable ROI and clear decision gates the CFO can defend.
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Vendor &amp; Consultant Lock-In</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            General consultants hand over slide decks without transferring internal capability or technical ownership.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 4. The C.A.P. Operating Model -->
+    <!-- 3. The C.A.P. Operating Model -->
     <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">Corporate AI Transformation</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          The C.A.P.™ Operating Model: A Repeatable AI System
-        </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Mid-market companies don't need more AI experiments. They need a repeatable operating system. The C.A.P.™ Model delivers measurable results in 90-day cycles by aligning governance, ownership, and ROI from day one.
-        </p>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <p class="exec-kicker mb-1.5">Proprietary System</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+            The C.A.P.™ Operating Model: 90-Day Execution
+          </h2>
+          <p class="text-sm text-on-surface-muted mt-1.5 max-w-2xl">
+            Delivered in partnership with <a href="/institute-for-ai-adoption" class="text-accent hover:underline no-underline font-medium">The Institute for AI Adoption</a>, every engagement follows three structured 30-day phases.
+          </p>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 1–30 · Council</span>
-          <h3 class="font-display font-bold text-base text-on-surface">Stand Up the Executive AI Council</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Define decision rights, baseline current state, and establish the governance charter. Executive sponsorship is locked before a single model is deployed.
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-violet w-fit">Days 1–30 · Council</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Stand Up the Executive AI Council</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Define decision rights, baseline current workflows, and ratify the governance, security, and vendor charter before deploying models.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 31–60 · Align</span>
-          <h3 class="font-display font-bold text-base text-on-surface">Prioritize the Roadmap</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Rank use cases by business impact and feasibility. Build the 90-day plan with clear owners, success metrics, and decision gates.
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-indigo w-fit">Days 31–60 · Align</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Prioritize the Value Roadmap</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Score candidate use cases by margin impact, feasibility, and stack readiness. Lock owners, KPIs, and CFO decision gates.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Days 61–90 · Perform</span>
-          <h3 class="font-display font-bold text-base text-on-surface">Deploy, Measure, Scale</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Ship the first high-impact workflows, report measured ROI, and transfer ownership to your team so capability compounds without outside dependency.
+        <div class="exec-bento-card exec-bento-card-emerald flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-emerald w-fit">Days 61–90 · Perform</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Deploy, Measure &amp; Transfer</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Ship priority workflows (paired with <a href="/fractional-fde" class="text-accent hover:underline no-underline">Fractional FDE</a> execution if needed), audit ROI, and transfer ownership internally.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 5. What's Included -->
+    <!-- 4. What's Included -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">What's Included</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+        <p class="exec-kicker mb-1.5">Executive Scope</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
           A Full Chief AI Officer Function, Fractionally
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="exec-bento-card">
           <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Executive AI Council</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Stand up and run the governance body with defined decision rights.</p>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Stand up and chair the internal governance body with defined decision rights.</p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">AI Strategy & Roadmap</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">A prioritized 90-day plan tied to revenue and operational impact.</p>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">90-Day AI Strategy &amp; Roadmap</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Prioritized sequencing tied directly to EBITDA, throughput, and revenue impact.</p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Governance & Risk Framework</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Policy, data handling, and vendor controls the board can sign off on.</p>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Governance &amp; Risk Policy</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Data boundaries, acceptable use, and vendor due diligence boards can approve.</p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+        <div class="exec-bento-card">
           <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Use-Case Prioritization</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Rank initiatives by impact and feasibility so spend follows value.</p>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Separate true AI leverage from deterministic automation or human-only work.</p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">ROI Measurement & Reporting</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Quarterly business reviews with defensible, decision-gated ROI.</p>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Quarterly ROI Reviews</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Board-ready telemetry tracking hours saved, conversion lift, and payback periods.</p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+        <div class="exec-bento-card">
           <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Workforce Enablement</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Training and adoption playbooks so your team owns the system.</p>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Playbooks and executive coaching so your operators own the capability long-term.</p>
         </div>
       </div>
     </section>
 
-    <!-- 6. Who It's For -->
+    <!-- 5. Who It's For (Crisp SVGs, ZERO emojis) -->
     <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">Who It's For</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Built for Mid-Market Operators
-        </h2>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <p class="exec-kicker mb-1.5">Target Operators &amp; Geography</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+            Built for Mid-Market Leadership Teams
+          </h2>
+        </div>
+        <span class="exec-badge exec-badge-indigo w-fit">Morristown NJ · NYC · FL · CT · MA · MD</span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="link-row no-underline">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">🏭</span></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="link-row cursor-default">
+          <div class="link-row-icon text-accent">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
           <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Manufacturers</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Mid-market manufacturing ready to operationalize AI on the floor and in the back office.</p>
+            <p class="font-display font-semibold text-sm text-on-surface">Manufacturers &amp; Distributors</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Operationalizing AI across quoting, scheduling, ERP inventory, and back-office admin.</p>
           </div>
         </div>
-        <div class="link-row no-underline">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">💼</span></div>
+
+        <div class="link-row cursor-default">
+          <div class="link-row-icon text-accent">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
           <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Professional Services</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Firms that need leverage without headcount — faster delivery, lower overhead.</p>
+            <p class="font-display font-semibold text-sm text-on-surface">Professional &amp; Financial Services</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Firms increasing partner and analyst leverage without bloating headcount.</p>
           </div>
         </div>
-        <div class="link-row no-underline">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">📈</span></div>
+
+        <div class="link-row cursor-default">
+          <div class="link-row-icon text-telemetry">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+          </div>
           <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">PE-Backed Portcos</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Portfolio companies under mandate to scale efficiently with measurable ROI.</p>
+            <p class="font-display font-semibold text-sm text-on-surface">PE-Backed Portfolio Companies</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Portcos executing value-creation mandates with clear governance and unit-economics lift.</p>
           </div>
         </div>
-        <div class="link-row no-underline">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400"><span aria-hidden="true">🏛️</span></div>
+
+        <div class="link-row cursor-default">
+          <div class="link-row-icon text-gold">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
+          </div>
           <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Family Offices &amp; Funds</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Operators who want an AI operating model without building a full-time team.</p>
+            <p class="font-display font-semibold text-sm text-on-surface">Family Offices &amp; Commercial Lenders</p>
+            <p class="text-xs text-on-surface-muted mt-0.5">Capital operators installing structured AI oversight across portfolio companies and underwriting.</p>
           </div>
         </div>
       </div>
-      <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">
-        Available across NJ · NYC · FL · CT · MA · MD
-      </p>
     </section>
 
-    <!-- 7. Why Fractional -->
-    <!-- 7b. Pricing -->
+    <!-- 6. Investment & Entry Paths -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">Investment</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+        <p class="exec-kicker mb-1.5">Investment &amp; Entry Paths</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
           Transparent Pricing, Clear Outcomes
         </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Engagements typically start at $5,000 per 90-day cycle. Every engagement includes a measurable ROI outcome tied to decision gates.
+        <p class="text-sm text-on-surface-muted mt-1.5 max-w-2xl">
+          Fractional CAIO retainers start at <strong class="text-on-surface">$5,000 per 90-day cycle</strong>, or begin with a low-friction diagnostic audit.
         </p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Start with a $999 AI Audit</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Not sure if CAIO is right? The $999 AI Audit covers 1 workflow in 1 system over 5-7 days. You get a findings doc with a clear recommendation.</p>
-          <a href="https://calendar.mckellar.dev/richard/30min" target="_blank" rel="noopener noreferrer" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline inline-flex mt-3">Book AI Audit</a>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="exec-bento-card flex flex-col gap-3">
+          <span class="exec-badge exec-badge-emerald w-fit">Low-Risk Start</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">$999 AI Audit</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            1 workflow in 1 core system reviewed over 5–7 days. You get a clear write-up recommending CAIO, FDE, or Capital Advisory.
+          </p>
+          <button
+            type="button"
+            data-inquiry-subject="$999 AI Audit Inquiry"
+            data-inquiry-source="fractional-caio-audit"
+            class="exec-btn-secondary mt-auto w-full"
+          >
+            Request $999 AI Audit
+          </button>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Compare: CAIO vs FDE</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">The CAIO sets strategy and governance. The FDE builds and ships. See which path fits your situation.</p>
-          <a href="/fractional-caio-vs-fde" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline inline-flex mt-3">Compare CAIO vs FDE →</a>
+
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-3">
+          <span class="exec-badge exec-badge-violet w-fit">Strategy Retainer</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Fractional CAIO — From $5K</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            90-day C.A.P.™ cycle covering your AI Council, practical governance, priority roadmap, and real ROI tracking.
+          </p>
+          <a
+            href="https://calendar.mckellar.dev/richard/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="exec-btn-primary mt-auto w-full no-underline"
+          >
+            Book a 30-Min Call
+          </a>
+        </div>
+
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-3">
+          <span class="exec-badge exec-badge-indigo w-fit">Compare Models</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">CAIO vs Fractional FDE</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Need hands-on engineering inside Salesforce, NetSuite, or HubSpot right away? Compare strategy vs. stack deployment.
+          </p>
+          <a href="/fractional-caio-vs-fde" class="exec-btn-secondary mt-auto w-full no-underline">
+            Compare CAIO vs FDE →
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="flex flex-col gap-6">
+    <!-- 7. Visible FAQ Accordion (Matches faqSchema 1:1) -->
+    <section id="faq" class="flex flex-col gap-5">
       <div>
-        <p class="section-label mb-2">Why Fractional</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Executive Capability at a Fraction of the Cost
+        <p class="exec-kicker mb-1.5">FAQ</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Fractional Chief AI Officer FAQs
         </h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">No Full-Time Hire</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Six-figure salary, long ramp, uncertain fit — skipped. You get the operating model, not the headcount.</p>
-        </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Operator, Not Slideware</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Richard embeds, builds, and transfers ownership. You are not left dependent on a retainer.</p>
-        </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Defensible ROI</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Every initiative ties to a number the CFO and board can defend at the next review.</p>
-        </div>
+      <div class="exec-faq-list">
+        {faqs.map((faq, index) => (
+          <details class="exec-faq-item" open={index === 0}>
+            <summary class="exec-faq-trigger">{faq.question}</summary>
+            <div class="exec-faq-panel">{faq.answer}</div>
+          </details>
+        ))}
       </div>
     </section>
 
-    <!-- 8. Process -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">How It Works</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          From Briefing to Measurable ROI in 4 Steps
-        </h2>
-      </div>
-      <div class="flex flex-col gap-3">
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">1</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Executive Briefing</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">A 45-minute working session to map pressure points and quick wins.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">2</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Assessment &amp; Charter</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Baseline the current state and stand up the executive AI council.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">3</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">90-Day Operating Plan</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Prioritized roadmap with owners, metrics, and decision gates.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">4</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Deploy &amp; Measure</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Ship workflows, report ROI, and transfer ownership to your team.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. Final CTA -->
-    <section class="flex flex-col items-center text-center gap-5 py-6">
-      <div class="rule w-full"></div>
-      <h2 class="font-display font-extrabold text-[24px] sm:text-[30px] leading-tight text-on-surface">
-        Put a Chief AI Officer in the room — fractionally.
+    <!-- 8. Final CTA -->
+    <section class="exec-bento-card exec-bento-card-violet p-6 sm:p-8 flex flex-col items-center text-center gap-4">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+        Put a Chief AI Officer in the Room — Fractionally.
       </h2>
       <p class="text-sm text-on-surface-muted max-w-xl">
-        Schedule an executive briefing and leave with a clear picture of your first 90-day AI operating plan.
+        Book a 30-minute call with Richard McKellar in Morristown, NJ (or over Zoom) and leave with a clear 90-day AI plan for your team.
       </p>
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-1">
+      <div class="flex flex-wrap gap-3 justify-center pt-1">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
-          Schedule Executive Briefing
+          Book a 30-Min Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'Fractional Chief AI Officer Inquiry', source: 'fractional-caio-bottom' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="Fractional Chief AI Officer Inquiry"
+          data-inquiry-source="fractional-caio-bottom"
+          class="exec-btn-secondary"
         >
-          Inquire
+          Send a Message
         </button>
       </div>
     </section>
-
   </div>
 </BaseLayout>

@@ -1,3 +1,4 @@
 Contact: mailto:richard@mckellar.dev
+Expires: 2027-11-16T05:00:00.000Z
 Preferred-Languages: en
 Canonical: https://mckellar.dev/.well-known/security.txt

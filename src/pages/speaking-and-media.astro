@@ -1,0 +1,414 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Avatar from '../components/Avatar';
+
+const shortBio =
+  "Richard McKellar is a Morristown, New Jersey-based Fractional Chief AI Officer, Forward Deployed Engineer, and commercial funding executive. He is Chief Revenue Officer at My Commercial Funding, Founder of The Institute for AI Adoption, and former VP & Executive Board Member at Whetstone Holdings, with $100M+ personally funded in MCA/RBF transactions.";
+
+const mediumBio =
+  "Richard McKellar is a Morristown, New Jersey-based Fractional Chief AI Officer (CAIO), Forward Deployed Engineer (FDE), and alternative business lending executive with over 15 years of operational leadership. He serves as Chief Revenue Officer at My Commercial Funding, overseeing sales pipelines, commission routing, renewals, and syndication networks, and is the Founder of The Institute for AI Adoption, where he deploys the 90-day C.A.P. Operating Model to align executive governance with CFO-defensible AI ROI. Previously, Richard served as Vice President and Executive Board Member at Whetstone Holdings—operating DBA brands Everest Funding, Vader Funding, and Granite Mountain Funding—and personally funded over $100M+ in Merchant Cash Advance and revenue-based financing transactions. Through mckellar.dev, he advises mid-market operators across NJ, NYC, FL, CT, MA, and MD.";
+
+const longBioParagraphs = [
+  "Richard McKellar is a technology strategist, Fractional Chief AI Officer (CAIO), Forward Deployed Engineer (FDE), and alternative business finance executive based in Morristown, New Jersey. With more than 15 years of leadership across Merchant Cash Advance (MCA) and revenue-based financing (RBF) platforms, Richard bridges executive governance with production systems engineering for high-velocity operators across New Jersey, New York City, Florida, Connecticut, Massachusetts, Maryland, and global engagements.",
+  "In commercial finance, Richard serves as Chief Revenue Officer (CRO) at My Commercial Funding, where he leads sales pipelines, commission architecture, renewal cycles, and syndication network operations. Previously, he served as Vice President and Executive Board Member at Whetstone Holdings—whose DBA brands included Everest Funding, Vader Funding, and Granite Mountain Funding—where he developed proprietary risk grading models, ledger integrations, and ISO channel strategies while personally funding over $100M+ in MCA and RBF transactions.",
+  "As Founder and Chief AI Officer of The Institute for AI Adoption, Richard facilitates operational AI adoption inside mid-market companies and government organizations using the proprietary C.A.P. Operating Model (Council, Align, Perform) delivered in structured 90-day cycles. Through mckellar.dev, his Fractional FDE practice embeds directly into existing enterprise stacks—including Salesforce, NetSuite, HubSpot, SAP, and custom APIs—using an Audit, Evaluate, and Deploy methodology that graduates custom agents from shadow mode to supervised production without rip-and-replace migrations.",
+  "Richard also maintains business affiliations with Robbi Promotional and Fathom Realty. He frequently speaks and advises mid-market leadership teams, private equity sponsors, and industry audiences on practical AI governance, automated underwriting triage, CRM/ERP integration, and scaling direct lending."
+];
+
+const longBioFull = longBioParagraphs.join("\n\n");
+
+const topics = [
+  {
+    badge: "Keynote · C.A.P.™ Operating Model",
+    badgeClass: "exec-badge-indigo",
+    cardClass: "exec-bento-card-indigo",
+    title: "Escaping the AI Pilot Graveyard: The 90-Day C.A.P. Operating Model for Mid-Market Executives",
+    audience: "CEOs, CFOs, Boards, Private Equity Portfolio Teams & Government Leaders",
+    takeaways: [
+      "Standing up an internal Executive AI Council in 30 days to lock decision rights",
+      "Separating real AI agent use cases from deterministic automation and human judgment",
+      "Building CFO-defensible ROI decision gates without perpetual consultant dependency",
+    ],
+  },
+  {
+    badge: "Technical Briefing · Fractional FDE",
+    badgeClass: "exec-badge-emerald",
+    cardClass: "exec-bento-card-emerald",
+    title: "Shadow Mode to Production: Deploying AI Agents on NetSuite, Salesforce & HubSpot Without Migrations",
+    audience: "COOs, CTOs, Revenue Operations & Engineering Teams",
+    takeaways: [
+      "Audit → Evaluate → Deploy: mapping swivel-chair manual drag across 4–10 SaaS tools",
+      "Graduated autonomy: Shadow Mode to Supervised Mode to Production with audit trails",
+      "Real patterns across commercial finance, distribution, cannabis compliance & hospitality",
+    ],
+  },
+  {
+    badge: "Commercial Finance · $100M+ Playbook",
+    badgeClass: "exec-badge-gold",
+    cardClass: "exec-bento-card-gold",
+    title: "AI-Native Underwriting & Scaling Direct Lending Operations Past $100M+",
+    audience: "Alternative Lenders, MCA Platforms, Capital Syndicates & Fintech Conferences",
+    takeaways: [
+      "Automating unstructured bank statement triage while keeping human credit judgment in control",
+      "Clean CRM-to-ledger architecture for warehouse lines, syndication splits & ISO loyalty",
+      "Executive risk lessons from Whetstone Holdings (Everest Funding) and My Commercial Funding",
+    ],
+  },
+  {
+    badge: "Executive Strategy · Leadership Economics",
+    badgeClass: "exec-badge-violet",
+    cardClass: "exec-bento-card-violet",
+    title: "Fractional CAIO vs. Fractional FDE: Building Internal AI Capability Without the $300K Full-Time Trap",
+    audience: "Mid-Market Founders, Family Offices & Tri-State Business Forums",
+    takeaways: [
+      "When an organization needs strategic governance (CAIO) vs stack engineering (FDE)",
+      "Starting safely in 5–7 days with a single-workflow diagnostic audit",
+      "Transferring runbooks and operational ownership so internal capability compounds",
+    ],
+  }
+];
+
+const faqs = [
+  {
+    q: "Where is Richard McKellar available for in-person speaking and executive briefings?",
+    a: "Richard McKellar is based in Morristown, New Jersey and regularly travels for in-person keynotes, board workshops, and executive briefings across Northern & Central New Jersey, New York City (NYC), Connecticut, Massachusetts, Maryland, and Florida—in addition to virtual keynotes, podcasts, and global media appearances."
+  },
+  {
+    q: "Can event organizers and podcast hosts use the biographies and headshot on this page?",
+    a: "Yes. The 50-word, 120-word, and 250-word third-person biographies and official headshot (/avatar.jpg) on this page are pre-approved for conference programs, podcast show notes, panel introductions, and press citations referencing Richard McKellar (mckellar.dev)."
+  },
+  {
+    q: "What speaking formats does Richard McKellar offer?",
+    a: "Formats include 30–45 minute conference keynotes, moderated executive panels, 30–60 minute podcast interviews, private equity portfolio summits, and half-day C.A.P.™ Executive AI Council workshops for leadership teams."
+  },
+  {
+    q: "How do media outlets or conference organizers book Richard McKellar?",
+    a: "Use the Speaking & Media inquiry button on this page, email richard@mckellar.dev, or schedule a pre-event briefing call via https://calendar.mckellar.dev/richard/30min."
+  }
+];
+
+const itemListSchema = {
+  "@type": "ItemList",
+  "@id": "https://mckellar.dev/speaking-and-media#topics",
+  "name": "Richard McKellar — Speaking & Workshop Topics",
+  "numberOfItems": topics.length,
+  "itemListElement": topics.map((t, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "CreativeWork",
+      "name": t.title,
+      "description": `${t.audience}. ${t.takeaways.join("; ")}`,
+      "author": { "@id": "https://mckellar.dev/#richard-mckellar" }
+    }
+  }))
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Speaking, Workshops & Press Kit | Richard McKellar"
+  description="Book Richard McKellar for keynotes, workshops, and podcasts in NJ & NYC. Includes 50, 120, and 250-word press bios, verified photo, and talk topics."
+  canonicalPath="/speaking-and-media"
+  keywords="Richard McKellar speaker, Richard McKellar media kit, Richard McKellar biography press, Richard McKellar podcast, AI keynote speaker NJ NYC, Morristown NJ AI executive briefing"
+  breadcrumbs={[
+    { name: "Richard McKellar", path: "/" },
+    { name: "Speaking & Media Kit", path: "/speaking-and-media" },
+  ]}
+  itemListSchema={itemListSchema}
+  faqSchema={faqSchema}
+>
+  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
+        href="/richard-mckellar"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Richard McKellar Profile
+      </a>
+      <span class="exec-badge exec-badge-indigo">
+        Press Kit · Speaking &amp; Podcasts
+      </span>
+    </div>
+
+    <!-- 1. Hero -->
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div class="flex flex-col items-center gap-3 flex-shrink-0">
+          <Avatar size="xl" />
+          <a
+            href="/avatar.jpg"
+            download="richard-mckellar-headshot.jpg"
+            class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 hover:underline no-underline"
+          >
+            Download Headshot →
+          </a>
+        </div>
+
+        <div class="flex-1 flex flex-col gap-4 text-center md:text-left">
+          <p class="exec-kicker justify-center md:justify-start">
+            NJ · NYC · FL · CT · MA · MD &amp; Virtual
+          </p>
+          <h1 class="font-display font-bold text-[34px] sm:text-[46px] leading-[1.06] tracking-tight text-on-surface text-glow-primary">
+            Speaking, Workshops &amp; Press Kit
+          </h1>
+          <p class="text-base text-on-surface-muted leading-relaxed max-w-2xl">
+            Keynotes, leadership workshops, podcast interviews, and ready-to-use bios for <strong class="text-on-surface">Richard McKellar</strong>—CRO at My Commercial Funding, Founder of The Institute for AI Adoption, Fractional CAIO &amp; FDE, and former VP &amp; Board Member at Whetstone Holdings.
+          </p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-1">
+            <button
+              type="button"
+              data-inquiry-subject="Speaking, Podcast or Press Inquiry"
+              data-inquiry-source="speaking-and-media-hero"
+              class="exec-btn-primary"
+            >
+              Book Speaking or Podcast
+            </button>
+            <a
+              href="https://calendar.mckellar.dev/richard/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="exec-btn-secondary"
+            >
+              Schedule a Quick Call
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Official Third-Person Press Bios -->
+    <section class="flex flex-col gap-6" id="bios">
+      <div>
+        <p class="section-label mb-2">Approved Copy · Ready For Publication</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Official Biographies of Richard McKellar
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
+          Pre-verified third-person biographies formatted for podcast intros, conference programs, and editorial features. Click any copy button to copy exact text.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-5">
+        <!-- 50-word bio -->
+        <div class="exec-bento-card flex flex-col gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="exec-badge exec-badge-indigo">50-Word Bio</span>
+              <span class="font-mono text-xs text-on-surface-subtle">Podcast Intros &amp; Speaker Badges</span>
+            </div>
+            <button
+              type="button"
+              data-copy-target="bio-50"
+              class="copy-bio-btn exec-btn-secondary !py-1.5 !px-3 !text-xs"
+            >
+              Copy 50-Word Bio
+            </button>
+          </div>
+          <p id="bio-50" class="text-sm text-on-surface leading-relaxed">
+            {shortBio}
+          </p>
+        </div>
+
+        <!-- 120-word bio -->
+        <div class="exec-bento-card flex flex-col gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="exec-badge exec-badge-gold">120-Word Bio</span>
+              <span class="font-mono text-xs text-on-surface-subtle">Conference Programs &amp; Panels</span>
+            </div>
+            <button
+              type="button"
+              data-copy-target="bio-120"
+              class="copy-bio-btn exec-btn-secondary !py-1.5 !px-3 !text-xs"
+            >
+              Copy 120-Word Bio
+            </button>
+          </div>
+          <p id="bio-120" class="text-sm text-on-surface leading-relaxed">
+            {mediumBio}
+          </p>
+        </div>
+
+        <!-- 250-word bio -->
+        <div class="exec-bento-card flex flex-col gap-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <span class="exec-badge exec-badge-emerald">250-Word Bio</span>
+              <span class="font-mono text-xs text-on-surface-subtle">Full Press &amp; Board Introductions</span>
+            </div>
+            <button
+              type="button"
+              data-copy-target="bio-250"
+              class="copy-bio-btn exec-btn-secondary !py-1.5 !px-3 !text-xs"
+            >
+              Copy 250-Word Bio
+            </button>
+          </div>
+          <div id="bio-250" class="flex flex-col gap-3 text-sm text-on-surface leading-relaxed" data-copy-value={longBioFull}>
+            {longBioParagraphs.map((para) => (
+              <p>{para}</p>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Keynote & Executive Briefing Topics -->
+    <section class="flex flex-col gap-6" id="topics">
+      <div>
+        <p class="section-label mb-2">Speaking &amp; Workshop Topics</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Core Keynotes &amp; Executive Sessions
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {topics.map((t) => (
+          <article class={`exec-bento-card ${t.cardClass} flex flex-col justify-between gap-4`}>
+            <div class="flex flex-col gap-3">
+              <span class={`exec-badge ${t.badgeClass} w-fit`}>{t.badge}</span>
+              <h3 class="font-display font-bold text-lg sm:text-xl text-on-surface leading-snug">
+                {t.title}
+              </h3>
+              <p class="font-mono text-[11px] uppercase tracking-wider text-on-surface-subtle">
+                Ideal Audience: {t.audience}
+              </p>
+              <ul class="flex flex-col gap-2 pt-1">
+                {t.takeaways.map((pt) => (
+                  <li class="flex items-start gap-2 text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+                    <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M9 12l2 2 4-4" />
+                    </svg>
+                    <span>{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="pt-3 border-t border-[var(--color-border)]">
+              <button
+                type="button"
+                data-inquiry-subject={`Speaking Request: ${t.title}`}
+                data-inquiry-source="speaking-topic-card"
+                class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline bg-transparent border-0 cursor-pointer"
+              >
+                Request This Session →
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Regional Availability & Official Attribution Links -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="exec-bento-card flex flex-col gap-3">
+        <span class="exec-badge exec-badge-teal w-fit">Regional Availability</span>
+        <h2 class="font-display font-bold text-xl text-on-surface">
+          Morristown, NJ · New York City &amp; East Coast Corridor
+        </h2>
+        <p class="text-sm text-on-surface-muted leading-relaxed">
+          Operating out of <strong class="text-on-surface">Morristown, New Jersey</strong>, Richard is readily available for in-person executive workshops, private equity portfolio summits, and industry conferences across New Jersey, NYC, Connecticut, Massachusetts, Maryland, and Florida—and globally via live broadcast or virtual keynote.
+        </p>
+      </div>
+
+      <div class="exec-bento-card flex flex-col gap-3">
+        <span class="exec-badge exec-badge-indigo w-fit">Official Links</span>
+        <h2 class="font-display font-bold text-xl text-on-surface">
+          Links for Press &amp; Show Notes
+        </h2>
+        <ul class="flex flex-col gap-2 text-xs text-on-surface-muted font-mono">
+          <li>Website: <a href="/" class="text-indigo-600 dark:text-indigo-400 hover:underline">https://mckellar.dev</a></li>
+          <li>Full Profile: <a href="/richard-mckellar" class="text-indigo-600 dark:text-indigo-400 hover:underline">https://mckellar.dev/richard-mckellar</a></li>
+          <li>LinkedIn: <a href="https://linkedin.com/in/richardmckellar" target="_blank" rel="me noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline">https://linkedin.com/in/richardmckellar</a></li>
+          <li>GitHub: <a href="https://github.com/therealmckellar" target="_blank" rel="me noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline">https://github.com/therealmckellar</a></li>
+          <li>Email: <a href="mailto:richard@mckellar.dev" class="text-indigo-600 dark:text-indigo-400 hover:underline">richard@mckellar.dev</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. FAQ -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Media &amp; Booking FAQ</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Speaking &amp; Press Logistics
+        </h2>
+      </div>
+      <div class="exec-faq-list">
+        {faqs.map((item, idx) => (
+          <details class="exec-faq-item" open={idx === 0}>
+            <summary class="exec-faq-trigger">{item.q}</summary>
+            <div class="exec-faq-panel">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Final CTA -->
+    <section class="exec-bento-card exec-bento-card-indigo flex flex-col items-center text-center gap-4 py-8 px-6">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+        Invite Richard McKellar to Speak or Run a Workshop
+      </h2>
+      <p class="text-sm text-on-surface-muted max-w-xl">
+        Send over your event date, audience, or podcast details and we&apos;ll get right back to you.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-1">
+        <button
+          type="button"
+          data-inquiry-subject="Speaking, Podcast & Media Booking Inquiry"
+          data-inquiry-source="speaking-and-media-bottom"
+          class="exec-btn-primary"
+        >
+          Send Speaking / Media Inquiry
+        </button>
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-secondary"
+        >
+          Book a Call
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    (function () {
+      document.querySelectorAll('.copy-bio-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = btn.getAttribute('data-copy-target');
+          var el = targetId ? document.getElementById(targetId) : null;
+          if (!el) return;
+          var text = el.getAttribute('data-copy-value') || el.textContent || '';
+          text = text.trim();
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function () {
+              var original = btn.textContent;
+              btn.textContent = 'Copied';
+              setTimeout(function () {
+                btn.textContent = original;
+              }, 1800);
+            });
+          }
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

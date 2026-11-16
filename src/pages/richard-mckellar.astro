@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileHeader from '../components/ProfileHeader';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const recentPosts = [...allPosts]
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 4);
+
+const faqs = [
+  {
+    q: "Who is Richard McKellar?",
+    a: "Richard McKellar (handles: therealmckellar, rmckellar) is a Fractional Chief AI Officer (CAIO), Forward Deployed Engineer (FDE), and alternative business finance executive based in Morristown, New Jersey. He serves as Chief Revenue Officer (CRO) of My Commercial Funding, Founder & Chief AI Officer of The Institute for AI Adoption, and previously served as Vice President & Executive Board Member at Whetstone Holdings."
+  },
+  {
+    q: "Where is Richard McKellar based, and what regions does he serve?",
+    a: "Richard McKellar is headquartered in Morristown, New Jersey (NJ). He works hands-on with organizations across New Jersey, New York City (NYC), Florida (FL), Connecticut (CT), Massachusetts (MA), and Maryland (MD), as well as global advisory and virtual engagements."
+  },
+  {
+    q: "What is Richard McKellar's role at My Commercial Funding?",
+    a: "Richard McKellar is the Chief Revenue Officer (CRO) at My Commercial Funding (mycommercialfunding.com), a commercial lending marketplace and Merchant Cash Advance (MCA) platform, where he oversees sales pipelines, commission systems, renewal cycles, and syndication network operations."
+  },
+  {
+    q: "Was Richard McKellar an executive at Whetstone Holdings and Everest Funding?",
+    a: "Yes. Richard McKellar previously served as Vice President and Executive Board Member at Whetstone Holdings, which operated prominent DBA alternative finance brands including Everest Funding (Everest Business Funding), Vader Funding, and Granite Mountain Funding. During his 15+ years in alternative lending, he personally funded over $100M+ in MCA and revenue-based financing (RBF) transactions."
+  },
+  {
+    q: "What is The Institute for AI Adoption?",
+    a: "The Institute for AI Adoption is Richard McKellar's venture dedicated to facilitating operational AI adoption inside mid-market companies and government organizations. Rather than acting as an external certification body, the Institute deploys the proprietary 90-day C.A.P.™ Operating Model (Council, Align, Perform) to establish internal Executive AI Councils, prioritize ROI-backed workflows, and transfer operational ownership to internal teams."
+  },
+  {
+    q: "What is the difference between Richard McKellar's Fractional CAIO and Fractional FDE services?",
+    a: "Fractional CAIO (starting at $5,000 per 90-day cycle) provides executive AI strategy, governance charters, Executive AI Council stand-up, and CFO-defensible ROI prioritization. Fractional FDE ($7,500–$12,500 diagnostic audits, $20,000–$40,000 pilot deployments, and $12,000–$25,000/month embedded retainers) embeds directly into your existing stack—such as Salesforce, NetSuite, HubSpot, SAP, or custom APIs—to ship production AI agents without rip-and-replace migrations. Teams can start with a $999 AI Audit covering 1 workflow in 1 system over 5–7 days."
+  },
+  {
+    q: "What other ventures and affiliations is Richard McKellar connected to?",
+    a: "In addition to My Commercial Funding, The Institute for AI Adoption, mckellar.dev, and his historical executive tenure at Whetstone Holdings, Richard McKellar maintains verified business affiliations with Robbi Promotional (robbipromotional.com) and Fathom Realty."
+  },
+  {
+    q: "What commercial lending and direct funding advisory services does Richard McKellar offer?",
+    a: "Through Capital & Advisory on mckellar.dev, Richard advises investors, capital syndicates, and operators on direct lending entity setup and launch, proprietary risk grading models, warehouse lines of credit, syndication structures, ISO channel strategy, Salesforce/CRM scaling, and independent borrower-side loan offer review."
+  },
+  {
+    q: "How do you contact or book Richard McKellar?",
+    a: "You can schedule a 30-minute call directly via https://calendar.mckellar.dev/richard/30min, send a message on mckellar.dev, email richard@mckellar.dev, or connect on LinkedIn (linkedin.com/in/richardmckellar) and GitHub (github.com/therealmckellar)."
+  }
+];
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+
+const profileSchema = {
+  "@type": "ProfilePage",
+  "@id": "https://mckellar.dev/richard-mckellar#profile",
+  "url": "https://mckellar.dev/richard-mckellar",
+  "name": "Richard McKellar — Official Profile, Work History & Advisory",
+  "dateCreated": "2026-06-10",
+  "dateModified": "2026-11-16",
+  "mainEntity": { "@id": "https://mckellar.dev/#richard-mckellar" },
+  "significantLink": [
+    "https://mckellar.dev/about",
+    "https://mckellar.dev/ventures",
+    "https://mckellar.dev/case-studies",
+    "https://mckellar.dev/speaking-and-media",
+    "https://mckellar.dev/fractional-caio",
+    "https://mckellar.dev/fractional-fde",
+    "https://mckellar.dev/institute-for-ai-adoption",
+    "https://mycommercialfunding.com",
+    "https://www.linkedin.com/in/richardmckellar",
+    "https://github.com/therealmckellar"
+  ]
+};
+---
+
+<BaseLayout
+  title="Richard McKellar — Profile, Bio & Ventures | mckellar.dev"
+  description="Official profile for Richard McKellar in Morristown, NJ: CRO at My Commercial Funding, Founder of The Institute for AI Adoption, Fractional CAIO & FDE."
+  canonicalPath="/richard-mckellar"
+  ogType="profile"
+  keywords="Richard McKellar, Richard McKellar NJ, Richard McKellar Morristown, Richard McKellar My Commercial Funding, Richard McKellar Whetstone Holdings, Richard McKellar Everest Funding, Richard McKellar AI, Fractional CAIO, Fractional FDE, therealmckellar, rmckellar"
+  breadcrumbs={[
+    { name: "Richard McKellar", path: "/" },
+    { name: "Profile & Background", path: "/richard-mckellar" },
+  ]}
+  profileSchema={profileSchema}
+  faqSchema={faqSchema}
+>
+  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
+    <!-- Top Context Strip -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
+        href="/"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Home
+      </a>
+      <span class="exec-badge exec-badge-indigo">
+        Official Profile · Morristown, NJ
+      </span>
+    </div>
+
+    <!-- 1. Profile Hero -->
+    <section class="flex flex-col gap-6">
+      <ProfileHeader
+        variant="asymmetric"
+        eyebrow="Morristown, NJ · Profile & Background"
+        title="Richard McKellar"
+        headline="Chief Revenue Officer · Founder, Institute for AI Adoption · Fractional CAIO & Forward Deployed Engineer."
+        subheadline="15+ years building and funding alternative lending platforms ($100M+ personally funded in MCA and revenue-based financing). Today I serve as CRO at My Commercial Funding and help companies put practical AI workflows into production."
+        location="Morristown, New Jersey · Working across NJ, NYC, FL, CT, MA, MD & Remote"
+        showRule={false}
+      />
+
+      <!-- Action Row -->
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-primary"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          Schedule a 30-Min Call
+        </a>
+        <button
+          type="button"
+          data-inquiry-subject="Message for Richard McKellar"
+          data-inquiry-source="richard-mckellar-hero"
+          class="exec-btn-secondary"
+        >
+          <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Message Richard Directly
+        </button>
+        <a href="/speaking-and-media" class="exec-btn-gold">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+          </svg>
+          Speaking &amp; Press Kit
+        </a>
+      </div>
+
+      <!-- Track Record Strip -->
+      <div class="exec-telemetry-strip">
+        <div class="exec-telemetry-cell">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Capital Funded</span>
+          <span class="font-display font-bold text-2xl sm:text-3xl text-on-surface">$100M+</span>
+          <span class="text-xs text-on-surface-muted">Personally funded MCA &amp; RBF deals</span>
+        </div>
+        <div class="exec-telemetry-cell">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Experience</span>
+          <span class="font-display font-bold text-2xl sm:text-3xl text-on-surface">15+ Years</span>
+          <span class="text-xs text-on-surface-muted">Commercial lending &amp; operations</span>
+        </div>
+        <div class="exec-telemetry-cell">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">AI Framework</span>
+          <span class="font-display font-bold text-2xl sm:text-3xl text-on-surface">90-Day C.A.P.™</span>
+          <span class="text-xs text-on-surface-muted">Council · Align · Perform cycles</span>
+        </div>
+        <div class="exec-telemetry-cell">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Based In</span>
+          <span class="font-display font-bold text-2xl sm:text-3xl text-on-surface">Morristown, NJ</span>
+          <span class="text-xs text-on-surface-muted">NJ · NYC · FL · CT · MA · MD &amp; Remote</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Official Links & Background -->
+    <section class="flex flex-col gap-5">
+      <div>
+        <p class="section-label mb-2">At a Glance</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Official Links &amp; Background Details
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-3xl leading-relaxed">
+          Everything you need to know about <strong class="text-on-surface">Richard McKellar</strong> in Morristown, New Jersey—where to find his official profiles, current companies, and ways to reach out.
+        </p>
+      </div>
+
+      <div class="exec-table-wrap">
+        <table class="exec-table">
+          <thead>
+            <tr>
+              <th>Detail</th>
+              <th>Info</th>
+              <th>Link / Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-on-surface">Name</td>
+              <td class="font-mono text-xs text-on-surface">Richard McKellar</td>
+              <td>Fractional Chief AI Officer, FDE &amp; Commercial Funding Advisor</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Handles</td>
+              <td class="font-mono text-xs text-on-surface">therealmckellar · rmckellar</td>
+              <td>GitHub and online profiles</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Location</td>
+              <td class="font-mono text-xs text-on-surface">Morristown, New Jersey (US-NJ)</td>
+              <td>Working across NJ, NYC, FL, CT, MA, MD &amp; remote</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Website &amp; Email</td>
+              <td class="font-mono text-xs text-on-surface">https://mckellar.dev</td>
+              <td><a href="/" class="text-indigo-600 dark:text-indigo-400 hover:underline">Home</a> · <a href="mailto:richard@mckellar.dev" class="text-indigo-600 dark:text-indigo-400 hover:underline">richard@mckellar.dev</a></td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">LinkedIn</td>
+              <td class="font-mono text-xs text-on-surface">linkedin.com/in/richardmckellar</td>
+              <td><a href="https://linkedin.com/in/richardmckellar" target="_blank" rel="me noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline">View LinkedIn →</a></td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">GitHub</td>
+              <td class="font-mono text-xs text-on-surface">github.com/therealmckellar</td>
+              <td><a href="https://github.com/therealmckellar" target="_blank" rel="me noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline">View GitHub →</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 3. Verified Executive Credentials Grid -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Verified Credentials &amp; Leadership</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Active Roles, Past Executive Tenure &amp; Affiliations
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="exec-bento-card exec-bento-card-gold flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-gold">Current Executive Role</span>
+            <svg class="w-5 h-5 text-amber-700 dark:text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">Chief Revenue Officer — My Commercial Funding</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Leading sales pipelines, commission routing architecture, merchant renewal cycles, and syndication network operations at <a href="https://mycommercialfunding.com" target="_blank" rel="noopener noreferrer" class="text-amber-700 dark:text-amber-400 hover:underline">mycommercialfunding.com</a>.
+          </p>
+        </div>
+
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-violet">Founder · AI Adoption</span>
+            <svg class="w-5 h-5 text-violet-700 dark:text-violet-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">Founder &amp; Chief AI Officer — The Institute for AI Adoption</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Facilitating operational AI adoption inside mid-market companies and government organizations using the proprietary 90-day C.A.P.™ Operating Model (Council, Align, Perform).
+          </p>
+          <a href="/institute-for-ai-adoption" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline mt-auto">
+            Explore The Institute →
+          </a>
+        </div>
+
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-indigo">Principal Practice</span>
+            <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">Fractional CAIO &amp; Fractional FDE — mckellar.dev</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Delivering executive AI governance ($5K+ / 90-day cycles) and hands-on agent deployment across Salesforce, NetSuite, HubSpot, and custom APIs without rip-and-replace migrations.
+          </p>
+          <div class="flex gap-3 mt-auto">
+            <a href="/fractional-caio" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline">CAIO →</a>
+            <a href="/fractional-fde" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline">FDE →</a>
+          </div>
+        </div>
+
+        <div class="exec-bento-card flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge">Historical Tenure</span>
+            <svg class="w-5 h-5 text-on-surface-muted flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">Former VP &amp; Executive Board Member — Whetstone Holdings</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Led risk mitigation modeling, proprietary risk grading, ledger integrations, and ISO channel operations across DBA brands <strong class="text-on-surface">Everest Funding</strong>, <strong class="text-on-surface">Vader Funding</strong>, and <strong class="text-on-surface">Granite Mountain Funding</strong>.
+          </p>
+          <a href="/blog/richard-mckellar-whetstone-everest-lessons-scaling-100m" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline mt-auto">
+            Read Scaling Lessons →
+          </a>
+        </div>
+
+        <div class="exec-bento-card exec-bento-card-emerald flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-emerald">Track Record</span>
+            <svg class="w-5 h-5 text-emerald-700 dark:text-emerald-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">$100M+ Personally Funded MCA/RBF Volume</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Over 15 years underwriting, structuring, and scaling Merchant Cash Advance and revenue-based financing platforms—advising direct lenders, brokerages, and borrowers.
+          </p>
+          <a href="/case-studies" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline mt-auto">
+            View Case Studies →
+          </a>
+        </div>
+
+        <div class="exec-bento-card flex flex-col gap-3">
+          <div class="flex items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-teal">Venture Affiliations</span>
+            <svg class="w-5 h-5 text-teal-700 dark:text-teal-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+            </svg>
+          </div>
+          <h3 class="font-display font-bold text-lg text-on-surface">Robbi Promotional &amp; Fathom Realty</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Maintains documented organizational affiliations with <a href="https://robbipromotional.com" target="_blank" rel="noopener noreferrer" class="text-teal-700 dark:text-teal-400 hover:underline">Robbi Promotional</a> (branded products &amp; apparel) and Fathom Realty.
+          </p>
+          <a href="/ventures" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline mt-auto">
+            Full Ventures Portfolio →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Executive Career Timeline -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Executive Trajectory</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Career Timeline &amp; Operational Milestones
+        </h2>
+      </div>
+
+      <div class="exec-timeline">
+        <div class="exec-timeline-item flex flex-col gap-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-gold">Current · Commercial Lending</span>
+            <span class="font-mono text-[11px] text-on-surface-subtle">My Commercial Funding</span>
+          </div>
+          <h3 class="font-display font-bold text-base sm:text-lg text-on-surface">
+            Chief Revenue Officer (CRO), My Commercial Funding
+          </h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Oversees commercial sales pipelines, commission routing architecture, renewal eligibility workflows, and syndication network operations across alternative business lending.
+          </p>
+        </div>
+
+        <div class="exec-timeline-item flex flex-col gap-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-indigo">Current · AI Advisory &amp; Engineering</span>
+            <span class="font-mono text-[11px] text-on-surface-subtle">Morristown, NJ · mckellar.dev</span>
+          </div>
+          <h3 class="font-display font-bold text-base sm:text-lg text-on-surface">
+            Founder &amp; Chief AI Officer, The Institute for AI Adoption · Fractional CAIO &amp; FDE
+          </h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Deploys the 90-day C.A.P.™ Operating Model for mid-market companies and government agencies while embedding as a Fractional Forward Deployed Engineer to integrate AI agents on Salesforce, NetSuite, HubSpot, SAP, and funding stacks.
+          </p>
+        </div>
+
+        <div class="exec-timeline-item flex flex-col gap-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="exec-badge exec-badge-teal">Multi-Venture Affiliations</span>
+            <span class="font-mono text-[11px] text-on-surface-subtle">Branded Merch &amp; Real Estate</span>
+          </div>
+          <h3 class="font-display font-bold text-base sm:text-lg text-on-surface">
+            Robbi Promotional &amp; Fathom Realty Affiliations
+          </h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Active business affiliations spanning promotional merchandise and apparel (<a href="https://robbipromotional.com" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:underline">Robbi Promotional</a>) and residential/commercial real estate (Fathom Realty).
+          </p>
+        </div>
+
+        <div class="exec-timeline-item flex flex-col gap-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span class="exec-badge">Historical Executive Tenure</span>
+            <span class="font-mono text-[11px] text-on-surface-subtle">Whetstone Holdings · 15+ Yrs MCA/RBF</span>
+          </div>
+          <h3 class="font-display font-bold text-base sm:text-lg text-on-surface">
+            Vice President &amp; Executive Board Member, Whetstone Holdings (Everest Funding, Vader Funding, Granite Mountain Funding)
+          </h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Built proprietary risk grading models, clean ledger integrations, underwriting criteria, and ISO channel strategy across Whetstone Holdings' DBA brands—personally funding over $100M+ in MCA and RBF transactions across 15+ years in the sector.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Official FAQ Accordion (1:1 parity with FAQPage JSON-LD) -->
+    <section class="flex flex-col gap-6" id="faq">
+      <div>
+        <p class="section-label mb-2">Frequently Asked Questions</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Questions About Richard McKellar
+        </h2>
+        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
+          Direct, verified answers covering Richard McKellar's background, Morristown NJ headquarters, My Commercial Funding, Whetstone Holdings, and AI advisory practice.
+        </p>
+      </div>
+
+      <div class="exec-faq-list">
+        {faqs.map((item, idx) => (
+          <details class="exec-faq-item" open={idx < 2}>
+            <summary class="exec-faq-trigger">{item.q}</summary>
+            <div class="exec-faq-panel">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Deep Dive Resources & Internal Authority Matrix -->
+    <section class="flex flex-col gap-6">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <p class="section-label mb-2">Recent Articles &amp; Resources</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+            Explore Full Bio &amp; Recent Writing
+          </h2>
+        </div>
+        <a href="/blog" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline">
+          View All 13 Articles →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {recentPosts.map((post) => (
+          <a href={`/blog/${post.id}`} class="link-row no-underline justify-between">
+            <div class="flex flex-col gap-1 min-w-0">
+              <span class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+                {post.data.category === 'ai' ? 'AI Insights' : post.data.category === 'strategy' ? 'Strategy' : 'Commercial Funding'} · {post.data.date}
+              </span>
+              <span class="font-display font-semibold text-sm text-on-surface leading-snug">
+                {post.data.title}
+              </span>
+            </div>
+            <svg class="w-4 h-4 text-on-surface-subtle flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        ))}
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+        <a href="/about" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Background</span>
+          <span class="font-display font-bold text-sm text-on-surface">About Richard →</span>
+        </a>
+        <a href="/ventures" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-amber-700 dark:text-amber-400">Companies</span>
+          <span class="font-display font-bold text-sm text-on-surface">Ventures →</span>
+        </a>
+        <a href="/case-studies" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-700 dark:text-emerald-400">Results</span>
+          <span class="font-display font-bold text-sm text-on-surface">Case Studies →</span>
+        </a>
+        <a href="/speaking-and-media" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-violet-700 dark:text-violet-400">Press Kit</span>
+          <span class="font-display font-bold text-sm text-on-surface">Speaking &amp; Bios →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 7. Final CTA -->
+    <section class="exec-bento-card exec-bento-card-indigo flex flex-col items-center text-center gap-4 py-8 px-6">
+      <p class="exec-kicker">Morristown, NJ · Get in Touch</p>
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface max-w-2xl">
+        Work Directly With Richard McKellar
+      </h2>
+      <p class="text-sm text-on-surface-muted max-w-xl leading-relaxed">
+        Whether you&apos;re putting a 90-day AI plan together, integrating AI into Salesforce or NetSuite, or scaling a commercial lending shop, let&apos;s hop on a 30-minute call.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-primary"
+        >
+          Book a 30-Min Call
+        </a>
+        <button
+          type="button"
+          data-inquiry-subject="Message for Richard McKellar"
+          data-inquiry-source="richard-mckellar-bottom"
+          class="exec-btn-secondary"
+        >
+          Send a Message
+        </button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,67 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { openInquiry } from '../lib/inquiry';
+
+const faqs = [
+  {
+    question: "How is a Fractional FDE different from a generic AI consultant?",
+    answer:
+      "A Fractional Forward Deployed Engineer (FDE) does not stop at advice or slide decks. Richard McKellar embeds directly inside your workflows, writes integration code, connects APIs and webhooks on your existing stack, and ships production AI agents with audited telemetry and clear success metrics.",
+  },
+  {
+    question: "Do we need to rip out our existing tools to work with Richard McKellar?",
+    answer:
+      "No. The entire FDE philosophy is building on what you already run—Salesforce, NetSuite, HubSpot, SAP, funding platforms, or merch quoting spreadsheets—using clean APIs, webhooks, and isolated middleware rather than expensive migrations.",
+  },
+  {
+    question: "What does a typical first Fractional FDE engagement look like?",
+    answer:
+      "Most clients start with either a 5–7 day $999 AI Audit on a single workflow or a 2–4 week Diagnostic FDE ($7,500–$12,500) where we map operations, classify every step across AI vs. deterministic code vs. human judgment, and deliver an ROI-ranked deployment backlog.",
+  },
+  {
+    question: "How do you handle data security, compliance, and audit trails?",
+    answer:
+      "Every client deployment uses isolated infrastructure, least-privilege credentials, encrypted secrets, central logging, and human-in-the-loop approval gates. For regulated sectors including commercial lending/MCA, cannabis, and hospitality, agents are engineered strictly around state and compliance constraints.",
+  },
+  {
+    question: "Can a Fractional FDE work alongside our existing developers or IT team?",
+    answer:
+      "Yes. FDE engagements co-design agents and integrations directly in your repositories and engineering standards so internal developers gain velocity and complete runbook ownership instead of an external black box.",
+  },
+];
 
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How is a Fractional FDE different from a generic AI consultant?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Fractional FDE doesn't just advise — they embed in your workflows, write code, integrate with your stack, and ship agents into production with clear success metrics. Generic consultants deliver slide decks. FDEs deliver working systems."
-      }
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
     },
-    {
-      "@type": "Question",
-      "name": "Do we need to rip out our existing tools to work with you?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The whole point of FDE is to build on what you already use — CRMs, ERPs, funding platforms, merch systems — using APIs, webhooks, and integrations instead of migrations."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does a typical first engagement look like?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most clients start with a 2–4 week Diagnostic FDE audit where we map your operations, identify AI and automation opportunities, and present a prioritized roadmap with ROI estimates."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you handle data security and compliance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Each client gets isolated infrastructure, least-privilege access to systems, encrypted secrets, and audit logs. For regulated industries like finance and cannabis, we design agents around your compliance constraints."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you work with our existing developers or IT team?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. FDE often co-designs agents and automations with your internal team using their standards and tooling, so FDE becomes an accelerator for your existing team instead of a separate silo."
-      }
-    }
-  ]
+  })),
 };
 
 const serviceSchema = {
-  "@context": "https://schema.org",
   "@type": "Service",
   "name": "Fractional Forward Deployed Engineer (FDE)",
   "serviceType": "AI engineering, workflow automation, agent deployment",
-  "provider": {
-    "@type": "Person",
-    "name": "Richard McKellar",
-    "url": "https://mckellar.dev"
-  },
   "url": "https://mckellar.dev/fractional-fde",
-  "areaServed": ["New Jersey", "New York", "Florida", "Connecticut", "Massachusetts", "Maryland"],
-  "description": "Fractional FDE consulting to audit workflows, evaluate AI opportunities, and deploy custom agents into existing systems. Enterprise-grade AI deployment without the full-time cost.",
+  "areaServed": ["New Jersey", "New York City", "Florida", "Connecticut", "Massachusetts", "Maryland"],
+  "description":
+    "Fractional FDE engineering led by Richard McKellar in Morristown, NJ: workflow audits, AI vs. deterministic code evaluation, and production agent deployment on Salesforce, NetSuite, HubSpot, and lending stacks.",
   "offers": [
     {
       "@type": "Offer",
@@ -70,8 +57,8 @@ const serviceSchema = {
         "@type": "PriceSpecification",
         "priceCurrency": "USD",
         "price": "7500",
-        "priceType": "Starting"
-      }
+        "priceType": "Starting",
+      },
     },
     {
       "@type": "Offer",
@@ -80,8 +67,8 @@ const serviceSchema = {
         "@type": "PriceSpecification",
         "priceCurrency": "USD",
         "price": "20000",
-        "priceType": "Starting"
-      }
+        "priceType": "Starting",
+      },
     },
     {
       "@type": "Offer",
@@ -90,474 +77,408 @@ const serviceSchema = {
         "@type": "PriceSpecification",
         "priceCurrency": "USD",
         "price": "12000",
-        "priceType": "Starting"
-      }
-    }
-  ]
+        "priceType": "Starting",
+      },
+    },
+  ],
 };
 ---
 
 <BaseLayout
-  title="Fractional FDE | Forward Deployed AI Engineer for Existing Stacks | mckellar.dev"
-  description="Fractional Forward Deployed Engineer (FDE) services for growth-stage companies. Audit workflows, evaluate AI vs. code vs. human, and deploy custom agents into Salesforce, NetSuite, HubSpot, funding platforms, and more."
+  title="Fractional FDE | AI Engineering | Richard McKellar"
+  description="Hands-on AI engineering by Richard McKellar. Audit workflows and deploy production AI agents into Salesforce, NetSuite, HubSpot & lending tools."
   canonicalPath="/fractional-fde"
+  ogType="website"
   faqSchema={faqSchema}
+  serviceSchema={serviceSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-
-  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
-
-    <!-- Header / Back -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a
-        href="/"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  <div class="w-full flex flex-col gap-14 animate-fade-in">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </a>
-      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        Fractional FDE
-      </span>
+      <div class="flex items-center gap-3 text-xs font-mono">
+        <a href="/fractional-caio" class="text-on-surface-muted hover:text-on-surface no-underline">Fractional CAIO</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/fractional-caio-vs-fde" class="text-on-surface-muted hover:text-on-surface no-underline">CAIO vs FDE</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/case-studies" class="text-on-surface-muted hover:text-on-surface no-underline">Case Studies</a>
+      </div>
     </div>
 
     <!-- 1. Hero -->
-    <section class="flex flex-col items-center text-center gap-6 pt-4">
-      <span class="cred-pill">Audit · Evaluate · Deploy · Measure</span>
-      <h1 class="font-display font-extrabold text-[34px] sm:text-[46px] leading-[1.05] text-on-surface text-glow-primary max-w-3xl">
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10 flex flex-col items-center text-center gap-6">
+      <span class="exec-badge exec-badge-indigo">Audit · Evaluate · Deploy · Measure</span>
+      <h1 class="font-display font-bold text-3xl sm:text-5xl leading-[1.06] text-on-surface text-glow-primary max-w-3xl">
         Fractional FDE: AI That Actually Ships Into Your Stack
       </h1>
       <p class="text-base sm:text-lg text-on-surface-muted max-w-2xl leading-relaxed">
-        I embed into your workflows, design agents around your existing systems, and deploy them from shadow mode to production — without ripping anything out. Enterprise-grade AI deployment at a fraction of a full-time hire.
+        <a href="/richard-mckellar" class="text-accent font-semibold hover:underline no-underline">Richard McKellar</a> embeds directly inside your operations, designs agents around your existing CRMs and ERPs, and deploys them from shadow mode to production — without ripping anything out.
       </p>
 
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-2">
+      <div class="flex flex-wrap gap-3 justify-center">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           Book 30-Minute FDE Scoping Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'Fractional FDE Inquiry', source: 'fractional-fde-hero' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="Fractional FDE Inquiry"
+          data-inquiry-source="fractional-fde-hero"
+          class="exec-btn-secondary"
         >
-          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           Submit FDE Project Inquiry
         </button>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-2 text-xs font-mono uppercase tracking-wider text-on-surface-subtle">
-        <span>ROI within 30 days</span>
-        <span class="hidden sm:inline text-indigo-400">•</span>
-        <span>No migrations required</span>
-        <span class="hidden sm:inline text-indigo-400">•</span>
-        <span>Existing stack only</span>
+      <div class="exec-telemetry-strip w-full mt-2">
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Time to Signal</span>
+          <span class="font-display font-bold text-lg text-on-surface">ROI in 30 Days</span>
+          <span class="text-[11px] text-on-surface-muted">Shadow mode before live cutover</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Architecture</span>
+          <span class="font-display font-bold text-lg text-on-surface">Zero Migrations</span>
+          <span class="text-[11px] text-on-surface-muted">Salesforce, NetSuite, HubSpot, SAP</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Diagnostic Entry</span>
+          <span class="font-display font-bold text-lg text-on-surface">From $7,500</span>
+          <span class="text-[11px] text-on-surface-muted">Or $999 1-workflow AI Audit</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Service Territory</span>
+          <span class="font-display font-bold text-lg text-on-surface">Morristown NJ + East Coast</span>
+          <span class="text-[11px] text-on-surface-muted">NJ · NYC · FL · CT · MA · MD</span>
+        </div>
       </div>
     </section>
 
-    <!-- 2. What Is an FDE -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">The Role</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+    <!-- 2. What Is an FDE & Where It Fits -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <p class="exec-kicker">The Role</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
           What Is a Forward Deployed Engineer?
         </h2>
-      </div>
-      <div class="flex flex-col gap-4 text-sm text-on-surface-muted leading-relaxed max-w-3xl">
-        <p>
-          Palantir pioneered the FDE role — engineers who sit in the field with clients, configure and extend platforms, and own end-to-end deployment of real systems. Total compensation for a full-time FDE runs $135K–$200K+.
+        <p class="text-sm text-on-surface-muted leading-relaxed">
+          Palantir pioneered the FDE role — engineers who sit directly alongside operators, configure and extend existing systems, and own end-to-end production deployment. Full-time FDE compensation runs $150K–$300K+/year.
         </p>
-        <p>
-          Generic AI consultants advise. They build proof-of-concepts that never leave the sandbox. An FDE does the opposite: they embed in your operations, translate messy workflows into concrete technical requirements, and ship solutions that run on your existing stack.
+        <p class="text-sm text-on-surface-muted leading-relaxed">
+          <strong class="text-on-surface">Fractional FDE</strong> gives growth-stage companies that exact build-and-ship rigor part-time and project-scoped, built around your operational constraints rather than generic sandbox demos.
         </p>
-        <p>
-          <strong class="text-on-surface">Fractional</strong> means you get that capability part-time and project-scoped, without the six-figure hire. Same methodology. Same rigor. Fraction of the cost.
-        </p>
-      </div>
-    </section>
-
-    <!-- 3. Where FDE Fits -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">The Problem</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Where a Fractional FDE Fits in Your Business
-        </h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">When Your Stack Is Messy but Mission-Critical</h3>
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Messy, Mission-Critical Stacks</h3>
           <p class="text-xs text-on-surface-muted leading-relaxed">
-            Multi-CRM environments. NetSuite plus spreadsheets. Underwriting in email threads. Merch quoting in Google Sheets. You're paying for software and everything is still manual.
+            Multi-CRM setups, NetSuite plus spreadsheets, underwriting in email threads, and manual quoting across disconnected tabs.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">When You're Drowning in Manual Work</h3>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Swivel-Chair Bottlenecks</h3>
           <p class="text-xs text-on-surface-muted leading-relaxed">
-            Swivel-chair workflows between 4–10 tools. Human-only exception handling. Inconsistent follow-up. Data re-entry across systems. You need someone to bridge the gap.
+            Manual data re-entry across 4–10 SaaS tools, slow lead routing, and human-only exception handling dragging down margins.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">When AI Pilots Don't Ship</h3>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Sandboxed Pilots That Never Ship</h3>
           <p class="text-xs text-on-surface-muted leading-relaxed">
-            You've tried AI tools. They demo well but never make it to production. No one owns the integration. No one measures the ROI. The budget gets cut.
+            Demos look slick but nobody owns auth, error handling, audit trails, or integration with production CRMs and ERPs.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">When You Can't Justify a Full-Time Hire</h3>
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">No Full-Time AI Headcount Yet</h3>
           <p class="text-xs text-on-surface-muted leading-relaxed">
-            A full-time FDE costs $150K–$300K/year. You need the capability, not the headcount. Fractional solves the math.
+            You need shipped systems and runbooks in weeks—not a six-month executive search and full-time payroll commitment.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 4. The FDE Method -->
+    <!-- 3. The FDE Method -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">The Method</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          The FDE Method: Audit → Evaluate → Deploy
+        <p class="exec-kicker mb-1.5">The Method</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Audit → Evaluate → Deploy
         </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Every engagement follows three phases. No migrations. No rip-and-replace. Just AI agents built on what you already use.
+        <p class="text-sm text-on-surface-muted mt-1.5 max-w-2xl">
+          Every Fractional FDE engagement follows three disciplined engineering phases on top of your existing systems.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Phase 1</span>
-          <h3 class="font-display font-bold text-base text-on-surface">AUDIT — Map the Real Work</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Stakeholder interviews, workflow shadowing, process diagrams. Inventory every system, API, data location, and security constraint. Find the manual pain hiding in the margins.
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-indigo w-fit">Phase 1 · Audit</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Map the Real Work</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Stakeholder shadowing, API &amp; webhook inventory, data lineage mapping, and compliance constraint capture to isolate manual friction.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Phase 2</span>
-          <h3 class="font-display font-bold text-base text-on-surface">EVALUATE — Decide What Belongs Where</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Classify every step: AI agent, deterministic automation, or human judgment with better tooling. Build an ROI matrix across revenue uplift, cost savings, and risk reduction.
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-violet w-fit">Phase 2 · Evaluate</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">AI vs. Code vs. Human</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Classify every step: LLM agent, deterministic automation, or human review with better tooling. Rank candidates by ROI and risk.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)] flex flex-col gap-2">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Phase 3</span>
-          <h3 class="font-display font-bold text-base text-on-surface">DEPLOY — Build on What You Already Use</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Shadow mode → increasing autonomy → production. On top of Salesforce, NetSuite, HubSpot, SAP, custom stacks. Zero rip-and-replace. Guardrails, audit trails, exception handling.
+        <div class="exec-bento-card exec-bento-card-emerald flex flex-col gap-2.5">
+          <span class="exec-badge exec-badge-emerald w-fit">Phase 3 · Deploy</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Ship Into Production</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Shadow mode validation → guarded autonomy → production cutover on Salesforce, NetSuite, HubSpot, or lending CRMs with full audit logs.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 5. Who This Is For -->
+    <!-- 4. Target Industries -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">Who It's For</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Built for Operators Who Need AI in Production
+        <p class="exec-kicker mb-1.5">Domain Depth</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Built for High-Throughput Operators
         </h2>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Revenue Teams & Funding Shops</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">MCA brokerages, direct lenders, insurance agencies. Underwriting bottlenecks, broker intake, CRM chaos, manual follow-up.</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="exec-bento-card exec-bento-card-gold">
+          <span class="exec-badge exec-badge-gold mb-2">Commercial Finance</span>
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Funding Shops &amp; Revenue Teams</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            MCA brokerages, direct lenders, and insurance agencies automating underwriting document triage, bank-statement extraction, ISO intake, and follow-up.
+          </p>
         </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Merch, Cannabis, Liquor & Hospitality</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Promo distributors, cannabis MSOs, liquor brands, restaurant groups, hotels. Quote-to-order pipelines, compliance workflows, multi-system operations.</p>
+        <div class="exec-bento-card exec-bento-card-emerald">
+          <span class="exec-badge exec-badge-emerald mb-2">Regulated &amp; Multi-System</span>
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Merch, Cannabis, Liquor &amp; Hospitality</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Promo distributors, cannabis MSOs, beverage brands, and hospitality groups streamlining quote-to-order pipelines and state compliance workflows.
+          </p>
         </div>
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-2">
-          <h3 class="font-display font-bold text-[15px] text-on-surface spoke-ai-accent">Field Services, Real Estate & Blue Collar</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Contractors, property managers, auto dealers, real estate teams. Lead triage, dispatch, scheduling, CRM integration.</p>
+        <div class="exec-bento-card exec-bento-card-indigo">
+          <span class="exec-badge exec-badge-indigo mb-2">Field &amp; Services</span>
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">Field Services, Real Estate &amp; Trades</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Contractors, property managers, auto dealers, and real estate teams deploying 24/7 lead triage, dispatch scheduling, and CRM sync.
+          </p>
         </div>
       </div>
-      <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">
-        20–250 employees · Multiple SaaS systems · No in-house AI engineering
-      </p>
     </section>
 
-    <!-- 6. Service Tiers -->
-    <!-- 6b. Start with Audit CTA -->
-    <section class="flex flex-col items-center text-center gap-5 py-4">
-      <div class="rule w-full"></div>
-      <p class="text-sm text-on-surface-muted max-w-xl">
-        <strong class="text-on-surface">Not sure where to start?</strong> The $999 AI Audit covers 1 workflow in 1 system over 5-7 days. You get a findings doc with a clear recommendation: FDE, CAIO, or Capital & Advisory.
-      </p>
-      <a
-        href="https://calendar.mckellar.dev/richard/30min"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
-      >Start with the $999 AI Audit</a>
-    </section>
-
+    <!-- 5. $999 Audit Callout + 3 FDE Tiers -->
     <section class="flex flex-col gap-6">
+      <div class="exec-bento-card exec-bento-card-emerald flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="flex flex-col gap-1">
+          <span class="exec-badge exec-badge-emerald w-fit">Low-Risk Entry Point</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Not sure where to start? Book the $999 AI Audit</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted max-w-2xl">
+            1 workflow inside 1 system audited over 5–7 days. Leave with a technical findings doc recommending FDE buildout, Fractional CAIO governance, or Capital Advisory.
+          </p>
+        </div>
+        <button
+          type="button"
+          data-inquiry-subject="$999 AI Audit Inquiry (from FDE)"
+          data-inquiry-source="fractional-fde-audit"
+          class="exec-btn-primary flex-shrink-0"
+        >
+          Request $999 AI Audit
+        </button>
+      </div>
+
       <div>
-        <p class="section-label mb-2">Service Tiers</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Choose Your Fractional FDE Level
+        <p class="exec-kicker mb-1.5">Service Tiers</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Choose Your Fractional FDE Engagement
         </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Start with a diagnostic. Move to a pilot. Stay for the retainer. Each tier proves value before asking for more.
-        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <!-- Tier 1 -->
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Tier 1</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">Diagnostic FDE</h3>
-          <p class="text-2xl font-display font-extrabold text-on-surface">$7,500–$12,500</p>
-          <p class="text-xs text-on-surface-muted leading-relaxed">flat project fee · 2–4 weeks</p>
-          <div class="rule w-full"></div>
-          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted">
-            <li>• Deep operations audit</li>
-            <li>• Workflow mapping in 1–2 priority domains</li>
-            <li>• Tech stack inventory</li>
-            <li>• AI vs. code vs. human decision matrix</li>
-            <li>• ROI opportunities ranked by impact</li>
-            <li>• Prioritized backlog with value estimates</li>
+        <div class="exec-bento-card flex flex-col gap-3">
+          <span class="exec-badge exec-badge-indigo w-fit">Tier 1 · 2–4 Weeks</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Diagnostic FDE</h3>
+          <p class="font-display font-bold text-2xl text-on-surface">$7,500–$12,500</p>
+          <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">Flat project fee</p>
+          <div class="rule my-1" />
+          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted mb-2">
+            <li>• Deep workflow audit across 1–2 domains</li>
+            <li>• Full SaaS, API &amp; data inventory</li>
+            <li>• AI vs. deterministic code vs. human matrix</li>
+            <li>• Ranked ROI backlog &amp; architecture spec</li>
           </ul>
           <a
             href="https://calendar.mckellar.dev/richard/30min"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto"
-          >Start Diagnostic</a>
+            class="exec-btn-secondary mt-auto w-full no-underline"
+          >
+            Start Diagnostic
+          </a>
         </div>
 
         <!-- Tier 2 -->
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Tier 2</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">Pilot FDE</h3>
-          <p class="text-2xl font-display font-extrabold text-on-surface">$20,000–$40,000</p>
-          <p class="text-xs text-on-surface-muted leading-relaxed">per pilot · 6–10 weeks</p>
-          <div class="rule w-full"></div>
-          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted">
-            <li>• Everything in Tier 1 for 1–3 workflows</li>
-            <li>• 1–2 production-grade AI agents built</li>
-            <li>• Deployed on your existing stack</li>
-            <li>• Shadow mode → live pilot</li>
-            <li>• Runbooks, metrics dashboard, training</li>
-            <li>• Measurable success criteria</li>
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-3">
+          <span class="exec-badge exec-badge-indigo w-fit">Tier 2 · 6–10 Weeks</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Pilot FDE</h3>
+          <p class="font-display font-bold text-2xl text-on-surface">$20,000–$40,000</p>
+          <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">Per pilot build</p>
+          <div class="rule my-1" />
+          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted mb-2">
+            <li>• Full Tier 1 audit for 1–3 priority workflows</li>
+            <li>• 1–2 production AI agents built &amp; integrated</li>
+            <li>• Shadow mode validation → live deployment</li>
+            <li>• Runbooks, metrics dashboard &amp; team training</li>
           </ul>
           <a
             href="https://calendar.mckellar.dev/richard/30min"
             target="_blank"
             rel="noopener noreferrer"
-            class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto"
-          >Launch a Pilot</a>
+            class="exec-btn-primary mt-auto w-full no-underline"
+          >
+            Launch a Pilot
+          </a>
         </div>
 
         <!-- Tier 3 -->
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 border border-indigo-500/30">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Tier 3</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">Embedded Fractional FDE</h3>
-          <p class="text-2xl font-display font-extrabold text-on-surface">$12,000–$25,000</p>
-          <p class="text-xs text-on-surface-muted leading-relaxed">per month · 1–2 days/week · 3–12+ months</p>
-          <div class="rule w-full"></div>
-          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted">
-            <li>• Continuous audit/evaluate/deploy cycle</li>
-            <li>• Backlog of automations and agents</li>
-            <li>• New use case discovery</li>
-            <li>• Cross-department rollouts</li>
-            <li>• Coordination with Fractional CAIO</li>
-            <li>• Weekly standups, monthly roadmap</li>
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-3">
+          <span class="exec-badge exec-badge-violet w-fit">Tier 3 · Ongoing</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">Embedded Fractional FDE</h3>
+          <p class="font-display font-bold text-2xl text-on-surface">$12,000–$25,000</p>
+          <p class="text-xs text-on-surface-subtle font-mono uppercase tracking-wider">Per month · 1–2 days/week</p>
+          <div class="rule my-1" />
+          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted mb-2">
+            <li>• Continuous Audit / Evaluate / Deploy velocity</li>
+            <li>• Cross-department agent &amp; API rollouts</li>
+            <li>• Direct sync with Fractional CAIO governance</li>
+            <li>• Weekly engineering standups &amp; roadmap</li>
           </ul>
           <button
             type="button"
-            onClick={() => openInquiry({ subject: 'Embedded FDE Retainer Inquiry', source: 'fractional-fde-tier3' })}
-            class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto cursor-pointer"
-          >Discuss Embedded FDE</button>
+            data-inquiry-subject="Embedded FDE Retainer Inquiry"
+            data-inquiry-source="fractional-fde-tier3"
+            class="exec-btn-primary mt-auto w-full"
+          >
+            Discuss Embedded FDE
+          </button>
         </div>
       </div>
     </section>
 
-    <!-- 7. FDE vs CAIO -->
+    <!-- 6. FDE + CAIO Summary Table & Stack -->
     <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">How They Work Together</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Fractional FDE + Fractional CAIO
-        </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          CAIO sets the strategy and governance. FDE builds and ships the systems. Together, they're the full stack of AI adoption — leadership plus implementation.
-        </p>
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <p class="exec-kicker mb-1.5">Full-Stack AI Adoption</p>
+          <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+            Fractional FDE + Fractional CAIO
+          </h2>
+        </div>
+        <a href="/fractional-caio-vs-fde" class="text-xs font-mono uppercase tracking-wider text-accent hover:underline no-underline">
+          Read Full CAIO vs FDE Comparison →
+        </a>
+      </div>
+
+      <div class="exec-table-wrap">
+        <table class="exec-table">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Primary Focus</th>
+              <th>Deliverable Output</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-on-surface">Fractional CAIO</td>
+              <td>Executive strategy, AI Council governance &amp; 90-day C.A.P.™ roadmap</td>
+              <td>Governance charter, ROI decision gates, vendor portfolio &amp; enablement</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Fractional FDE</td>
+              <td>Hands-on architecture, integration &amp; agent shipping on existing stack</td>
+              <td>Production agents, webhooks, telemetry dashboards &amp; engineering runbooks</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-2">CAIO: Strategy, Governance & Roadmap</h3>
-          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted">
-            <li>• AI vision and executive alignment</li>
-            <li>• Policies, risk/compliance frameworks</li>
-            <li>• Vendor and model selection</li>
-            <li>• Enterprise-level prioritization</li>
-            <li>• Works with C-suite and department heads</li>
-          </ul>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-2">FDE: Build, Ship & Iterate</h3>
-          <ul class="flex flex-col gap-1.5 text-xs text-on-surface-muted">
-            <li>• Workflow mapping and technical design</li>
-            <li>• Agent development and integration</li>
-            <li>• Shadow → production deployment</li>
-            <li>• Metrics, iteration, and expansion</li>
-            <li>• Works with operators, IT, and frontline teams</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-        <div class="grid grid-cols-3 gap-4 text-xs">
-          <div class="font-mono text-on-surface-subtle uppercase tracking-wider">Role</div>
-          <div class="font-mono text-on-surface-subtle uppercase tracking-wider">Primary Focus</div>
-          <div class="font-mono text-on-surface-subtle uppercase tracking-wider">Output</div>
-          <div class="text-on-surface font-semibold">CAIO</div>
-          <div class="text-on-surface-muted">Strategy & governance</div>
-          <div class="text-on-surface-muted">AI roadmap, policies, portfolio</div>
-          <div class="text-on-surface font-semibold">FDE</div>
-          <div class="text-on-surface-muted">Implementation & deployment</div>
-          <div class="text-on-surface-muted">Agents, automations, workflows</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. Engagement Workflow -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">How It Works</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          How a Fractional FDE Engagement Runs
-        </h2>
-      </div>
-      <div class="flex flex-col gap-3">
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">1</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Scoping Call (30 min)</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Clarify industry, size, key workflows, core systems, existing AI usage, urgency, and budget. Decide if FDE is the right fit.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">2</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Diagnostic FDE Audit</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">2–4 weeks. Map operations, identify opportunities, deliver prioritized roadmap with ROI estimates.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">3</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Pilot Build & Deploy</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">6–10 weeks. Design and deploy 1–2 production-grade agents on your existing stack. Shadow → live.</p>
-          </div>
-        </div>
-        <div class="link-row no-underline hover:scale-[1.005] transition-all">
-          <div class="link-row-icon bg-indigo-500/10 border-indigo-500/20 text-indigo-400 font-mono font-bold">4</div>
-          <div class="flex-1 min-w-0">
-            <p class="font-display font-semibold text-sm text-on-surface leading-snug">Embedded FDE (Optional)</p>
-            <p class="text-xs text-on-surface-muted mt-0.5">Ongoing retainer. Continuous pipeline of new agents, improvements, and cross-department rollouts.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. Tools & Stack -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">Tech Stack</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          What I Build On
-        </h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
+        <div class="exec-bento-card">
           <h3 class="font-display font-bold text-base text-on-surface mb-2">Your Systems, Not Mine</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            Salesforce, HubSpot, NetSuite, SAP, custom REST/GraphQL backends, funding platforms, merch ordering systems, CRM/ERP combos. I integrate with what you run — no migrations required.
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Salesforce, HubSpot, NetSuite, SAP, commercial lending CRMs, custom REST/GraphQL backends, and merch quoting platforms. I integrate directly into your existing operational stack.
           </p>
         </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-base text-on-surface mb-2">My Agent & Integration Stack</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            OpenRouter model routing, Hermes orchestration, Node.js/Python glue services, API connectors and webhooks, Cloudflare tunnels, central logging, metrics dashboards, GitHub repos per client.
+        <div class="exec-bento-card">
+          <h3 class="font-display font-bold text-base text-on-surface mb-2">Agent &amp; Orchestration Stack</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Hermes agent orchestration, OpenRouter multi-model routing, Node.js and Python integration services, webhook pipelines, centralized audit logs, and isolated client repositories.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- 10. FAQ -->
-    <section class="flex flex-col gap-6">
+    <!-- 7. Visible FAQ Accordion (Matches faqSchema 1:1) -->
+    <section id="faq" class="flex flex-col gap-5">
       <div>
-        <p class="section-label mb-2">FAQ</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Fractional FDE FAQs
+        <p class="exec-kicker mb-1.5">FAQ</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Fractional FDE Frequently Asked Questions
         </h2>
       </div>
-      <div class="flex flex-col gap-4">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">How is a Fractional FDE different from a generic AI consultant?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">A Fractional FDE doesn't just advise — they embed in your workflows, write code, integrate with your stack, and ship agents into production with clear success metrics. Generic consultants deliver slide decks. FDEs deliver working systems.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Do we need to rip out our existing tools to work with you?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">No. The whole point of FDE is to build on what you already use — CRMs, ERPs, funding platforms, merch systems — using APIs, webhooks, and integrations instead of migrations.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">What does a typical first engagement look like?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Most clients start with a 2–4 week Diagnostic FDE audit where we map your operations, identify AI and automation opportunities, and present a prioritized roadmap with ROI estimates.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">How do you handle data security and compliance?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Each client gets isolated infrastructure, least-privilege access to systems, encrypted secrets, and audit logs. For regulated industries like finance and cannabis, we design agents around your compliance constraints.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Can you work with our existing developers or IT team?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Yes. FDE often co-designs agents and automations with your internal team using their standards and tooling, so FDE becomes an accelerator for your existing team instead of a separate silo.</p>
-        </div>
+      <div class="exec-faq-list">
+        {faqs.map((faq, index) => (
+          <details class="exec-faq-item" open={index === 0}>
+            <summary class="exec-faq-trigger">{faq.question}</summary>
+            <div class="exec-faq-panel">{faq.answer}</div>
+          </details>
+        ))}
       </div>
     </section>
 
-    <!-- 11. Final CTA -->
-    <section class="flex flex-col items-center text-center gap-5 py-6">
-      <div class="rule w-full"></div>
-      <h2 class="font-display font-extrabold text-[24px] sm:text-[30px] leading-tight text-on-surface">
+    <!-- 8. Final CTA -->
+    <section class="exec-bento-card exec-bento-card-indigo p-6 sm:p-8 flex flex-col items-center text-center gap-4">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
         Ready for an FDE Inside Your Stack?
       </h2>
       <p class="text-sm text-on-surface-muted max-w-xl">
-        Book a 30-minute scoping call and leave with a clear picture of where AI agents can save you time, reduce risk, and drive revenue — on the systems you already use.
+        Book a 30-minute scoping call with Richard McKellar (Morristown, NJ / NYC / NJ / FL / CT / MA / MD) and identify where production AI agents can eliminate bottlenecks on the systems you already use.
       </p>
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-1">
+      <div class="flex flex-wrap gap-3 justify-center pt-1">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
           Book 30-Minute FDE Scoping Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'Fractional FDE Inquiry', source: 'fractional-fde-bottom' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="Fractional FDE Inquiry"
+          data-inquiry-source="fractional-fde-bottom"
+          class="exec-btn-secondary"
         >
           Submit FDE Project Inquiry
         </button>
       </div>
     </section>
-
   </div>
 </BaseLayout>

@@ -2,158 +2,287 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Avatar from '../components/Avatar';
 
+const faqs = [
+  {
+    question: "Who is Richard McKellar?",
+    answer:
+      "Richard McKellar is a Fractional Chief AI Officer (CAIO), Fractional Forward Deployed Engineer (FDE), commercial funding executive, and multi-venture operator based in Morristown, New Jersey. He leads operational AI adoption via The Institute for AI Adoption and serves as Chief Revenue Officer of My Commercial Funding.",
+  },
+  {
+    question: "What is Richard McKellar's role at My Commercial Funding?",
+    answer:
+      "Richard McKellar serves as the Chief Revenue Officer (CRO) of My Commercial Funding (mycommercialfunding.com), overseeing revenue pipelines, ISO channel architecture, commission routing, renewal cycles, and syndication network operations.",
+  },
+  {
+    question: "What companies has Richard McKellar been affiliated with?",
+    answer:
+      "Richard McKellar serves as CRO of My Commercial Funding, Founder and Chief AI Officer of The Institute for AI Adoption, and advisor via mckellar.dev. Previously, he served as Vice President and Executive Board Member at Whetstone Holdings (which operated DBA brands Everest Funding, Vader Funding, and Granite Mountain Funding). He is also affiliated with Robbi Promotional and Fathom Realty.",
+  },
+  {
+    question: "What makes Richard McKellar's background relevant to AI adoption?",
+    answer:
+      "Having personally funded over $100M+ in Merchant Cash Advance and Revenue-Based Financing transactions across 15+ years, Richard approaches AI from a P&L, risk, and throughput standpoint—building production agents on existing CRM, ERP, and underwriting systems via the 90-day C.A.P.™ Operating Model and FDE methodology.",
+  },
+];
+
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Who is Richard McKellar?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Richard McKellar is an entrepreneur, technology advisor, and Merchant Cash Advance (MCA) specialist based in Morristown, New Jersey. He specializes in helping companies adopt AI agent workflows and advising capital partners on starting and scaling direct lending platforms."
-      }
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
     },
-    {
-      "@type": "Question",
-      "name": "What is Richard McKellar's role at My Commercial Funding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Richard McKellar serves as the Chief Revenue Officer (CRO) of My Commercial Funding, a premium commercial funding and Merchant Cash Advance platform."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What companies has Richard McKellar been affiliated with?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Richard McKellar is affiliated with Whetstone Holdings (where he served as VP and Executive Board Member), My Commercial Funding, and Whetstone DBA brands including Everest Funding, Vader Funding, and Granite Mountain Funding."
-      }
-    }
-  ]
+  })),
 };
+
+const timeline = [
+  {
+    period: "Current · Executive Revenue Leadership",
+    role: "Chief Revenue Officer (CRO)",
+    org: "My Commercial Funding",
+    detail:
+      "Leading revenue architecture, ISO distribution channels, renewal engineering, commission structures, and syndication networks at mycommercialfunding.com.",
+    badge: "Active",
+    badgeClass: "exec-badge exec-badge-gold",
+  },
+  {
+    period: "Current · AI Operating Systems",
+    role: "Founder & Chief AI Officer",
+    org: "The Institute for AI Adoption & mckellar.dev",
+    detail:
+      "Facilitating operational AI adoption inside mid-market companies and government bodies via the 90-day C.A.P.™ Operating Model, Fractional CAIO leadership, and embedded Fractional FDE stack engineering.",
+    badge: "Active",
+    badgeClass: "exec-badge exec-badge-indigo",
+  },
+  {
+    period: "Prior Executive Tenure · Direct Lending Scale",
+    role: "Vice President & Executive Board Member",
+    org: "Whetstone Holdings (Everest Funding, Vader Funding, Granite Mountain Funding)",
+    detail:
+      "Directed risk grading model development, underwriting infrastructure, ISO channel strategy, and ledger integration—personally funding over $100M+ in MCA and revenue-based financing transactions.",
+    badge: "$100M+ Funded",
+    badgeClass: "exec-badge exec-badge-emerald",
+  },
+  {
+    period: "Multi-Venture Ecosystem",
+    role: "Venture & Advisory Affiliations",
+    org: "Robbi Promotional & Fathom Realty",
+    detail:
+      "Cross-industry operational involvement spanning branded promotional products and apparel (robbipromotional.com) alongside real estate brokerage licensing with Fathom Realty.",
+    badge: "Holdings",
+    badgeClass: "exec-badge",
+  },
+];
 ---
 
 <BaseLayout
-  title="About Richard McKellar | mckellar.dev — Background & Credentials"
-  description="Biography, professional background, and credentials of Richard McKellar, AI Adoption Consultant and Merchant Cash Advance Advisor."
+  title="About Richard McKellar | Bio, Timeline & Background"
+  description="Biography and career timeline for Richard McKellar in Morristown, NJ — Fractional CAIO, CRO at My Commercial Funding, and former VP at Whetstone Holdings."
   canonicalPath="/about"
+  ogType="profile"
   faqSchema={faqSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Richard McKellar",
-    "url": "https://mckellar.dev",
-    "jobTitle": "Fractional AI Executive & Multi-Venture Founder",
-    "description": "Richard McKellar is an AI adoption consultant, multi-venture founder, and Merchant Cash Advance specialist based in Morristown, NJ. He operates across AI advisory, commercial funding, real estate, and promotional products.",
-    "sameAs": [
-      "https://linkedin.com/in/richmckellar",
-      "https://github.com/therealmckellar"
-    ],
-    "worksFor": [
-      { "@type": "Organization", "name": "My Commercial Funding", "url": "https://mycommercialfunding.com" },
-      { "@type": "Organization", "name": "Robbi Promotional", "url": "https://robbipromotional.com" },
-      { "@type": "Organization", "name": "Fathom Realty" },
-      { "@type": "Organization", "name": "Institute for AI Adoption" }
-    ],
-    "areaServed": ["New Jersey", "New York", "Florida", "Connecticut", "Massachusetts", "Maryland"]
-  })} />
-
-  <div class="w-full flex flex-col gap-8 animate-fade-in">
-    <!-- Blog Nav Header -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a 
+  <div class="w-full flex flex-col gap-12 animate-fade-in">
+    <!-- Top Breadcrumb & Quick Links -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
         href="/"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline"
       >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </a>
 
-      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        Biography
-      </span>
+      <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+        <a href="/richard-mckellar" class="text-on-surface-muted hover:text-on-surface no-underline">Profile</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/ventures" class="text-on-surface-muted hover:text-on-surface no-underline">Ventures</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/case-studies" class="text-on-surface-muted hover:text-on-surface no-underline">Case Studies</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/speaking-and-media" class="text-on-surface-muted hover:text-on-surface no-underline">Press Kit</a>
+      </div>
     </div>
 
-    <!-- Main About Content -->
-    <div class="flex flex-col gap-8 max-w-3xl mx-auto w-full py-4">
-      <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-        <div class="flex-shrink-0">
-          <Avatar />
-        </div>
-        <div class="flex-1 flex flex-col gap-3 text-center md:text-left">
-          <h1 class="font-display font-extrabold text-[32px] sm:text-[40px] leading-tight text-on-surface text-glow-primary">
+    <!-- Hero Biography Card -->
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-8 lg:p-10 flex flex-col gap-6">
+      <div class="flex flex-col md:flex-row items-center md:items-start gap-7">
+        <Avatar size="xl" />
+        <div class="flex-1 flex flex-col items-center md:items-start text-center md:text-left gap-3">
+          <span class="exec-badge exec-badge-emerald">About Richard · Morristown, NJ</span>
+          <h1 class="font-display font-bold text-3xl sm:text-5xl leading-[1.06] text-on-surface text-glow-primary">
             Richard McKellar
           </h1>
-          <p class="text-sm sm:text-base text-indigo-400 font-mono tracking-wider uppercase">
-            Technology Consultant & Alternative Finance Advisor
+          <p class="text-sm sm:text-base font-mono uppercase tracking-[0.12em] text-accent">
+            Fractional Chief AI Officer · Forward Deployed Engineer · Commercial Funding Advisor
           </p>
-          <p class="text-xs text-on-surface-subtle">
-            Morristown, New Jersey · available for strategic consulting
+          <p class="text-sm sm:text-base text-on-surface-muted leading-relaxed max-w-2xl">
+            Based in Morristown, New Jersey, Richard McKellar brings 15+ years of commercial lending leadership and $100M+ in funded business capital to helping companies put practical AI workflows to work across NJ, NYC, FL, CT, MA, and MD.
           </p>
-        </div>
-      </div>
 
-      <div class="rule my-2"></div>
-
-      <div class="flex flex-col gap-6 text-sm sm:text-base text-on-surface-muted leading-relaxed">
-        <h2 class="font-display font-bold text-lg text-on-surface">Professional Overview</h2>
-        
-        <p>
-          Richard McKellar is a veteran alternative asset finance advisor and technology strategist based in <strong>Morristown, NJ</strong>. With over 15 years of dedicated experience in the Merchant Cash Advance (MCA) and revenue-based financing (RBF) sectors, he has built a reputation for designing scalable operational frameworks and leading high-performing teams.
-        </p>
-
-        <p>
-          Throughout his career, Richard has been directly involved in scaling commercial funding platforms. He previously served as a <strong>Vice President & Executive Board Member at Whetstone Holdings</strong> (which operated prominent DBA brands such as Everest Funding, Vader Funding, and Granite Mountain Funding). In this role, he was instrumental in risk mitigation modeling, ISO channel strategy, and platform operations, having personally funded over <strong>$100M+</strong> in MCA transactions.
-        </p>
-
-        <p>
-          Currently, Richard serves as the <strong>Chief Revenue Officer (CRO) of My Commercial Funding</strong>, where he oversees sales pipelines, commission systems, and syndication network operations.
-        </p>
-
-        <h2 class="font-display font-bold text-lg text-on-surface mt-4">AI Adoption & Automation Consulting</h2>
-        
-        <p>
-          In response to the rapid evolution of generative intelligence, Richard focuses on bridging the gap between cutting-edge AI technologies and financial operations. He operates a specialized consulting practice helping platforms deploy custom context-aware AI agent workflows, automate lead triage/routing pipelines, and integrate AI with collaboration and enterprise messaging channels.
-        </p>
-        
-        <p>
-          His dual-competency in AI technology and alternative finance provides a unique, highly focused perspective on reducing operational overhead while accelerating deal velocity.
-        </p>
-
-        <h2 class="font-display font-bold text-lg text-on-surface mt-4">Corporate Start & Scale Advisory</h2>
-        
-        <p>
-          Beyond technical integrations, Richard provides comprehensive advisory services for founders and capital syndicates looking to establish or scale their alternative finance operations. This includes structural launch plans for new brokerages, setup audits for expanding direct lenders, capitalization strategies (securing warehouse lines and equity), and onboarding frameworks to rapidly integrate modern AI-driven workflows across existing workforces.
-        </p>
-      </div>
-
-      <div class="rule mt-6"></div>
-
-      <div class="flex flex-col gap-4">
-        <h2 class="font-display font-bold text-lg text-on-surface">Credentials & Highlights</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="glass-card rounded-xl p-4 border-[var(--color-border)]">
-            <h3 class="text-xs font-mono uppercase tracking-wider text-indigo-400 font-bold mb-1">Executive Leadership</h3>
-            <p class="text-xs text-on-surface-muted">VP & Executive Board Member, Whetstone Holdings</p>
-          </div>
-          <div class="glass-card rounded-xl p-4 border-[var(--color-border)]">
-            <h3 class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold mb-1">Asset Volume</h3>
-            <p class="text-xs text-on-surface-muted">$100M+ Personally Funded MCA/RBF transactions</p>
-          </div>
-          <div class="glass-card rounded-xl p-4 border-[var(--color-border)]">
-            <h3 class="text-xs font-mono uppercase tracking-wider text-indigo-400 font-bold mb-1">Current Role</h3>
-            <p class="text-xs text-on-surface-muted">CRO, My Commercial Funding</p>
-          </div>
-          <div class="glass-card rounded-xl p-4 border-[var(--color-border)]">
-            <h3 class="text-xs font-mono uppercase tracking-wider text-amber-400 font-bold mb-1">Specialization</h3>
-            <p class="text-xs text-on-surface-muted">AI Agent workflow adoption & automated lead triage</p>
+          <div class="flex flex-wrap justify-center md:justify-start gap-3 pt-2">
+            <a
+              href="https://calendar.mckellar.dev/richard/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="exec-btn-primary no-underline"
+            >
+              Schedule a 30-Min Call
+            </a>
+            <button
+              type="button"
+              data-inquiry-subject="Message for Richard McKellar"
+              data-inquiry-source="about-hero"
+              class="exec-btn-secondary"
+            >
+              Send a Message
+            </button>
+            <a href="/richard-mckellar" class="exec-btn-gold no-underline">
+              Full Profile →
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Track Record Strip -->
+    <section class="exec-telemetry-strip" aria-label="Biography Key Metrics">
+      <div class="exec-telemetry-cell">
+        <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Capital Funded</span>
+        <span class="font-display font-bold text-xl text-on-surface">$100M+ Funded</span>
+        <span class="text-[11px] text-on-surface-muted">Personal MCA / RBF transaction volume</span>
+      </div>
+      <div class="exec-telemetry-cell">
+        <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Experience</span>
+        <span class="font-display font-bold text-xl text-on-surface">15+ Years</span>
+        <span class="text-[11px] text-on-surface-muted">Direct lending, ISO &amp; AI workflows</span>
+      </div>
+      <div class="exec-telemetry-cell">
+        <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Based In</span>
+        <span class="font-display font-bold text-xl text-on-surface">Morristown, NJ</span>
+        <span class="text-[11px] text-on-surface-muted">NJ · NYC · FL · CT · MA · MD</span>
+      </div>
+      <div class="exec-telemetry-cell">
+        <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Online Profiles</span>
+        <span class="font-display font-bold text-xl text-on-surface">@therealmckellar</span>
+        <span class="text-[11px] text-on-surface-muted">linkedin.com/in/richardmckellar</span>
+      </div>
+    </section>
+
+    <!-- Narrative & Expertise -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-7 flex flex-col gap-5 text-sm sm:text-[15px] text-on-surface-muted leading-relaxed">
+        <div>
+          <p class="exec-kicker mb-1.5">Professional Overview</p>
+          <h2 class="font-display font-bold text-2xl text-on-surface">
+            Operator Discipline Across Capital &amp; Applied AI
+          </h2>
+        </div>
+
+        <p>
+          Richard McKellar is a veteran alternative asset finance executive and AI strategist headquartered in <strong class="text-on-surface">Morristown, New Jersey</strong>. Over more than 15 years in the Merchant Cash Advance (MCA) and Revenue-Based Financing (RBF) industries, he has architected underwriting frameworks, ISO distribution channels, and automated revenue operations at scale.
+        </p>
+
+        <p>
+          Earlier in his career, Richard served as <strong class="text-on-surface">Vice President &amp; Executive Board Member at Whetstone Holdings</strong>—which operated prominent DBA lending brands including <strong class="text-on-surface">Everest Funding</strong>, <strong class="text-on-surface">Vader Funding</strong>, and <strong class="text-on-surface">Granite Mountain Funding</strong>. Across his direct lending career, he personally funded over <strong class="text-on-surface">$100M+</strong> in MCA and RBF transactions while building proprietary risk grading models and ledger integrations.
+        </p>
+
+        <p>
+          Today, Richard serves as <strong class="text-on-surface">Chief Revenue Officer (CRO) of My Commercial Funding</strong>, directing sales velocity, commission structures, renewal engineering, and syndication network operations, while also leading <strong class="text-on-surface">The Institute for AI Adoption</strong> and his Fractional CAIO and Fractional FDE consulting practices.
+        </p>
+
+        <h3 class="font-display font-bold text-xl text-on-surface pt-2">
+          AI Adoption &amp; Forward Deployed Engineering
+        </h3>
+        <p>
+          Rather than selling theoretical AI slide decks, Richard embeds inside operating companies to install governance and deploy working agents on existing infrastructure—Salesforce, NetSuite, HubSpot, SAP, and custom commercial lending backends. Through the <strong class="text-on-surface">90-day C.A.P.™ Operating Model</strong> (Council, Align, Perform) and the <strong class="text-on-surface">Audit → Evaluate → Deploy</strong> FDE method, his engagements turn manual swivel-chair bottlenecks into measurable, CFO-defensible ROI.
+        </p>
+
+        <h3 class="font-display font-bold text-xl text-on-surface pt-2">
+          Corporate Start &amp; Scale Advisory
+        </h3>
+        <p>
+          For founders, brokerages, and capital syndicates entering or scaling direct funding, Richard provides structural launch blueprints, underwriting risk-model refinement, warehouse-line and syndication readiness, CRM architecture buildouts, and independent borrower-side loan offer benchmarking.
+        </p>
+      </div>
+
+      <!-- Career Timeline Column -->
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <div>
+          <p class="exec-kicker mb-1.5">Career Ledger</p>
+          <h2 class="font-display font-bold text-2xl text-on-surface">
+            Executive Timeline
+          </h2>
+        </div>
+
+        <div class="exec-timeline">
+          {timeline.map((item) => (
+            <div class="exec-timeline-item flex flex-col gap-1.5">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <span class="font-mono text-[10px] uppercase tracking-[0.12em] text-on-surface-subtle">{item.period}</span>
+                <span class={item.badgeClass}>{item.badge}</span>
+              </div>
+              <h3 class="font-display font-bold text-sm text-on-surface">{item.role}</h3>
+              <p class="text-xs font-semibold text-accent">{item.org}</p>
+              <p class="text-xs text-on-surface-muted leading-relaxed mt-0.5">{item.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-Linking Authority Cards -->
+    <section class="flex flex-col gap-5">
+      <div>
+        <p class="exec-kicker mb-1.5">More About Richard</p>
+        <h2 class="font-display font-bold text-2xl text-on-surface">
+          Explore More Pages
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="/richard-mckellar" class="exec-bento-card exec-bento-card-indigo no-underline flex flex-col gap-2">
+          <span class="exec-badge exec-badge-indigo w-fit">Profile</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Full Profile</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Background, credentials, and official online links for Richard McKellar.</p>
+        </a>
+        <a href="/ventures" class="exec-bento-card exec-bento-card-gold no-underline flex flex-col gap-2">
+          <span class="exec-badge exec-badge-gold w-fit">Companies</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Ventures &amp; Roles</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">My Commercial Funding, Institute for AI Adoption, Whetstone, Robbi &amp; Fathom.</p>
+        </a>
+        <a href="/case-studies" class="exec-bento-card exec-bento-card-emerald no-underline flex flex-col gap-2">
+          <span class="exec-badge exec-badge-emerald w-fit">Results</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Case Studies</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Real examples across AI underwriting, ERP agents &amp; 90-day C.A.P.™ rollouts.</p>
+        </a>
+        <a href="/speaking-and-media" class="exec-bento-card exec-bento-card-violet no-underline flex flex-col gap-2">
+          <span class="exec-badge exec-badge-violet w-fit">Press Kit</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Speaking &amp; Media</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">Speaking topics, podcast interviews &amp; ready-to-use bios.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Visible FAQ Accordion (Matches faqSchema 1:1) -->
+    <section class="flex flex-col gap-5">
+      <div>
+        <p class="exec-kicker mb-1.5">Questions &amp; Answers</p>
+        <h2 class="font-display font-bold text-2xl text-on-surface">
+          Frequently Asked Questions
+        </h2>
+      </div>
+      <div class="exec-faq-list">
+        {faqs.map((faq, index) => (
+          <details class="exec-faq-item" open={index === 0}>
+            <summary class="exec-faq-trigger">{faq.question}</summary>
+            <div class="exec-faq-panel">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </section>
   </div>
 </BaseLayout>

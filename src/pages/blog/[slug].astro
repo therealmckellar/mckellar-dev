@@ -4,102 +4,261 @@ import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => ({
+  return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
-const { post } = Astro.props;
+const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
 
-const siteUrl = "https://mckellar.dev";
-const articleUrl = new URL(`/blog/${post.id}`, siteUrl).toString();
+const categoryMeta: Record<'ai' | 'funding' | 'strategy', { label: string; badgeClass: string }> = {
+  ai: { label: 'AI Insights', badgeClass: 'exec-badge exec-badge-indigo' },
+  funding: { label: 'Merchant Funding', badgeClass: 'exec-badge exec-badge-gold' },
+  strategy: { label: 'Strategy & Growth', badgeClass: 'exec-badge exec-badge-violet' },
+};
+
+const meta = categoryMeta[post.data.category];
+const siteUrl = 'https://mckellar.dev';
+const articlePath = `/blog/${post.id}`;
+const articleUrl = new URL(articlePath, siteUrl).toString();
+
+const publishedIso = new Date(post.data.date).toISOString().split('T')[0];
+const modifiedIso = new Date(post.data.dateModified || post.data.date).toISOString().split('T')[0];
+const wordCount = (post.body || '')
+  .replace(/```[\s\S]*?```/g, ' ')
+  .replace(/[#*_`>\-\[\]()!|]/g, ' ')
+  .trim()
+  .split(/\s+/)
+  .filter(Boolean).length;
+const headTitle = post.data.seoTitle
+  ? (post.data.seoTitle.includes('Richard McKellar') ? post.data.seoTitle : `${post.data.seoTitle} | Richard McKellar`)
+  : `${post.data.title} | Richard McKellar`;
+
+const relatedPosts = [...allPosts]
+  .filter((p) => p.id !== post.id)
+  .sort((a, b) => {
+    const aSame = a.data.category === post.data.category ? 1 : 0;
+    const bSame = b.data.category === post.data.category ? 1 : 0;
+    if (aSame !== bSame) return bSame - aSame;
+    return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+  })
+  .slice(0, 3);
 
 const articleSchema = {
-  "@context": "https://schema.org",
   "@type": "Article",
   "headline": post.data.title,
   "description": post.data.description,
-  "datePublished": new Date(post.data.date).toISOString().split('T')[0],
-  "dateModified": new Date(post.data.dateModified || post.data.date).toISOString().split('T')[0],
+  "image": `${siteUrl}/og-image.png`,
+  "datePublished": publishedIso,
+  "dateModified": modifiedIso,
+  "articleSection": meta.label,
+  "wordCount": wordCount,
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  ...(post.data.keywords ? { "keywords": post.data.keywords } : {}),
   "author": {
+    "@id": `${siteUrl}/#richard-mckellar`,
     "@type": "Person",
-    "name": post.data.author
+    "name": post.data.author,
+    "url": `${siteUrl}/richard-mckellar`,
   },
   "publisher": {
-    "@type": "Person",
-    "name": "Richard McKellar",
-    "url": siteUrl
+    "@id": `${siteUrl}/#organization`,
+    "@type": "Organization",
+    "name": "McKellar.dev — Richard McKellar Advisory",
+    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${siteUrl}/avatar.jpg`,
+    },
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": articleUrl
-  }
+    "@id": articleUrl,
+  },
 };
 ---
 
 <BaseLayout
-  title={`${post.data.title} | mckellar.dev Insights`}
+  title={headTitle}
   description={post.data.description}
-  canonicalPath={`/blog/${post.id}`}
+  canonicalPath={articlePath}
+  ogType="article"
+  keywords={post.data.keywords?.join(', ')}
+  breadcrumbs={[
+    { name: 'Richard McKellar', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: post.data.title, path: articlePath },
+  ]}
   articleSchema={articleSchema}
 >
-  <div class="w-full flex flex-col gap-8 animate-fade-in">
+  <div class="w-full flex flex-col gap-10 animate-fade-in">
     <!-- Blog Nav Header -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a 
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
         href="/blog"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline"
       >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
-        Back to Articles
+        Back to All Articles
       </a>
 
-      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        Insights Journal
-      </span>
+      <div class="flex items-center gap-3 text-xs font-mono">
+        <a href="/richard-mckellar" class="text-on-surface-muted hover:text-on-surface no-underline">About Richard</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/fractional-caio" class="text-on-surface-muted hover:text-on-surface no-underline">Fractional CAIO</a>
+      </div>
     </div>
 
-    <!-- Blog Article Reader View -->
-    <article class="flex flex-col gap-6 max-w-3xl mx-auto w-full py-4 animate-fade-in-up">
-      <div class="flex flex-col gap-2">
-        <div class="flex items-center gap-2">
-          <span class={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider ${
-            post.data.category === 'ai' 
-              ? 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20' 
-              : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
-          }`}>
-            {post.data.category === 'ai' ? 'AI Insights' : 'Merchant Funding'}
-          </span>
-          <span class="text-xs text-on-surface-subtle font-mono">{post.data.date}</span>
+    <!-- Article Container -->
+    <article class="flex flex-col gap-7 max-w-3xl mx-auto w-full animate-fade-in-up">
+      <!-- Reader Header & Reading Telemetry -->
+      <header class="exec-bento-card exec-grid-bg p-6 sm:p-8 flex flex-col gap-4">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <span class={meta.badgeClass}>{meta.label}</span>
+          <span class="font-mono text-xs text-on-surface-subtle">{post.data.readTime}</span>
         </div>
-        <h1 class="font-display font-extrabold text-[28px] sm:text-[36px] leading-tight text-on-surface text-glow-primary">
+
+        <h1 class="font-display font-bold text-2xl sm:text-4xl leading-[1.12] text-on-surface text-glow-primary">
           {post.data.title}
         </h1>
-        <p class="text-xs font-mono text-on-surface-subtle mt-0.5">{post.data.readTime}</p>
-      </div>
 
-      <div class="rule my-1"></div>
+        <p class="text-sm sm:text-base text-on-surface-muted leading-relaxed">
+          {post.data.description}
+        </p>
 
-      <!-- Main markdown parsed content wrapper -->
-      <div class="prose flex flex-col gap-6 text-sm sm:text-base text-on-surface-muted leading-relaxed">
+        <div class="rule my-1" />
+
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs font-mono text-on-surface-subtle">
+          <div class="flex items-center gap-2.5">
+            <img
+              src="/avatar.jpg"
+              alt="Richard McKellar — Author"
+              width="28"
+              height="28"
+              class="w-7 h-7 rounded-full object-cover border border-[var(--color-border-strong)]"
+              loading="eager"
+            />
+            <span>
+              By <a href="/richard-mckellar" class="text-on-surface font-semibold hover:text-accent no-underline">{post.data.author}</a> · Morristown, NJ
+            </span>
+          </div>
+          <div class="flex items-center gap-3">
+            <time datetime={publishedIso}>Published {post.data.date}</time>
+            {post.data.dateModified && post.data.dateModified !== post.data.date && (
+              <span>· Updated {post.data.dateModified}</span>
+            )}
+          </div>
+        </div>
+
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-1.5 pt-1">
+            {post.data.tags.map((tag) => (
+              <span class="cred-pill !text-[10.5px] !py-0.5 !px-2.5 font-mono">{tag}</span>
+            ))}
+          </div>
+        )}
+      </header>
+
+      <!-- Main Markdown Prose -->
+      <div class="prose prose-exec flex flex-col gap-5 text-[15px] sm:text-base leading-relaxed px-1">
         <Content />
       </div>
 
-      <div class="rule mt-6"></div>
+      <div class="rule my-2" />
 
-      <a 
-        href="/blog"
-        class="self-start mt-4 flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back to Articles
-      </a>
+      <!-- About the Author: Richard McKellar Executive Credential Card -->
+      <aside class="exec-bento-card exec-bento-card-indigo p-6 sm:p-7 flex flex-col gap-4" aria-label="About the Author">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <img
+            src="/avatar.jpg"
+            alt="Richard McKellar — Fractional Chief AI Officer & Commercial Funding Executive in Morristown, NJ"
+            width="80"
+            height="80"
+            class="w-20 h-20 rounded-full object-cover border-2 border-accent/50 flex-shrink-0"
+            loading="lazy"
+          />
+          <div class="flex-1 flex flex-col gap-1">
+            <span class="exec-badge exec-badge-indigo w-fit">About the Author</span>
+            <h2 class="font-display font-bold text-xl text-on-surface">Richard McKellar</h2>
+            <p class="text-xs font-mono uppercase tracking-[0.1em] text-accent">
+              Morristown, NJ · Fractional CAIO · CRO at My Commercial Funding · Founder, Institute for AI Adoption
+            </p>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+          Richard McKellar is a Fractional Chief AI Officer, Forward Deployed Engineer, and veteran commercial funding executive with 15+ years in alternative lending and $100M+ in personally funded MCA/RBF transactions. Formerly Vice President &amp; Executive Board Member at Whetstone Holdings (Everest Funding, Vader Funding, Granite Mountain Funding), he now serves as Chief Revenue Officer at My Commercial Funding and helps mid-market organizations across NJ, NYC, FL, CT, MA, and MD deploy production AI via the 90-day C.A.P.™ Operating Model.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-2.5 pt-1">
+          <a href="/richard-mckellar" class="exec-btn-primary !py-2 !px-3.5 !text-xs no-underline">
+            Richard McKellar Profile
+          </a>
+          <a href="/fractional-caio" class="exec-btn-secondary !py-2 !px-3.5 !text-xs no-underline">
+            Fractional CAIO
+          </a>
+          <button
+            type="button"
+            data-inquiry-subject={`Article Discussion: ${post.data.title}`}
+            data-inquiry-source={`blog-author-${post.id}`}
+            class="exec-btn-secondary !py-2 !px-3.5 !text-xs"
+          >
+            Send a Message
+          </button>
+          <a
+            href="https://www.linkedin.com/in/richardmckellar"
+            target="_blank"
+            rel="me noopener noreferrer"
+            class="text-xs font-mono text-on-surface-muted hover:text-accent no-underline ml-auto"
+          >
+            LinkedIn →
+          </a>
+          <a
+            href="https://github.com/therealmckellar"
+            target="_blank"
+            rel="me noopener noreferrer"
+            class="text-xs font-mono text-on-surface-muted hover:text-accent no-underline"
+          >
+            GitHub →
+          </a>
+        </div>
+      </aside>
+
+      <!-- Related Articles -->
+      {relatedPosts.length > 0 && (
+        <section class="flex flex-col gap-4 pt-2" aria-label="Related Articles">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display font-bold text-xl text-on-surface">More Articles</h2>
+            <a href="/blog" class="text-xs font-mono uppercase tracking-wider text-accent hover:underline no-underline">
+              View All →
+            </a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {relatedPosts.map((rel) => {
+              const relMeta = categoryMeta[rel.data.category];
+              return (
+                <a href={`/blog/${rel.id}`} class="exec-bento-card flex flex-col justify-between gap-3 no-underline group p-4">
+                  <div class="flex flex-col gap-2">
+                    <span class={`${relMeta.badgeClass} w-fit`}>{relMeta.label}</span>
+                    <h3 class="font-display font-bold text-sm text-on-surface leading-snug group-hover:text-accent transition-colors">
+                      {rel.data.title}
+                    </h3>
+                  </div>
+                  <div class="flex items-center justify-between text-[10.5px] font-mono text-on-surface-subtle pt-2 border-t border-[var(--color-border)]">
+                    <span>{rel.data.readTime}</span>
+                    <span class="text-accent font-semibold">Read →</span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </article>
   </div>
 </BaseLayout>

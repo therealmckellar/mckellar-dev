@@ -5,127 +5,321 @@ import InquiryModal from '../components/InquiryModal';
 import '../index.css';
 import '../styles/inquiry.css';
 
+interface BreadcrumbItem {
+  name: string;
+  path: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  keywords?: string;
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
   faqSchema?: Record<string, any>;
   articleSchema?: Record<string, any>;
+  serviceSchema?: Record<string, any>;
+  profileSchema?: Record<string, any>;
+  itemListSchema?: Record<string, any>;
 }
 
 const {
-  title = "Richard McKellar | mckellar.dev — AI, Funding & Multi-Venture Advisory",
-  description = "Richard McKellar (mckellar.dev) is an advisor & technology consultant based in Morristown, NJ. Hub for AI implementation, agent adoption, workforce training, and Merchant Cash Advance (MCA) platform advisory.",
+  title = "Richard McKellar | Fractional CAIO, FDE & Funding Advisor",
+  description = "Richard McKellar in Morristown, NJ: Fractional CAIO, Forward Deployed Engineer, CRO at My Commercial Funding & Founder of The Institute for AI Adoption.",
   canonicalPath = "/",
+  ogType = "website",
+  keywords = "Richard McKellar, Richard McKellar NJ, Richard McKellar Morristown, Richard McKellar AI, Richard McKellar My Commercial Funding, Richard McKellar Whetstone Holdings, Fractional CAIO, Fractional FDE, therealmckellar, rmckellar, mckellar.dev",
+  noindex = false,
+  breadcrumbs,
   faqSchema,
   articleSchema,
+  serviceSchema,
+  profileSchema,
+  itemListSchema,
 } = Astro.props;
 
 const siteUrl = "https://mckellar.dev";
-const canonicalURL = new URL(canonicalPath, siteUrl).toString();
+const normalizedPath = canonicalPath === "/" ? "/" : `/${canonicalPath.replace(/^\/+|\/+$/g, "")}`;
+const canonicalURL = new URL(normalizedPath, siteUrl).toString();
 const ogImageUrl = new URL("/og-image.png", siteUrl).toString();
 
-// Primary Person Entity Schema
-const personSchema = {
-  "@context": "https://schema.org",
+const PERSON_ID = `${siteUrl}/#richard-mckellar`;
+const ORG_ID = `${siteUrl}/#organization`;
+const WEBSITE_ID = `${siteUrl}/#website`;
+const WEBPAGE_ID = `${canonicalURL}#webpage`;
+const BREADCRUMB_ID = `${canonicalURL}#breadcrumb`;
+
+const stripContext = (node: Record<string, any>): Record<string, any> => {
+  const copy = { ...node };
+  delete copy["@context"];
+  return copy;
+};
+
+const ROUTE_LABELS: Record<string, string> = {
+  "richard-mckellar": "Richard McKellar — Profile & Background",
+  "about": "About Richard McKellar",
+  "ventures": "Ventures & Companies",
+  "case-studies": "Case Studies & Results",
+  "speaking-and-media": "Speaking & Media Kit",
+  "fractional-caio": "Fractional Chief AI Officer",
+  "fractional-fde": "Fractional Forward Deployed Engineer",
+  "fractional-caio-vs-fde": "Fractional CAIO vs FDE",
+  "institute-for-ai-adoption": "The Institute for AI Adoption",
+  "blog": "Blog & Articles",
+};
+
+const resolvedBreadcrumbs: BreadcrumbItem[] = breadcrumbs && breadcrumbs.length > 0
+  ? breadcrumbs
+  : (() => {
+      const items: BreadcrumbItem[] = [{ name: "Richard McKellar", path: "/" }];
+      if (normalizedPath === "/") return items;
+      const segments = normalizedPath.replace(/^\/+/, "").split("/");
+      let acc = "";
+      for (const seg of segments) {
+        acc += `/${seg}`;
+        const label =
+          ROUTE_LABELS[seg] ||
+          seg
+            .split("-")
+            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" ");
+        items.push({ name: label, path: acc });
+      }
+      return items;
+    })();
+
+const personNode: Record<string, any> = {
   "@type": "Person",
+  "@id": PERSON_ID,
   "name": "Richard McKellar",
-  "alternateName": ["therealmckellar", "rmckellar"],
+  "alternateName": ["therealmckellar", "rmckellar", "Rich McKellar"],
   "url": siteUrl,
-  "image": new URL("/avatar.jpg", siteUrl).toString(),
-  "jobTitle": "AI Adoption Consultant & Merchant Cash Advance Advisor",
-  "description": "Richard McKellar is an entrepreneur, builder, and strategic consultant specialising in AI agent integration, sales automation, and Merchant Cash Advance platform advisory.",
+  "mainEntityOfPage": `${siteUrl}/richard-mckellar`,
+  "image": {
+    "@type": "ImageObject",
+    "url": new URL("/avatar.jpg", siteUrl).toString(),
+  },
+  "jobTitle": "Fractional Chief AI Officer, Forward Deployed Engineer & Commercial Funding Executive",
+  "description": "Richard McKellar is a Fractional Chief AI Officer (CAIO), Forward Deployed Engineer (FDE), Chief Revenue Officer at My Commercial Funding, Founder of The Institute for AI Adoption, and former VP & Executive Board Member at Whetstone Holdings based in Morristown, NJ.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Morristown",
     "addressRegion": "NJ",
-    "addressCountry": "US"
+    "addressCountry": "US",
+  },
+  "homeLocation": {
+    "@type": "Place",
+    "name": "Morristown, New Jersey",
   },
   "knowsAbout": [
-    "Artificial Intelligence Adoption",
-    "AI Agents & Intelligent Workflows",
-    "Merchant Cash Advance Underwriting",
-    "ISO Channel Strategy",
-    "Revenue Based Financing Platforms",
-    "Investor Reporting Systems"
+    "Fractional Chief AI Officer (CAIO)",
+    "Forward Deployed Engineering (FDE)",
+    "AI Agent Orchestration & Workflow Automation",
+    "C.A.P. Operating Model",
+    "Merchant Cash Advance (MCA) Underwriting",
+    "Revenue Based Financing (RBF) Platforms",
+    "Direct Lending & ISO Channel Strategy",
+    "Enterprise CRM & ERP AI Integration",
+  ],
+  "worksFor": [
+    {
+      "@type": "Organization",
+      "name": "My Commercial Funding",
+      "url": "https://mycommercialfunding.com",
+    },
+    {
+      "@type": "Organization",
+      "name": "The Institute for AI Adoption",
+      "url": `${siteUrl}/institute-for-ai-adoption`,
+    },
   ],
   "affiliation": [
     {
       "@type": "Organization",
       "name": "My Commercial Funding",
-      "url": "https://mycommercialfunding.com"
+      "url": "https://mycommercialfunding.com",
+    },
+    {
+      "@type": "Organization",
+      "name": "The Institute for AI Adoption",
+      "url": `${siteUrl}/institute-for-ai-adoption`,
     },
     {
       "@type": "Organization",
       "name": "Whetstone Holdings",
-      "description": "DBA Everest Funding, Vader Funding, Granite Mountain Funding"
-    }
+      "description": "Former VP & Executive Board Member; DBA Everest Funding, Vader Funding, Granite Mountain Funding",
+    },
+    {
+      "@type": "Organization",
+      "name": "Robbi Promotional",
+      "url": "https://robbipromotional.com",
+    },
+    {
+      "@type": "Organization",
+      "name": "Fathom Realty",
+    },
   ],
   "sameAs": [
+    "https://www.linkedin.com/in/richardmckellar",
     "https://github.com/therealmckellar",
-    "https://linkedin.com/in/richardmckellar"
+    "https://calendar.mckellar.dev/richard/30min",
   ],
   "hasCredential": [
     {
       "@type": "EducationalOccupationalCredential",
-      "credentialCategory": "Executive",
-      "name": "VP & Executive Board Member at Whetstone Holdings"
-    }
+      "credentialCategory": "Leadership History",
+      "name": "Former Vice President & Executive Board Member, Whetstone Holdings",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      "credentialCategory": "Capital Deployment",
+      "name": "$100M+ Personally Funded MCA & Revenue-Based Financing Transactions",
+    },
   ],
   "makesOffer": [
     {
       "@type": "Offer",
-      "name": "AI Adoption & Integration Consulting",
-      "description": "Implementing custom intelligent agent integrations, automating lead triage and routing, and training workforces on adopting AI into daily work."
-    },
-    {
-      "@type": "Offer",
-      "name": "MCA Direct Lending Advisory",
-      "description": "Underwriting models refinement, risk mitigation frameworks, CRM scaling, and syndication setup."
-    },
-    {
-      "@type": "Offer",
-      "name": "MCA Brokerage Advisory",
-      "description": "Setting up brokerage operations, CRM setup and buildout, salesforce acquisition, and lead triage workflows."
-    },
-    {
-      "@type": "Offer",
-      "name": "Fractional Chief AI Officer",
-      "description": "Fractional CAIO services: AI strategy, governance design, executive AI operating models, and measurable 90-day ROI for mid-market companies."
-    },
-    {
-      "@type": "Offer",
-      "name": "The Institute for AI Adoption",
-      "description": "Facilitating operational AI adoption inside companies and governments using the C.A.P. Operating Model — governance design, executive AI council stand-up, and measurable ROI."
+      "name": "Fractional Chief AI Officer (CAIO)",
+      "url": `${siteUrl}/fractional-caio`,
+      "description": "Executive AI strategy, governance, C.A.P. Operating Model, and 90-day measurable ROI cycles.",
     },
     {
       "@type": "Offer",
       "name": "Fractional Forward Deployed Engineer (FDE)",
-      "description": "Fractional FDE consulting: AI workflow audits, custom agent deployment on existing stacks, and measurable ROI for growth-stage companies. Diagnostic audits from $7,500, pilot deployments from $20,000, embedded retainers from $12,000/month."
+      "url": `${siteUrl}/fractional-fde`,
+      "description": "Embedded AI engineering across Salesforce, NetSuite, HubSpot, and lending stacks.",
     },
-  ]
+    {
+      "@type": "Offer",
+      "name": "The Institute for AI Adoption",
+      "url": `${siteUrl}/institute-for-ai-adoption`,
+      "description": "Operational AI adoption facilitation and Executive AI Council stand-up for companies and governments.",
+    },
+    {
+      "@type": "Offer",
+      "name": "Commercial Lending & MCA Platform Advisory",
+      "url": `${siteUrl}/ventures`,
+      "description": "Direct lending setup, underwriting refinement, syndication, and brokerage growth advisory.",
+    },
+  ],
 };
 
-// Website Schema
-const websiteSchema = {
-  "@context": "https://schema.org",
+const organizationNode: Record<string, any> = {
+  "@type": ["Organization", "ProfessionalService"],
+  "@id": ORG_ID,
+  "name": "McKellar.dev — Richard McKellar Advisory",
+  "url": siteUrl,
+  "logo": new URL("/avatar.jpg", siteUrl).toString(),
+  "founder": { "@id": PERSON_ID },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Morristown",
+    "addressRegion": "NJ",
+    "addressCountry": "US",
+  },
+  "areaServed": ["New Jersey", "New York", "Florida", "Connecticut", "Massachusetts", "Maryland", "United States"],
+  "sameAs": [
+    "https://www.linkedin.com/in/richardmckellar",
+    "https://github.com/therealmckellar",
+  ],
+};
+
+const websiteNode: Record<string, any> = {
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   "name": "Richard McKellar | mckellar.dev",
   "url": siteUrl,
+  "publisher": { "@id": PERSON_ID },
   "potentialAction": {
     "@type": "SearchAction",
     "target": `${siteUrl}/blog?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
-  }
+    "query-input": "required name=search_term_string",
+  },
 };
 
-const schemas = [personSchema, websiteSchema];
-if (faqSchema) {
-  schemas.push(faqSchema);
-}
-if (articleSchema) {
-  schemas.push(articleSchema);
-}
+const breadcrumbNode: Record<string, any> = {
+  "@type": "BreadcrumbList",
+  "@id": BREADCRUMB_ID,
+  "itemListElement": resolvedBreadcrumbs.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": new URL(item.path, siteUrl).toString(),
+  })),
+};
+
+const cleanedProfile = profileSchema ? stripContext(profileSchema) : null;
+
+const webPageNode: Record<string, any> = {
+  ...(cleanedProfile || {}),
+  "@type": ogType === "profile" || cleanedProfile ? "ProfilePage" : "WebPage",
+  "@id": WEBPAGE_ID,
+  "url": canonicalURL,
+  "name": cleanedProfile?.name || title,
+  "description": cleanedProfile?.description || description,
+  "isPartOf": { "@id": WEBSITE_ID },
+  "about": { "@id": PERSON_ID },
+  "breadcrumb": { "@id": BREADCRUMB_ID },
+  "inLanguage": "en-US",
+  ...(cleanedProfile ? { "mainEntity": cleanedProfile.mainEntity || { "@id": PERSON_ID } } : {}),
+};
+
+const graphNodes: Record<string, any>[] = [
+  personNode,
+  organizationNode,
+  websiteNode,
+  webPageNode,
+  breadcrumbNode,
+];
+
+const appendNode = (schema?: Record<string, any>, enricher?: (s: Record<string, any>) => Record<string, any>) => {
+  if (!schema) return;
+  const cleaned = stripContext(schema);
+  graphNodes.push(enricher ? enricher(cleaned) : cleaned);
+};
+
+appendNode(serviceSchema, (s) => ({
+  ...s,
+  "@id": s["@id"] || `${canonicalURL}#service`,
+  "provider": s.provider || { "@id": PERSON_ID },
+}));
+
+appendNode(articleSchema, (s) => ({
+  ...s,
+  "@id": s["@id"] || `${canonicalURL}#article`,
+  "inLanguage": s.inLanguage || "en-US",
+  "isAccessibleForFree": s.isAccessibleForFree ?? true,
+  "author": s.author && typeof s.author === "object"
+    ? { "@id": PERSON_ID, ...s.author }
+    : { "@id": PERSON_ID, "@type": "Person", "name": "Richard McKellar" },
+  "publisher": {
+    "@id": ORG_ID,
+    "@type": "Organization",
+    "name": "McKellar.dev — Richard McKellar Advisory",
+    "url": siteUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/avatar.jpg", siteUrl).toString(),
+    },
+  },
+}));
+
+appendNode(itemListSchema, (s) => ({
+  ...s,
+  "@id": s["@id"] || `${canonicalURL}#itemlist`,
+}));
+
+appendNode(faqSchema, (s) => ({
+  ...s,
+  "@id": s["@id"] || `${canonicalURL}#faq`,
+}));
+
+const unifiedJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": graphNodes,
+};
 ---
 
 <!doctype html>
@@ -140,88 +334,269 @@ if (articleSchema) {
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
+    <link rel="alternate" type="application/rss+xml" title="Richard McKellar's Blog RSS" href="/rss.xml" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#F8FAFC" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#051424" media="(prefers-color-scheme: dark)" />
-    
+    <meta name="theme-color" content="#060E20" media="(prefers-color-scheme: dark)" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="Richard McKellar, Richard McKellar NJ, therealmckellar, rmckellar, mckellar.dev, AI consulting, AI agent adoption, Merchant Cash Advance, MCA consultant, Whetstone Holdings, My Commercial Funding, Morristown NJ" />
-    
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Richard McKellar" />
+    <meta name="geo.region" content="US-NJ" />
+    <meta name="geo.placename" content="Morristown" />
+    <meta name="geo.position" content="40.7968;-74.4815" />
+    <meta name="ICBM" content="40.7968, -74.4815" />
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta
+      name="robots"
+      content={noindex
+        ? "noindex, nofollow"
+        : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Richard McKellar | mckellar.dev" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Richard McKellar — Fractional Chief AI Officer & Commercial Funding Executive in Morristown, NJ" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="Richard McKellar — Fractional Chief AI Officer & Commercial Funding Executive in Morristown, NJ" />
 
     <!-- Google Fonts: Space Grotesk + Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
-    <!-- Inline script to set correct theme before content paints to prevent flash -->
+    <!-- Prevent theme FOUC -->
     <script is:inline>
-      const savedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-      
-      const root = document.documentElement;
-      if (theme === 'dark') {
-        root.classList.add('dark');
-        root.classList.remove('light');
-      } else {
-        root.classList.add('light');
-        root.classList.remove('dark');
-      }
+      (function () {
+        var savedTheme = localStorage.getItem('theme');
+        var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+        var root = document.documentElement;
+        if (theme === 'dark') {
+          root.classList.add('dark');
+          root.classList.remove('light');
+        } else {
+          root.classList.add('light');
+          root.classList.remove('dark');
+        }
+      })();
     </script>
 
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <!-- Global Delegated Inquiry CTA Listener (handles static Astro [data-inquiry-subject] buttons) -->
+    <script is:inline>
+      document.addEventListener('click', function (e) {
+        var el = e.target && e.target.closest ? e.target.closest('[data-inquiry-subject]') : null;
+        if (!el) return;
+        e.preventDefault();
+        var detail = {
+          subject: el.getAttribute('data-inquiry-subject') || 'General Advisory Inquiry',
+          source: el.getAttribute('data-inquiry-source') || 'website',
+        };
+        window.__pendingInquiry = detail;
+        window.dispatchEvent(new CustomEvent('open-inquiry', { detail: detail }));
+      });
+    </script>
+
+    <!-- Unified Schema.org @graph JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(unifiedJsonLd)} />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMKKQRPH"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <div id="root" class="w-full flex flex-col items-center">
+
+    <div id="root" class="w-full min-h-screen flex flex-col items-center">
       <!-- Top Navigation Header -->
-      <Navigation client:load currentPath={canonicalPath} />
+      <Navigation client:load currentPath={normalizedPath} />
 
       <!-- Main Content Canvas -->
-      <main class="w-full max-w-5xl px-4 sm:px-6 py-24 flex flex-col gap-16 sm:gap-24 relative z-10">
-        
+      <main class="w-full max-w-6xl mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-16 flex-1 flex flex-col gap-14 sm:gap-20 relative z-10">
         <slot />
-
-        <!-- Footer / Copyright -->
-        <div class="mt-8 flex flex-col items-center gap-6 animate-fade-in" style="animation-delay: 600ms;">
-          <div class="rule w-full"></div>
-          <SocialFooter />
-          <p class="text-[11px] font-mono text-on-surface-subtle text-center leading-relaxed">
-            © {new Date().getFullYear()} McKellar.dev · Morristown, NJ<br />
-            Consulting Practice for Artificial Intelligence Adoption &amp; MCA Platforms
-          </p>
-        </div>
-
       </main>
 
-      <!-- Global Inquiry Modal (mounted once, opened by any Inquire button) -->
-      <InquiryModal client:load />
+      <!-- Multi-Column Executive Directory Footer -->
+      <footer
+        class="w-full border-t border-[var(--color-border)] bg-[var(--color-glass-panel-bg)] backdrop-blur-xl mt-12 relative z-10"
+        aria-label="Executive Directory Footer"
+      >
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-14">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <!-- Column 1: Executive Identity -->
+            <div class="flex flex-col gap-4">
+              <a href="/" class="flex items-center gap-2.5 no-underline group w-fit">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center border border-indigo-400/30">
+                  <span class="font-mono text-xs text-white font-bold">RM</span>
+                </div>
+                <div class="flex flex-col leading-none">
+                  <span class="font-display font-bold text-sm text-on-surface">Richard McKellar</span>
+                  <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle mt-0.5">
+                    Morristown, NJ · mckellar.dev
+                  </span>
+                </div>
+              </a>
 
+              <p class="text-xs text-on-surface-muted leading-relaxed">
+                Fractional Chief AI Officer, Forward Deployed Engineer, and Commercial Funding Advisor. Helping companies adopt AI in 90 days and advising lenders and founders on growth.
+              </p>
+
+              <SocialFooter />
+
+              <div class="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="button"
+                  data-inquiry-subject="General Advisory Inquiry"
+                  data-inquiry-source="footer-directory"
+                  class="exec-btn-secondary !py-1.5 !px-3 !text-[11px]"
+                >
+                  Send a Message
+                </button>
+                <a
+                  href="https://calendar.mckellar.dev/richard/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="exec-btn-primary !py-1.5 !px-3 !text-[11px] no-underline"
+                >
+                  Book a Call
+                </a>
+              </div>
+            </div>
+
+            <!-- Column 2: Richard McKellar Profile & Background -->
+            <div class="flex flex-col gap-3">
+              <p class="section-label">About Richard</p>
+              <ul class="flex flex-col gap-2 text-xs">
+                <li>
+                  <a href="/richard-mckellar" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline font-medium">
+                    Richard McKellar — Full Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="/about" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Bio &amp; Work History
+                  </a>
+                </li>
+                <li>
+                  <a href="/ventures" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Companies &amp; Ventures
+                  </a>
+                </li>
+                <li>
+                  <a href="/case-studies" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Case Studies &amp; Results
+                  </a>
+                </li>
+                <li>
+                  <a href="/speaking-and-media" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Speaking &amp; Press Kit
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 3: Services & Writing -->
+            <div class="flex flex-col gap-3">
+              <p class="section-label">Services &amp; Writing</p>
+              <ul class="flex flex-col gap-2 text-xs">
+                <li>
+                  <a href="/fractional-caio" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Fractional Chief AI Officer (CAIO)
+                  </a>
+                </li>
+                <li>
+                  <a href="/fractional-fde" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Fractional FDE (Hands-On AI Builds)
+                  </a>
+                </li>
+                <li>
+                  <a href="/fractional-caio-vs-fde" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Fractional CAIO vs FDE
+                  </a>
+                </li>
+                <li>
+                  <a href="/institute-for-ai-adoption" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    The Institute for AI Adoption
+                  </a>
+                </li>
+                <li>
+                  <a href="/blog" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Blog &amp; Articles
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Column 4: Links & Location -->
+            <div class="flex flex-col gap-3">
+              <p class="section-label">Elsewhere &amp; Location</p>
+              <ul class="flex flex-col gap-2 text-xs">
+                <li>
+                  <a href="https://mycommercialfunding.com" target="_blank" rel="noopener noreferrer" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    My Commercial Funding (CRO)
+                  </a>
+                </li>
+                <li>
+                  <a href="https://hermes.mckellar.dev" target="_blank" rel="noopener noreferrer" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    Hermes AI Tools
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/richardmckellar" target="_blank" rel="me noopener noreferrer" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    LinkedIn · /in/richardmckellar
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/therealmckellar" target="_blank" rel="me noopener noreferrer" class="text-on-surface-muted hover:text-on-surface transition-colors no-underline">
+                    GitHub · @therealmckellar
+                  </a>
+                </li>
+              </ul>
+              <div class="mt-1 pt-2 border-t border-[var(--color-border)]">
+                <p class="font-mono text-[10px] uppercase tracking-[0.12em] text-on-surface-subtle leading-relaxed">
+                  Based in Morristown, NJ<br />
+                  NJ · NYC · FL · CT · MA · MD
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="rule my-8" />
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] font-mono text-on-surface-subtle">
+            <p>
+              © {new Date().getFullYear()} Richard McKellar · mckellar.dev · All rights reserved.
+            </p>
+            <p>
+              Morristown, New Jersey · AI Adoption &amp; Commercial Funding Advisory
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      <!-- Global Inquiry Modal (mounted once, opened by any Inquire button or [data-inquiry-subject]) -->
+      <InquiryModal client:idle />
     </div>
   </body>
 </html>

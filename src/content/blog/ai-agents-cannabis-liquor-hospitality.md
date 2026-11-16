@@ -1,5 +1,6 @@
 ---
 title: "How Richard McKellar Builds AI Agents for Cannabis, Liquor, and Hospitality Operations"
+seoTitle: "AI Agents for Cannabis, Liquor & Food | Richard McKellar"
 description: "Practical AI agent use cases for cannabis MSOs, liquor distributors, and hospitality groups — from compliance automation to order management."
 date: "July 29, 2026"
 category: "ai"

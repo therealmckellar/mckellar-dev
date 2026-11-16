@@ -1,351 +1,366 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { openInquiry } from '../lib/inquiry';
+
+const faqs = [
+  {
+    question: "Should I hire a Fractional CAIO or a Fractional FDE?",
+    answer:
+      "If you need AI strategy, executive alignment, and governance, start with a Fractional CAIO. If you already know the bottleneck and need custom AI agents built and shipped into your CRM or ERP, start with a Fractional FDE. Many mid-market clients engage both—the CAIO sets the roadmap and the FDE ships the production systems.",
+  },
+  {
+    question: "Can I start with one model and add the other later?",
+    answer:
+      "Yes. Most clients start with whichever role solves their most urgent operational bottleneck. Fractional CAIO and Fractional FDE are built by Richard McKellar to interlock cleanly so strategy and stack execution stay synchronized.",
+  },
+  {
+    question: "What is the $999 AI Audit?",
+    answer:
+      "The $999 AI Audit is a 5–7 day diagnostic covering one priority workflow inside one core system. You receive an executive findings document with a concrete recommendation: Fractional CAIO, Fractional FDE, or Capital & Advisory.",
+  },
+  {
+    question: "How do the Fractional CAIO and Fractional FDE pricing models compare?",
+    answer:
+      "Fractional CAIO engagements typically start at $5,000 per 90-day cycle under the C.A.P.™ Operating Model. Fractional FDE spans $7,500–$12,500 for a Diagnostic Audit, $20,000–$40,000 for a Pilot Deployment, and $12,000–$25,000/month for an Embedded Retainer—delivering measurable capability well below a $150K–$300K+ full-time hire.",
+  },
+];
 
 const faqSchema = {
-  "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Should I hire a Fractional CAIO or a Fractional FDE?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you need AI strategy, governance, and executive alignment, start with a Fractional CAIO. If you need someone to build and deploy AI agents into your existing systems, start with a Fractional FDE. Many clients benefit from both — the CAIO sets the roadmap, the FDE ships the systems."
-      }
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer,
     },
-    {
-      "@type": "Question",
-      "name": "Can I start with one and add the other later?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Most clients start with whichever solves their most urgent problem. The Fractional CAIO and Fractional FDE are designed to work together — strategy plus implementation. You can start with either and layer the other when ready."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the $999 AI Audit?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The $999 AI Audit is a diagnostic engagement covering 1 workflow in 1 system over 5-7 days. You get a findings document with a recommendation: Fractional CAIO, Fractional FDE, or Capital & Advisory — whichever path fits your situation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do the pricing models compare?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fractional CAIO engagements typically start at $5K per 90-day cycle. Fractional FDE ranges from a $7,500 diagnostic audit to $20K-$40K pilot deployments and $12K-$25K/month embedded retainers. Both offer ROI that significantly exceeds a full-time hire at $150K-$300K/year."
-      }
-    }
-  ]
+  })),
 };
 
 const serviceSchema = {
-  "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Fractional CAIO vs Fractional FDE — Comparison Guide",
-  "serviceType": "AI Advisory Comparison",
-  "provider": {
-    "@type": "Person",
-    "name": "Richard McKellar",
-    "url": "https://mckellar.dev"
-  },
-  "areaServed": ["New Jersey", "New York", "Florida", "Connecticut", "Massachusetts", "Maryland"],
-  "description": "A practical comparison of Fractional Chief AI Officer and Fractional Forward Deployed Engineer — helping growing businesses choose the right AI leadership model."
+  "name": "Fractional CAIO vs Fractional FDE — AI Leadership Comparison",
+  "serviceType": "AI Advisory & Forward Deployed Engineering Comparison",
+  "url": "https://mckellar.dev/fractional-caio-vs-fde",
+  "areaServed": ["New Jersey", "New York City", "Florida", "Connecticut", "Massachusetts", "Maryland"],
+  "description":
+    "Practical comparison by Richard McKellar in Morristown, NJ of Fractional Chief AI Officer (CAIO) governance vs. Fractional Forward Deployed Engineer (FDE) stack deployment.",
 };
 ---
 
 <BaseLayout
-  title="Fractional CAIO vs Fractional FDE: How Richard McKellar Deploys AI in Growing Businesses"
-  description="Compare Fractional CAIO (strategy, governance, roadmap) vs Fractional FDE (build, deploy, iterate) — two complementary AI leadership models from Richard McKellar. Find the right fit for your business."
+  title="Fractional CAIO vs Fractional FDE | Richard McKellar"
+  description="Compare Fractional Chief AI Officer (strategy & 90-day roadmap) vs Fractional FDE (hands-on stack builds) with Richard McKellar in NJ & NYC."
   canonicalPath="/fractional-caio-vs-fde"
+  ogType="website"
   faqSchema={faqSchema}
+  serviceSchema={serviceSchema}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
-
-  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
-
-    <!-- Header / Back -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a
-        href="/"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  <div class="w-full flex flex-col gap-14 animate-fade-in">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </a>
-      <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        CAIO vs FDE
-      </span>
+      <div class="flex items-center gap-3 text-xs font-mono">
+        <a href="/fractional-caio" class="text-on-surface-muted hover:text-on-surface no-underline">Fractional CAIO</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/fractional-fde" class="text-on-surface-muted hover:text-on-surface no-underline">Fractional FDE</a>
+        <span class="text-on-surface-subtle">/</span>
+        <a href="/institute-for-ai-adoption" class="text-on-surface-muted hover:text-on-surface no-underline">Institute</a>
+      </div>
     </div>
 
     <!-- 1. Hero -->
-    <section class="flex flex-col items-center text-center gap-6 pt-4">
-      <span class="cred-pill">Strategy vs. Implementation · Or Both</span>
-      <h1 class="font-display font-extrabold text-[34px] sm:text-[46px] leading-[1.05] text-on-surface text-glow-primary max-w-4xl">
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10 flex flex-col items-center text-center gap-6">
+      <span class="exec-badge exec-badge-indigo">Strategy vs. Implementation · Or Both</span>
+      <h1 class="font-display font-bold text-3xl sm:text-5xl leading-[1.06] text-on-surface text-glow-primary max-w-4xl">
         Fractional CAIO vs Fractional FDE
       </h1>
       <p class="text-base sm:text-lg text-on-surface-muted max-w-2xl leading-relaxed">
-        Two complementary models for deploying AI into growing businesses. The CAIO sets the strategy and governance. The FDE builds and ships the systems. Richard McKellar offers both — here's how to choose.
+        Two complementary models led by <a href="/richard-mckellar" class="text-accent font-semibold hover:underline no-underline">Richard McKellar</a> in Morristown, NJ. The CAIO sets governance, prioritization, and 90-day ROI accountability; the FDE embeds inside your stack to ship working AI systems.
       </p>
 
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-2">
+      <div class="flex flex-wrap gap-3 justify-center">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
           Book 30-Minute Scoping Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'CAIO vs FDE Inquiry', source: 'caio-vs-fde-hero' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="CAIO vs FDE Inquiry"
+          data-inquiry-source="caio-vs-fde-hero"
+          class="exec-btn-secondary"
         >
-          <svg class="w-4 h-4 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           Get Help Choosing
         </button>
+      </div>
+
+      <div class="exec-telemetry-strip w-full mt-2">
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Entry Diagnostic</span>
+          <span class="font-display font-bold text-lg text-on-surface">$999 AI Audit</span>
+          <span class="text-[11px] text-on-surface-muted">1 workflow · 5–7 days</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Strategy &amp; Governance</span>
+          <span class="font-display font-bold text-lg text-on-surface">CAIO From $5K</span>
+          <span class="text-[11px] text-on-surface-muted">90-day C.A.P.™ Operating Model</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Stack Engineering</span>
+          <span class="font-display font-bold text-lg text-on-surface">FDE From $7.5K</span>
+          <span class="text-[11px] text-on-surface-muted">Diagnostic, Pilot &amp; Retainers</span>
+        </div>
+        <div class="exec-telemetry-cell text-left">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-on-surface-subtle">Coverage</span>
+          <span class="font-display font-bold text-lg text-on-surface">NJ · NYC · East Coast</span>
+          <span class="text-[11px] text-on-surface-muted">NJ, NYC, FL, CT, MA, MD</span>
+        </div>
       </div>
     </section>
 
     <!-- 2. Quick Decision -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">Quick Decision</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
+        <p class="exec-kicker mb-1.5">Quick Decision</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
           Which One Do You Need?
         </h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 p-5">
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">Choose CAIO if…</h3>
-          <ul class="flex flex-col gap-2 text-sm text-on-surface-muted">
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You need AI strategy and a roadmap, not just tools</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> Your C-suite needs alignment on where AI fits</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You need governance, risk frameworks, and vendor selection</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You want measurable ROI tied to decision gates</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-4">
+          <span class="exec-badge exec-badge-violet w-fit">Strategy &amp; Governance</span>
+          <h3 class="font-display font-bold text-xl text-on-surface">Choose Fractional CAIO if…</h3>
+          <ul class="flex flex-col gap-2.5 text-sm text-on-surface-muted">
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> You need an AI strategy and prioritized roadmap, not ad-hoc tools</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> Leadership needs an Executive AI Council and clear decision rights</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> You require governance, vendor policy, and risk guardrails</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> The CFO demands decision-gated ROI metrics in 90-day cycles</li>
           </ul>
-          <a href="/fractional-caio" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto">Explore Fractional CAIO →</a>
+          <a href="/fractional-caio" class="exec-btn-primary mt-auto w-full no-underline">
+            Explore Fractional CAIO →
+          </a>
         </div>
 
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 p-5">
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">Choose FDE if…</h3>
-          <ul class="flex flex-col gap-2 text-sm text-on-surface-muted">
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You need AI agents built and deployed, not just planned</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> Your existing stack (Salesforce, NetSuite, HubSpot) needs integration</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You want shadow → production deployment on real workflows</li>
-            <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">→</span> You need hands-on build, not a slide deck</li>
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-4">
+          <span class="exec-badge exec-badge-indigo w-fit">Hands-On Stack Build</span>
+          <h3 class="font-display font-bold text-xl text-on-surface">Choose Fractional FDE if…</h3>
+          <ul class="flex flex-col gap-2.5 text-sm text-on-surface-muted">
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> You need production AI agents built and shipped, not just planned</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> Salesforce, NetSuite, HubSpot, or lending CRMs need direct integration</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> You want shadow-mode validation before full production cutover</li>
+            <li class="flex items-start gap-2"><span class="text-accent font-mono">→</span> You need code, webhooks, and runbooks delivered on existing tools</li>
           </ul>
-          <a href="/fractional-fde" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto">Explore Fractional FDE →</a>
+          <a href="/fractional-fde" class="exec-btn-primary mt-auto w-full no-underline">
+            Explore Fractional FDE →
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 3. Comparison Table -->
+    <!-- 3. Side-by-Side Comparison Table -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">Side by Side</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Full Comparison
+        <p class="exec-kicker mb-1.5">Side by Side</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Full Executive Comparison
         </h2>
       </div>
 
-      <div class="glass-card rounded-xl border-[var(--color-border)] overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
-            <thead>
-              <tr class="border-b border-[var(--color-border)]">
-                <th class="text-left p-4 font-mono text-xs text-on-surface-subtle uppercase tracking-wider w-1/4"></th>
-                <th class="text-left p-4 font-mono text-xs text-indigo-400 uppercase tracking-wider">Fractional CAIO</th>
-                <th class="text-left p-4 font-mono text-xs text-indigo-400 uppercase tracking-wider">Fractional FDE</th>
-              </tr>
-            </thead>
-            <tbody class="text-on-surface-muted">
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Primary Focus</td>
-                <td class="p-4 text-xs">Strategy, governance, executive alignment</td>
-                <td class="p-4 text-xs">Implementation, deployment, iteration</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Who They Work With</td>
-                <td class="p-4 text-xs">C-suite, department heads, board</td>
-                <td class="p-4 text-xs">Operators, IT, frontline teams</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Output</td>
-                <td class="p-4 text-xs">AI roadmap, policies, governance charter, vendor selection</td>
-                <td class="p-4 text-xs">Deployed agents, automations, workflows, runbooks</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Methodology</td>
-                <td class="p-4 text-xs">C.A.P.™ Model (Council → Align → Perform)</td>
-                <td class="p-4 text-xs">Audit → Evaluate → Deploy</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Timeline</td>
-                <td class="p-4 text-xs">90-day cycles</td>
-                <td class="p-4 text-xs">2-4 week sprints, 3-12+ month retainers</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Pricing</td>
-                <td class="p-4 text-xs">Starting at $5K per 90-day cycle</td>
-                <td class="p-4 text-xs">$7.5K diagnostic · $20K-$40K pilot · $12K-$25K/mo</td>
-              </tr>
-              <tr class="border-b border-[var(--color-border)]">
-                <td class="p-4 font-semibold text-on-surface text-xs">Best For</td>
-                <td class="p-4 text-xs">Mid-market companies needing AI leadership without a full-time hire</td>
-                <td class="p-4 text-xs">Companies that need AI agents built on existing systems, fast</td>
-              </tr>
-              <tr>
-                <td class="p-4 font-semibold text-on-surface text-xs">Stack</td>
-                <td class="p-4 text-xs">Governance frameworks, vendor evaluation, executive reporting</td>
-                <td class="p-4 text-xs">Salesforce, NetSuite, HubSpot, SAP, custom APIs, Hermes</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="exec-table-wrap">
+        <table class="exec-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Fractional CAIO</th>
+              <th>Fractional FDE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-on-surface">Primary Focus</td>
+              <td>Strategy, executive governance &amp; portfolio alignment</td>
+              <td>Engineering architecture, API integration &amp; agent shipping</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Primary Counterparts</td>
+              <td>CEO, CFO, board, PE operating partners &amp; department heads</td>
+              <td>Operations leads, internal IT, engineering &amp; frontline teams</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Core Deliverables</td>
+              <td>Executive AI Council, 90-day roadmap, risk charter &amp; ROI reviews</td>
+              <td>Production AI agents, webhooks, telemetry &amp; engineering runbooks</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Methodology</td>
+              <td>C.A.P.™ Operating Model (Council → Align → Perform)</td>
+              <td>Audit → Evaluate → Deploy (Shadow → Guarded Production)</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Cadence</td>
+              <td>90-day governance &amp; value-delivery cycles</td>
+              <td>2–4 week diagnostics, 6–10 week pilots, 3–12+ mo retainers</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Pricing</td>
+              <td>Starting at $5,000 per 90-day cycle</td>
+              <td>$7.5K–$12.5K diagnostic · $20K–$40K pilot · $12K–$25K/mo retainer</td>
+            </tr>
+            <tr>
+              <td class="font-semibold text-on-surface">Stack Scope</td>
+              <td>Vendor selection, data policy &amp; board-level ROI architecture</td>
+              <td>Salesforce, NetSuite, HubSpot, SAP, custom REST APIs &amp; Hermes</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- 4. How They Work Together -->
+    <!-- 4. Better Together -->
     <section class="flex flex-col gap-6">
       <div>
-        <p class="section-label mb-2">Better Together</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          The Full Stack: CAIO + FDE
+        <p class="exec-kicker mb-1.5">Full-Stack Execution</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Better Together: CAIO + FDE
         </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Most growing businesses eventually need both. The CAIO ensures you're building the right things. The FDE ensures they actually ship. Together, they cover the full AI adoption lifecycle — from boardroom to production.
+        <p class="text-sm text-on-surface-muted mt-1.5 max-w-2xl">
+          Most growing organizations benefit from pairing both disciplines: the CAIO ensures you build the right initiatives under strict governance, while the FDE guarantees they ship cleanly into production.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Phase 1</span>
-          <h3 class="font-display font-bold text-base text-on-surface mt-1">CAIO Sets the Roadmap</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed mt-1">Executive AI council, governance charter, use-case prioritization, vendor selection, 90-day operating plan.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Phase 2</span>
-          <h3 class="font-display font-bold text-base text-on-surface mt-1">FDE Ships the Systems</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed mt-1">Workflow audits, agent design, shadow → production deployment, integration with existing stack, team training.</p>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-        <div class="flex flex-col gap-3">
-          <h3 class="font-display font-bold text-base text-on-surface">The Combined Engagement</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            The CAIO works with leadership to define where AI should go and why. The FDE works with operators to build and deploy the systems. Learnings flow both ways — FDE deployment data informs the CAIO roadmap, and the CAIO strategy guides FDE priorities.
+        <div class="exec-bento-card exec-bento-card-violet">
+          <span class="exec-badge exec-badge-violet mb-2">Layer 1 · Direction</span>
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">CAIO Sets the Roadmap</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Executive AI Council charter, risk controls, use-case scoring, vendor discipline, and 90-day C.A.P.™ ROI gates.
           </p>
-          <p class="text-xs text-on-surface-muted leading-relaxed">
-            <strong class="text-on-surface">Result:</strong> A complete AI operating model — governance and implementation in sync, from strategy to production.
+        </div>
+        <div class="exec-bento-card exec-bento-card-indigo">
+          <span class="exec-badge exec-badge-indigo mb-2">Layer 2 · Execution</span>
+          <h3 class="font-display font-bold text-base text-on-surface mb-1.5">FDE Ships the Systems</h3>
+          <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+            Deep workflow audits, production agent builds, shadow-mode validation, existing-stack integration, and team handoff.
           </p>
         </div>
       </div>
-    </section>
 
-    <!-- 5. Pricing Overview -->
-    <section class="flex flex-col gap-6">
-      <div>
-        <p class="section-label mb-2">Pricing</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Investment Overview
-        </h2>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-2xl">
-          Both services deliver ROI that significantly exceeds a full-time hire at $150K-$300K/year. Start with the $999 AI Audit to get a clear recommendation.
+      <div class="exec-bento-card exec-bento-card-emerald">
+        <h3 class="font-display font-bold text-base text-on-surface mb-1.5">The Closed-Loop Operating Model</h3>
+        <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
+          Real deployment telemetry from FDE builds feeds directly into CAIO quarterly reviews, while CAIO governance keeps engineering focused strictly on revenue, margin, and compliance priorities. See live examples on our <a href="/case-studies" class="text-accent hover:underline no-underline font-medium">Case Studies</a> page.
         </p>
       </div>
+    </section>
 
+    <!-- 5. Investment Overview -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="exec-kicker mb-1.5">Investment Overview</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Three Ways to Start
+        </h2>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 p-5">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Entry Point</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">$999 AI Audit</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">1 workflow, 1 system, 5-7 days. Get a findings doc with a clear recommendation: CAIO, FDE, or Capital & Advisory.</p>
-          <a href="https://calendar.mckellar.dev/richard/30min" target="_blank" rel="noopener noreferrer" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto">Start with Audit</a>
+        <div class="exec-bento-card exec-bento-card-emerald flex flex-col gap-3">
+          <span class="exec-badge exec-badge-emerald w-fit">Entry Point</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">$999 AI Audit</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            1 workflow in 1 core system over 5–7 days. Receive a findings doc recommending CAIO, FDE, or Capital &amp; Advisory.
+          </p>
+          <button
+            type="button"
+            data-inquiry-subject="$999 AI Audit Inquiry"
+            data-inquiry-source="caio-vs-fde-audit"
+            class="exec-btn-primary mt-auto w-full"
+          >
+            Book $999 AI Audit
+          </button>
         </div>
 
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 p-5">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Strategy Path</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">CAIO: From $5K</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">90-day cycles. Governance, roadmap, executive alignment. No full-time hire needed.</p>
-          <a href="/fractional-caio" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto">Explore CAIO →</a>
+        <div class="exec-bento-card exec-bento-card-violet flex flex-col gap-3">
+          <span class="exec-badge exec-badge-violet w-fit">Strategy Path</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">CAIO: From $5K</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            90-day C.A.P.™ Operating Model cycles. Governance, AI Council, and executive alignment without a full-time hire.
+          </p>
+          <a href="/fractional-caio" class="exec-btn-secondary mt-auto w-full no-underline">
+            Explore CAIO →
+          </a>
         </div>
 
-        <div class="pro-card spoke-ai shadow-neon-primary flex flex-col gap-3 p-5">
-          <span class="font-mono text-xs text-indigo-400 font-bold uppercase tracking-wider">Build Path</span>
-          <h3 class="font-display font-bold text-lg text-on-surface spoke-ai-accent">FDE: From $7.5K</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Diagnostic audits, pilot builds, embedded retainers. Working agents on your existing stack.</p>
-          <a href="/fractional-fde" class="btn-primary py-2 px-4 text-xs font-semibold shadow-neon-primary no-underline text-center mt-auto">Explore FDE →</a>
+        <div class="exec-bento-card exec-bento-card-indigo flex flex-col gap-3">
+          <span class="exec-badge exec-badge-indigo w-fit">Build Path</span>
+          <h3 class="font-display font-bold text-lg text-on-surface">FDE: From $7.5K</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Diagnostic audits, pilot builds, and embedded engineering retainers on your existing Salesforce, NetSuite, or HubSpot stack.
+          </p>
+          <a href="/fractional-fde" class="exec-btn-secondary mt-auto w-full no-underline">
+            Explore FDE →
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- 6. FAQ -->
-    <section class="flex flex-col gap-6">
+    <!-- 6. Visible FAQ Accordion (Matches faqSchema 1:1) -->
+    <section id="faq" class="flex flex-col gap-5">
       <div>
-        <p class="section-label mb-2">FAQ</p>
-        <h2 class="font-display font-extrabold text-[26px] sm:text-[32px] leading-tight text-on-surface">
-          Common Questions
+        <p class="exec-kicker mb-1.5">FAQ</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Common Comparison Questions
         </h2>
       </div>
-      <div class="flex flex-col gap-4">
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Should I hire a Fractional CAIO or a Fractional FDE?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">If you need AI strategy, governance, and executive alignment, start with a Fractional CAIO. If you need someone to build and deploy AI agents into your existing systems, start with a Fractional FDE. Many clients benefit from both.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">Can I start with one and add the other later?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Yes. Most clients start with whichever solves their most urgent problem. The two services are designed to work together — strategy plus implementation. You can start with either and layer the other when ready.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">What is the $999 AI Audit?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">A diagnostic engagement covering 1 workflow in 1 system over 5-7 days. You get a findings document with a clear recommendation: Fractional CAIO, Fractional FDE, or Capital & Advisory — whichever path fits your situation.</p>
-        </div>
-        <div class="glass-card rounded-xl p-5 border-[var(--color-border)]">
-          <h3 class="font-display font-bold text-sm text-on-surface mb-1.5">How do the pricing models compare?</h3>
-          <p class="text-xs text-on-surface-muted leading-relaxed">Fractional CAIO starts at $5K per 90-day cycle. Fractional FDE ranges from $7,500 diagnostics to $20K-$40K pilots and $12K-$25K/month embedded retainers. Both deliver ROI well above a $150K-$300K/year full-time hire.</p>
-        </div>
+      <div class="exec-faq-list">
+        {faqs.map((faq, index) => (
+          <details class="exec-faq-item" open={index === 0}>
+            <summary class="exec-faq-trigger">{faq.question}</summary>
+            <div class="exec-faq-panel">{faq.answer}</div>
+          </details>
+        ))}
       </div>
     </section>
 
     <!-- 7. Final CTA -->
-    <section class="flex flex-col items-center text-center gap-5 py-6">
-      <div class="rule w-full"></div>
-      <h2 class="font-display font-extrabold text-[24px] sm:text-[30px] leading-tight text-on-surface">
-        Not sure which path is right? Start with a 30-minute call.
+    <section class="exec-bento-card exec-bento-card-indigo p-6 sm:p-8 flex flex-col items-center text-center gap-4">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+        Not Sure Which Path Fits Best?
       </h2>
       <p class="text-sm text-on-surface-muted max-w-xl">
-        We'll map your situation and recommend the clearest path forward — whether that's CAIO, FDE, both, or something else entirely.
+        Book a 30-minute call with Richard McKellar (Morristown, NJ / NJ, NYC, FL, CT, MA, MD) to map your workflows and select the cleanest path forward.
       </p>
-      <div class="flex flex-row flex-wrap gap-3 justify-center mt-1">
+      <div class="flex flex-wrap gap-3 justify-center pt-1">
         <a
           href="https://calendar.mckellar.dev/richard/30min"
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-primary py-2.5 px-5 text-sm font-semibold shadow-neon-primary no-underline"
+          class="exec-btn-primary no-underline"
         >
           Book 30-Minute Scoping Call
         </a>
         <button
           type="button"
-          onClick={() => openInquiry({ subject: 'CAIO vs FDE Inquiry', source: 'caio-vs-fde-bottom' })}
-          class="inline-flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-lg font-semibold text-sm glass-button hover:bg-white/10 active:scale-[0.98] transition-all no-underline"
+          data-inquiry-subject="CAIO vs FDE Inquiry"
+          data-inquiry-source="caio-vs-fde-bottom"
+          class="exec-btn-secondary"
         >
           Get Help Choosing
         </button>
       </div>
     </section>
-
   </div>
 </BaseLayout>

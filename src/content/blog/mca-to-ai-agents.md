@@ -1,5 +1,6 @@
 ---
 title: "From Merchant Cash Advance to AI Agents: Richard McKellar's Playbook for Funding Shops"
+seoTitle: "MCA Funding Shops & AI Agents | Richard McKellar"
 description: "How Richard McKellar is bringing AI agent deployment to Merchant Cash Advance shops — from underwriting automation to broker intake workflows."
 date: "July 29, 2026"
 category: "funding"

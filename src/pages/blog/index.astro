@@ -3,138 +3,271 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
-// Sort posts by date descending
-const sortedPosts = posts.sort((a, b) => {
-  return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
-});
+const sortedPosts = [...posts].sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+const categoryMeta: Record<'ai' | 'funding' | 'strategy', { label: string; badgeClass: string }> = {
+  ai: { label: 'AI Insights', badgeClass: 'exec-badge exec-badge-indigo' },
+  funding: { label: 'Merchant Funding', badgeClass: 'exec-badge exec-badge-gold' },
+  strategy: { label: 'Strategy & Growth', badgeClass: 'exec-badge exec-badge-violet' },
+};
+
+const counts = {
+  all: sortedPosts.length,
+  ai: sortedPosts.filter((p) => p.data.category === 'ai').length,
+  funding: sortedPosts.filter((p) => p.data.category === 'funding').length,
+  strategy: sortedPosts.filter((p) => p.data.category === 'strategy').length,
+};
+
+const itemListSchema = {
+  "@type": "ItemList",
+  "name": "Richard McKellar's Blog",
+  "numberOfItems": sortedPosts.length,
+  "itemListElement": sortedPosts.map((post, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "name": post.data.title,
+    "url": `https://mckellar.dev/blog/${post.id}`,
+  })),
+};
 ---
 
 <BaseLayout
-  title="Insights Journal | mckellar.dev — Publications on AI & MCA Operations"
-  description="Thought leadership, workflow audits, and operational scaling guides written by Richard McKellar."
+  title="Richard McKellar's Blog | AI & Commercial Funding"
+  description="Field notes by Richard McKellar on 90-day AI adoption, Fractional CAIO vs FDE builds, CRM integrations, and commercial lending in Morristown, NJ."
   canonicalPath="/blog"
+  ogType="website"
+  itemListSchema={itemListSchema}
 >
-  <div class="w-full flex flex-col gap-8 animate-fade-in">
-    <!-- Blog Nav Header -->
-    <div class="flex items-center justify-between pb-4 border-b border-[var(--color-border)]">
-      <a 
-        href="/"
-        class="flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300 no-underline cursor-pointer transition-colors"
-      >
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+  <div class="w-full flex flex-col gap-10 animate-fade-in">
+    <!-- Top Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a href="/" class="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline no-underline">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
         </svg>
         Back to Home
       </a>
-
       <span class="font-mono text-xs text-on-surface-subtle uppercase tracking-wider">
-        Insights Journal
+        Blog · {sortedPosts.length} Articles
       </span>
     </div>
 
-    <!-- Blog Directory Listing View -->
-    <div class="flex flex-col gap-6">
-      <div class="text-center sm:text-left">
-        <h1 class="font-display font-extrabold text-[28px] sm:text-[34px] leading-tight text-on-surface">
-          Advisory Publications
-        </h1>
-        <p class="text-sm text-on-surface-muted mt-2 max-w-xl">
-          Thought leadership and technical guides exploring machine learning adoption, CRM architecture buildout, and Merchant Cash Advance scaling.
-        </p>
+    <!-- Header & Search / Filter Controls -->
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-8 flex flex-col gap-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div class="flex flex-col gap-2">
+          <p class="exec-kicker">Articles &amp; Notes</p>
+          <h1 class="font-display font-bold text-3xl sm:text-4xl text-on-surface leading-tight">
+            Richard McKellar&apos;s Blog
+          </h1>
+          <p class="text-sm sm:text-base text-on-surface-muted max-w-2xl">
+            Practical notes on 90-day AI adoption, building AI into existing CRMs and ERPs, and scaling commercial funding shops past $100M+.
+          </p>
+        </div>
+
+        <div class="w-full lg:w-72">
+          <label for="blog-search" class="sr-only">Search articles</label>
+          <div class="relative">
+            <svg
+              class="w-4 h-4 text-on-surface-subtle absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input
+              id="blog-search"
+              type="search"
+              placeholder="Search AI, C.A.P., MCA, Whetstone..."
+              class="w-full pl-9 pr-3 py-2.5 rounded-xl text-xs bg-surface border border-[var(--color-border-strong)] text-on-surface placeholder:text-on-surface-subtle focus:outline-none focus:border-accent transition-colors"
+            />
+          </div>
+        </div>
       </div>
 
-      <!-- Filter Tabs (Vanilla CSS/JS) -->
-      <div class="flex flex-wrap gap-2 justify-center sm:justify-start mt-2" id="filter-tabs">
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap gap-2" id="filter-tabs" role="tablist" aria-label="Filter articles by category">
         <button
+          type="button"
           data-filter="all"
-          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-indigo-500/10 border-indigo-500 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.1)]"
+          aria-pressed="true"
+          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-accent text-white border-accent shadow-neon-primary"
         >
-          All Publications
+          All Articles ({counts.all})
         </button>
         <button
+          type="button"
           data-filter="ai"
-          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-black/25 border-white/5 text-on-surface-muted hover:border-white/10 hover:bg-white/5"
+          aria-pressed="false"
+          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-surface border-[var(--color-border)] text-on-surface-muted hover:text-on-surface hover:border-[var(--color-border-strong)]"
         >
-          AI Insights
+          AI Insights ({counts.ai})
         </button>
         <button
+          type="button"
           data-filter="funding"
-          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-black/25 border-white/5 text-on-surface-muted hover:border-white/10 hover:bg-white/5"
+          aria-pressed="false"
+          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-surface border-[var(--color-border)] text-on-surface-muted hover:text-on-surface hover:border-[var(--color-border-strong)]"
         >
-          Merchant Funding
+          Merchant Funding ({counts.funding})
+        </button>
+        <button
+          type="button"
+          data-filter="strategy"
+          aria-pressed="false"
+          class="tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-surface border-[var(--color-border)] text-on-surface-muted hover:text-on-surface hover:border-[var(--color-border-strong)]"
+        >
+          Strategy &amp; Growth ({counts.strategy})
         </button>
       </div>
+    </section>
 
-      <!-- Grid list of articles -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4" id="posts-grid">
-        {sortedPosts.map((post) => (
-          <div 
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="posts-grid">
+      {sortedPosts.map((post) => {
+        const meta = categoryMeta[post.data.category];
+        const searchBlob = [
+          post.data.title,
+          post.data.description,
+          meta.label,
+          post.data.category,
+          ...(post.data.tags || []),
+          ...(post.data.keywords || []),
+        ]
+          .join(' ')
+          .toLowerCase();
+
+        return (
+          <article
             data-category={post.data.category}
-            class="post-card glass-card rounded-2xl p-5 flex flex-col justify-between border-[var(--color-border)] hover:border-indigo-500/20 hover:scale-[1.005] duration-300"
+            data-search={searchBlob}
+            class="post-card exec-bento-card flex flex-col justify-between gap-4"
           >
             <div class="flex flex-col gap-3">
-              <div class="flex items-center gap-2">
-                <span class={`px-2 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider ${
-                  post.data.category === 'ai' 
-                    ? 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/20' 
-                    : 'bg-amber-500/10 text-amber-300 border border-amber-500/20'
-                }`}>
-                  {post.data.category === 'ai' ? 'AI Insights' : 'Merchant Funding'}
-                </span>
-                <span class="text-[10px] text-on-surface-subtle font-mono">{post.data.date}</span>
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <span class={meta.badgeClass}>{meta.label}</span>
+                <span class="text-[11px] text-on-surface-subtle font-mono">{post.data.date}</span>
               </div>
-              <h3 class="font-display font-bold text-base sm:text-lg text-on-surface leading-snug">
-                {post.data.title}
-              </h3>
+              <h2 class="font-display font-bold text-lg text-on-surface leading-snug">
+                <a href={`/blog/${post.id}`} class="hover:text-accent transition-colors no-underline text-on-surface">
+                  {post.data.title}
+                </a>
+              </h2>
               <p class="text-xs sm:text-sm text-on-surface-muted leading-relaxed">
                 {post.data.description}
               </p>
             </div>
 
-            <div class="flex items-center justify-between mt-5 pt-3 border-t border-[var(--color-border)]">
-              <span class="text-[10px] font-mono text-on-surface-subtle">{post.data.readTime}</span>
-              <a 
+            <div class="flex items-center justify-between pt-3 border-t border-[var(--color-border)]">
+              <div class="flex items-center gap-2 text-[11px] font-mono text-on-surface-subtle">
+                <span>{post.data.author}</span>
+                <span>·</span>
+                <span>{post.data.readTime}</span>
+              </div>
+              <a
                 href={`/blog/${post.id}`}
-                class="text-xs font-semibold text-indigo-400 hover:text-indigo-300 flex items-center gap-1 cursor-pointer transition-colors no-underline"
+                class="text-xs font-semibold text-accent hover:underline inline-flex items-center gap-1 no-underline"
               >
                 Read Article
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7m0 0l-7 7m7-7H3" />
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M9 5l7 7-7 7" />
                 </svg>
               </a>
             </div>
-          </div>
-        ))}
-      </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Empty search state -->
+    <div id="posts-empty" class="hidden exec-bento-card text-center py-10">
+      <p class="font-display font-bold text-base text-on-surface">No matching articles found</p>
+      <p class="text-xs text-on-surface-muted mt-1">Try clearing your search query or switching category tabs.</p>
     </div>
   </div>
 
-  <!-- Vanilla JS filtering script -->
+  <!-- Category + SearchAction (?q= / ?category=) Filtering -->
   <script is:inline>
-    const tabs = document.querySelectorAll('#filter-tabs .tab-btn');
-    const cards = document.querySelectorAll('#posts-grid .post-card');
+    (function () {
+      var tabs = document.querySelectorAll('#filter-tabs .tab-btn');
+      var cards = document.querySelectorAll('#posts-grid .post-card');
+      var searchInput = document.getElementById('blog-search');
+      var emptyState = document.getElementById('posts-empty');
 
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Reset tab styles
-        tabs.forEach(t => {
-          t.className = 'tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-black/25 border-white/5 text-on-surface-muted hover:border-white/10 hover:bg-white/5';
-        });
-        
-        // Style selected tab
-        tab.className = 'tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-indigo-500/10 border-indigo-500 text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.1)]';
+      var ACTIVE_CLASSES = 'tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-accent text-white border-accent shadow-neon-primary';
+      var INACTIVE_CLASSES = 'tab-btn py-2 px-4 rounded-xl text-xs font-semibold border transition-all duration-200 cursor-pointer bg-surface border-[var(--color-border)] text-on-surface-muted hover:text-on-surface hover:border-[var(--color-border-strong)]';
 
-        const filter = tab.getAttribute('data-filter');
+      var activeCategory = 'all';
+      var queryText = '';
 
-        // Show/hide cards
-        cards.forEach(card => {
-          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+      function applyFilters() {
+        var visibleCount = 0;
+        var q = queryText.trim().toLowerCase();
+
+        cards.forEach(function (card) {
+          var cat = card.getAttribute('data-category') || '';
+          var haystack = card.getAttribute('data-search') || '';
+          var matchesCategory = activeCategory === 'all' || cat === activeCategory;
+          var matchesSearch = !q || haystack.indexOf(q) !== -1;
+
+          if (matchesCategory && matchesSearch) {
             card.style.display = 'flex';
+            visibleCount++;
           } else {
             card.style.display = 'none';
           }
         });
+
+        if (emptyState) {
+          if (visibleCount === 0) {
+            emptyState.classList.remove('hidden');
+          } else {
+            emptyState.classList.add('hidden');
+          }
+        }
+      }
+
+      function selectCategory(cat) {
+        activeCategory = cat;
+        tabs.forEach(function (tab) {
+          var isMatch = tab.getAttribute('data-filter') === cat;
+          tab.className = isMatch ? ACTIVE_CLASSES : INACTIVE_CLASSES;
+          tab.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+        });
+        applyFilters();
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          selectCategory(tab.getAttribute('data-filter') || 'all');
+        });
       });
-    });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+          queryText = e.target.value || '';
+          applyFilters();
+        });
+      }
+
+      // Initialize from URL query parameters (?q= for SearchAction and ?category=)
+      var params = new URLSearchParams(window.location.search);
+      var initialQ = params.get('q');
+      var initialCat = params.get('category');
+
+      if (initialQ && searchInput) {
+        searchInput.value = initialQ;
+        queryText = initialQ;
+      }
+      if (initialCat && ['all', 'ai', 'funding', 'strategy'].indexOf(initialCat) !== -1) {
+        selectCategory(initialCat);
+      } else {
+        applyFilters();
+      }
+    })();
   </script>
 </BaseLayout>

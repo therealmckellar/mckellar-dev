@@ -1,16 +1,175 @@
+# robots.txt for https://mckellar.dev
+# Allow full indexing of public executive, advisory, and blog content across search and AI crawlers.
+# Per RFC 9309, named User-agent groups do not inherit User-agent: * directives, so all disallows are repeated per group.
+
 User-agent: *
 Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Googlebot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
 
 User-agent: GPTBot
 Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: CCBot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: YouBot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /email-logs
+Disallow: /email-logs.php
+Disallow: /links
+Disallow: /links.php
+Disallow: /api/
+Disallow: /outlook/
+Disallow: /variants/
 
 Sitemap: https://mckellar.dev/sitemap-index.xml

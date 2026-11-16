@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ventures = [
+  {
+    name: "My Commercial Funding",
+    role: "Chief Revenue Officer (CRO)",
+    status: "Current Executive Leadership",
+    badgeClass: "exec-badge-gold",
+    cardClass: "exec-bento-card-gold",
+    sector: "Commercial Lending Marketplace & MCA Platform",
+    url: "https://mycommercialfunding.com",
+    external: true,
+    summary:
+      "Premium commercial lending and Merchant Cash Advance (MCA) platform where Richard McKellar directs sales pipelines, commission systems, renewal cycles, and syndication network operations.",
+    highlights: [
+      "Sales pipeline architecture & ISO conversion velocity",
+      "Automated commission routing & renewal cycle management",
+      "Syndication partner network & underwriting coordination",
+    ],
+    ctaLabel: "Visit My Commercial Funding",
+    ctaHref: "https://mycommercialfunding.com",
+  },
+  {
+    name: "The Institute for AI Adoption",
+    role: "Founder & Chief AI Officer",
+    status: "Current Venture",
+    badgeClass: "exec-badge-violet",
+    cardClass: "exec-bento-card-violet",
+    sector: "Enterprise & Government AI Adoption Facilitation",
+    url: "https://mckellar.dev/institute-for-ai-adoption",
+    external: false,
+    summary:
+      "Richard McKellar's venture facilitating operational AI adoption inside mid-market companies and government agencies through the proprietary 90-day C.A.P.™ Operating Model (Council, Align, Perform).",
+    highlights: [
+      "Internal Executive AI Council stand-up (not an external cert body)",
+      "Governance charters, risk frameworks & CFO decision gates",
+      "Workforce enablement & full internal ownership transfer",
+    ],
+    ctaLabel: "Explore The Institute",
+    ctaHref: "/institute-for-ai-adoption",
+  },
+  {
+    name: "McKellar.dev — Fractional CAIO & Fractional FDE",
+    role: "Principal AI Advisor & Forward Deployed Engineer",
+    status: "Current Advisory Practice",
+    badgeClass: "exec-badge-indigo",
+    cardClass: "exec-bento-card-indigo",
+    sector: "Executive AI Strategy, Agent Engineering & Capital Advisory",
+    url: "https://mckellar.dev",
+    external: false,
+    summary:
+      "Morristown, NJ-based advisory hub combining Fractional Chief AI Officer leadership (from $5K / 90-day cycle) with hands-on Fractional FDE agent builds on existing tech stacks ($999 AI Audit through $12K–$25K/mo embedded retainers) and Capital & Advisory.",
+    highlights: [
+      "Fractional CAIO strategy & Fractional FDE stack implementation",
+      "Integrations across Salesforce, NetSuite, HubSpot, SAP & custom APIs",
+      "Direct lending setup, brokerage scaling & borrower loan offer reviews",
+    ],
+    ctaLabel: "Compare CAIO vs FDE",
+    ctaHref: "/fractional-caio-vs-fde",
+  },
+  {
+    name: "Whetstone Holdings (Everest Funding, Vader Funding, Granite Mountain Funding)",
+    role: "Former Vice President & Executive Board Member",
+    status: "Historical Executive Tenure",
+    badgeClass: "",
+    cardClass: "",
+    sector: "Direct MCA & Revenue-Based Financing Platform",
+    url: "https://mckellar.dev/blog/richard-mckellar-whetstone-everest-lessons-scaling-100m",
+    external: false,
+    summary:
+      "Prior senior executive and board role at Whetstone Holdings, operator of DBA lending brands Everest Funding (Everest Business Funding), Vader Funding, and Granite Mountain Funding—contributing to $100M+ personally funded MCA/RBF transactions.",
+    highlights: [
+      "Proprietary risk grading & predictive underwriting modeling",
+      "Clean ledger integration & multi-brand DBA channel governance",
+      "ISO distribution scaling & direct funding platform operations",
+    ],
+    ctaLabel: "Read Whetstone & Everest Lessons",
+    ctaHref: "/blog/richard-mckellar-whetstone-everest-lessons-scaling-100m",
+  },
+  {
+    name: "Robbi Promotional",
+    role: "Executive Affiliation",
+    status: "Verified Affiliation",
+    badgeClass: "exec-badge-teal",
+    cardClass: "",
+    sector: "Branded Merchandise, Promotional Products & Apparel",
+    url: "https://robbipromotional.com",
+    external: true,
+    summary:
+      "Commercial affiliation in branded corporate merchandise, custom apparel, and promotional product distribution—informing Richard's real-world operational perspective on quoting, ordering, and distribution automation.",
+    highlights: [
+      "Branded corporate merchandise & custom apparel operations",
+      "Distributor quoting & order-to-fulfillment workflow insight",
+      "Documented organizational affiliation on mckellar.dev",
+    ],
+    ctaLabel: "Visit Robbi Promotional",
+    ctaHref: "https://robbipromotional.com",
+  },
+  {
+    name: "Fathom Realty",
+    role: "Verified Affiliation",
+    status: "Verified Affiliation",
+    badgeClass: "exec-badge-emerald",
+    cardClass: "exec-bento-card-emerald",
+    sector: "Real Estate Brokerage Affiliation",
+    url: "https://mckellar.dev/richard-mckellar",
+    external: false,
+    summary:
+      "Documented real estate sector affiliation complementing Richard McKellar's commercial finance and real-economy operating background across New Jersey and regional markets.",
+    highlights: [
+      "Real estate industry domain grounding",
+      "Lead triage, CRM & dispatch workflow insight for property teams",
+      "Part of Richard McKellar's verified multi-venture profile",
+    ],
+    ctaLabel: "View Full Profile",
+    ctaHref: "/richard-mckellar",
+  }
+];
+
+const faqs = [
+  {
+    q: "What companies is Richard McKellar currently leading?",
+    a: "Richard McKellar currently serves as Chief Revenue Officer (CRO) at My Commercial Funding, Founder & Chief AI Officer of The Institute for AI Adoption, and runs his Fractional CAIO, Fractional FDE, and Capital & Advisory consulting practice at mckellar.dev."
+  },
+  {
+    q: "What was Richard McKellar's relationship to Whetstone Holdings and Everest Funding?",
+    a: "Richard McKellar previously served as Vice President and Executive Board Member at Whetstone Holdings, which operated alternative lending brands including Everest Funding (Everest Business Funding), Vader Funding, and Granite Mountain Funding. Across his career, he personally funded over $100M+ in MCA and RBF transactions."
+  },
+  {
+    q: "Are Robbi Promotional and Fathom Realty affiliated with Richard McKellar?",
+    a: "Yes. Both Robbi Promotional (robbipromotional.com) and Fathom Realty are active business affiliations for Richard McKellar."
+  },
+  {
+    q: "Can companies engage Richard McKellar through mckellar.dev for advisory or AI builds?",
+    a: "Yes. Organizations across Morristown NJ, NYC, FL, CT, MA, MD, and globally can book a $999 AI Audit, launch a 90-day Fractional CAIO cycle via The Institute for AI Adoption, retain him as a Fractional FDE, or engage Capital & Advisory for lending operations."
+  }
+];
+
+const itemListSchema = {
+  "@type": "ItemList",
+  "@id": "https://mckellar.dev/ventures#itemlist",
+  "name": "Richard McKellar — Ventures, Executive Roles & Affiliations",
+  "description": "Verified companies, leadership roles, historical executive tenure, and affiliations of Richard McKellar in Morristown, NJ.",
+  "numberOfItems": ventures.length,
+  "itemListElement": ventures.map((v, i) => ({
+    "@type": "ListItem",
+    "position": i + 1,
+    "item": {
+      "@type": "Organization",
+      "name": v.name,
+      "url": v.url,
+      "description": `${v.role} — ${v.summary}`
+    }
+  }))
+};
+
+const faqSchema = {
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((item) => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+---
+
+<BaseLayout
+  title="Richard McKellar Ventures | Funding, AI & Advisory"
+  description="Richard McKellar's companies and roles: My Commercial Funding (CRO), The Institute for AI Adoption, mckellar.dev, and former VP at Whetstone Holdings."
+  canonicalPath="/ventures"
+  keywords="Richard McKellar Ventures, My Commercial Funding Richard McKellar, The Institute for AI Adoption, Whetstone Holdings Richard McKellar, Everest Funding, Robbi Promotional, Fathom Realty, mckellar.dev"
+  breadcrumbs={[
+    { name: "Richard McKellar", path: "/" },
+    { name: "Ventures & Leadership", path: "/ventures" },
+  ]}
+  itemListSchema={itemListSchema}
+  faqSchema={faqSchema}
+>
+  <div class="w-full flex flex-col gap-12 sm:gap-16 animate-fade-in">
+    <!-- Context Header -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[var(--color-border)]">
+      <a
+        href="/richard-mckellar"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Richard McKellar Profile
+      </a>
+      <span class="exec-badge exec-badge-gold">
+        Companies &amp; Ventures
+      </span>
+    </div>
+
+    <!-- 1. Hero -->
+    <section class="exec-bento-card exec-grid-bg p-6 sm:p-10 flex flex-col gap-5">
+      <p class="exec-kicker">Companies &amp; Roles · Morristown, New Jersey</p>
+      <h1 class="font-display font-bold text-[34px] sm:text-[48px] leading-[1.06] tracking-tight text-on-surface text-glow-primary max-w-4xl">
+        Richard McKellar&apos;s Ventures &amp; Leadership Roles
+      </h1>
+      <p class="text-base sm:text-lg text-on-surface-muted max-w-3xl leading-relaxed">
+        An overview of the companies <strong class="text-on-surface">Richard McKellar</strong> runs, founded, advises, and helped build—across commercial lending, practical AI adoption, custom engineering, and real-world operating businesses.
+      </p>
+      <div class="flex flex-wrap gap-3 pt-1">
+        <button
+          type="button"
+          data-inquiry-subject="Ventures & Partnership Inquiry"
+          data-inquiry-source="ventures-hero"
+          class="exec-btn-primary"
+        >
+          Discuss a Project or Partnership
+        </button>
+        <a href="/case-studies" class="exec-btn-secondary">
+          See Case Studies
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. Portfolio Grid -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Companies</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Current Roles, Past Leadership &amp; Affiliations
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {ventures.map((v) => (
+          <article class={`exec-bento-card ${v.cardClass} flex flex-col justify-between gap-5`}>
+            <div class="flex flex-col gap-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class={`exec-badge ${v.badgeClass}`}>{v.status}</span>
+                <span class="font-mono text-[10.5px] uppercase tracking-wider text-on-surface-subtle">
+                  {v.sector}
+                </span>
+              </div>
+
+              <div>
+                <h3 class="font-display font-bold text-xl text-on-surface leading-snug">
+                  {v.name}
+                </h3>
+                <p class="font-mono text-xs text-indigo-600 dark:text-indigo-400 mt-1 uppercase tracking-wider">
+                  {v.role}
+                </p>
+              </div>
+
+              <p class="text-sm text-on-surface-muted leading-relaxed">
+                {v.summary}
+              </p>
+
+              <ul class="flex flex-col gap-1.5 pt-1">
+                {v.highlights.map((h) => (
+                  <li class="flex items-start gap-2 text-xs text-on-surface-muted leading-relaxed">
+                    <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{h}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--color-border)] flex items-center justify-between gap-3">
+              <a
+                href={v.ctaHref}
+                target={v.external ? "_blank" : undefined}
+                rel={v.external ? "noopener noreferrer" : undefined}
+                class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline no-underline inline-flex items-center gap-1"
+              >
+                {v.ctaLabel}
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+              <button
+                type="button"
+                data-inquiry-subject={`Inquiry regarding ${v.name}`}
+                data-inquiry-source={`ventures-${v.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
+                class="text-[11px] font-mono uppercase tracking-wider text-on-surface-subtle hover:text-on-surface bg-transparent border-0 cursor-pointer"
+              >
+                Inquire →
+              </button>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. How the Ventures Connect -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Cross-Venture Advantage</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Why Active Operating Experience Matters in AI Advisory
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-amber-700 dark:text-amber-400 font-bold uppercase tracking-wider">01 · Capital Reality</span>
+          <h3 class="font-display font-bold text-base text-on-surface">P&amp;L &amp; Risk Accountability</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Running CRO operations at My Commercial Funding and board-level risk oversight at Whetstone Holdings keeps every AI recommendation tied to revenue velocity and credit loss control.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">02 · Governance Discipline</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Repeatable 90-Day C.A.P.™</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            The Institute for AI Adoption translates complex AI capabilities into Executive AI Councils, clear decision gates, and auditable ROI that CFOs and boards can defend.
+          </p>
+        </div>
+        <div class="glass-card rounded-xl p-5 flex flex-col gap-2">
+          <span class="font-mono text-xs text-emerald-700 dark:text-emerald-400 font-bold uppercase tracking-wider">03 · Production Stacks</span>
+          <h3 class="font-display font-bold text-base text-on-surface">Zero Rip-and-Replace</h3>
+          <p class="text-xs text-on-surface-muted leading-relaxed">
+            Real-world exposure across lending platforms, merch quoting, and brokerage CRMs informs Fractional FDE builds on top of Salesforce, NetSuite, HubSpot, and custom APIs.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FAQs -->
+    <section class="flex flex-col gap-6">
+      <div>
+        <p class="section-label mb-2">Verification FAQ</p>
+        <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+          Questions on Richard McKellar's Ventures
+        </h2>
+      </div>
+      <div class="exec-faq-list">
+        {faqs.map((item, idx) => (
+          <details class="exec-faq-item" open={idx === 0}>
+            <summary class="exec-faq-trigger">{item.q}</summary>
+            <div class="exec-faq-panel">{item.a}</div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. CTA -->
+    <section class="exec-bento-card exec-bento-card-gold flex flex-col items-center text-center gap-4 py-8 px-6">
+      <h2 class="font-display font-bold text-2xl sm:text-3xl text-on-surface">
+        Connect Regarding Commercial Lending or AI Deployment
+      </h2>
+      <p class="text-sm text-on-surface-muted max-w-xl">
+        Reach Richard McKellar in Morristown, NJ for direct lending advisory, Fractional CAIO leadership, or Fractional FDE implementation.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 pt-1">
+        <a
+          href="https://calendar.mckellar.dev/richard/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="exec-btn-primary"
+        >
+          Schedule 30-Min Call
+        </a>
+        <button
+          type="button"
+          data-inquiry-subject="Ventures Advisory Inquiry"
+          data-inquiry-source="ventures-bottom"
+          class="exec-btn-secondary"
+        >
+          Send Direct Inquiry
+        </button>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
