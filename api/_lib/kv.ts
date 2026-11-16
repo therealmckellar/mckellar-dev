@@ -247,6 +247,13 @@ function getMemoryMock(command: unknown[]): any {
     return null;
 }
 
+/** Pixel hits on the same email from the same source within this window count as one open. */
+const OPEN_DUPLICATE_WINDOW_MS = 60 * 1000;
+
+function isImageProxyUA(userAgent: string | undefined): boolean {
+    return /GoogleImageProxy|googleapis|YahooMailProxy/i.test(userAgent || '');
+}
+
 const FEED_KEY = 'retina:feed';
 const FEED_MAX_ITEMS = 500;
 
@@ -467,32 +474,24 @@ export async function registerOpenEvent(event: OpenEvent): Promise<RegisterOpenR
         os: uaInfo.os,
     };
 
-    const isGmailProxy = event.user_agent.includes('GoogleImageProxy') || event.user_agent.includes('googleapis');
-    if (isGmailProxy) {
-        const proxyCheckJson = await runRedisCommand(['HGET', 'retina:opens', event.uid]);
-        const proxyOpens: OpenEvent[] = proxyCheckJson ? JSON.parse(proxyCheckJson) : [];
-        if (proxyOpens.length > 0) {
-            return {
-                isFirstOpen: false,
-                isOpenSpike: false,
-                isRevival: false,
-                openCount: proxyOpens.length,
-            };
-        }
-    }
-
     const currentJson = await runRedisCommand(['HGET', 'retina:opens', event.uid]);
     const opens: OpenEvent[] = currentJson ? JSON.parse(currentJson) : [];
     const isFirstOpen = opens.length === 0;
 
+    // Collapse repeat fetches of the SAME open (mail clients often load the pixel 2-3x
+    // per render; Gmail's image proxy bursts). Anything outside the window is a real
+    // reopen and is recorded + alerted — that is what makes per-open alerts possible.
+    // Gmail proxy requests come from rotating Google IPs, so they match on proxy UA instead.
     if (!isFirstOpen) {
-        const fiveMinAgo = Date.now() - 5 * 60 * 1000;
+        const windowStart = Date.now() - OPEN_DUPLICATE_WINDOW_MS;
+        const viaProxy = isImageProxyUA(event.user_agent);
         const isDuplicate = opens.some((existing) => {
-            const existingTime = new Date(existing.timestamp).getTime();
-            return existing.ip_address === event.ip_address && existingTime > fiveMinAgo;
+            if (new Date(existing.timestamp).getTime() <= windowStart) return false;
+            return existing.ip_address === event.ip_address || (viaProxy && isImageProxyUA(existing.user_agent));
         });
         if (isDuplicate) {
             return {
+                recorded: false,
                 isFirstOpen: false,
                 isOpenSpike: false,
                 isRevival: false,
@@ -567,6 +566,7 @@ export async function registerOpenEvent(event: OpenEvent): Promise<RegisterOpenR
     }
 
     return {
+        recorded: true,
         isFirstOpen,
         isOpenSpike,
         isRevival,

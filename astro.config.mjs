@@ -3,7 +3,7 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 
-const EXCLUDED_SITEMAP_PATHS = new Set(['/email-logs', '/links']);
+const EXCLUDED_SITEMAP_PATHS = new Set(['/email-logs', '/links', '/404']);
 
 const PILLAR_PATHS = new Set([
   '/richard-mckellar',

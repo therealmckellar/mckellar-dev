@@ -160,6 +160,10 @@ function onMessageSendHandler(event) {
 
             item.to.getAsync(function (toResult) {
                 var recipientEmails = 'Unknown';
+                // Display names in the same order as the addresses, so open alerts can
+                // say "Jane Smith" instead of a bare address. `|`-separated because names
+                // can contain commas ("Smith, Jane").
+                var recipientNames = '';
                 if (
                     toResult.status === Office.AsyncResultStatus.Succeeded &&
                     toResult.value &&
@@ -170,6 +174,12 @@ function onMessageSendHandler(event) {
                             return r.emailAddress || r.displayName || 'Unknown';
                         })
                         .join(', ');
+                    recipientNames = toResult.value
+                        .map(function (r) {
+                            return (r.displayName || '').replace(/\|/g, ' ');
+                        })
+                        .join('|');
+                    if (!recipientNames.replace(/\|/g, '')) recipientNames = '';
                 }
 
                 var uid = 'm-' + Date.now();
@@ -182,6 +192,7 @@ function onMessageSendHandler(event) {
                     encodeURIComponent(uid) +
                     '&r=' +
                     encodeURIComponent(recipientEmails) +
+                    (recipientNames ? '&n=' + encodeURIComponent(recipientNames) : '') +
                     '&s=' +
                     encodeURIComponent(subject) +
                     '&src=outlook' +

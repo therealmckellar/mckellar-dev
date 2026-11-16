@@ -1,4 +1,4 @@
-/* ── Sovereign Executive Inquiry Modal (mounted once in BaseLayout) ─────────── */
+/* ── Inquiry Modal (mounted once in BaseLayout) ─────────── */
 .inquiry-overlay {
   position: fixed;
   inset: 0;

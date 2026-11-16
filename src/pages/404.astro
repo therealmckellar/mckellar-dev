@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Richard McKellar"
+  description="The page you are looking for does not exist or has moved. Explore Richard McKellar's profile, AI advisory practices, or blog."
+  canonicalPath="/404"
+  noindex={true}
+>
+  <div class="w-full flex flex-col items-center justify-center min-h-[60vh] text-center gap-8 py-12 animate-fade-in">
+    <div class="exec-bento-card exec-grid-bg p-8 sm:p-12 max-w-2xl w-full flex flex-col items-center gap-6">
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center border border-indigo-400/30 shadow-neon-primary">
+        <span class="font-mono text-xl text-white font-bold">404</span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span class="exec-badge exec-badge-indigo w-fit mx-auto">Error 404</span>
+        <h1 class="font-display font-bold text-3xl sm:text-4xl text-on-surface">
+          Page Not Found
+        </h1>
+        <p class="text-sm sm:text-base text-on-surface-muted max-w-md mx-auto leading-relaxed">
+          The link you followed may be broken or the page may have been moved. Here are the best places to go:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full text-left pt-2">
+        <a href="/" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1 hover:border-accent transition-colors">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Home</span>
+          <span class="font-display font-bold text-sm text-on-surface">Main Advisory Hub →</span>
+          <span class="text-xs text-on-surface-muted">AI, funding, and venture overview</span>
+        </a>
+
+        <a href="/richard-mckellar" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1 hover:border-accent transition-colors">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Profile</span>
+          <span class="font-display font-bold text-sm text-on-surface">Richard McKellar Bio →</span>
+          <span class="text-xs text-on-surface-muted">Work history, timeline, and verified roles</span>
+        </a>
+
+        <a href="/fractional-caio" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1 hover:border-accent transition-colors">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-violet-600 dark:text-violet-400">Services</span>
+          <span class="font-display font-bold text-sm text-on-surface">Fractional CAIO &amp; FDE →</span>
+          <span class="text-xs text-on-surface-muted">90-day AI operating plans and stack builds</span>
+        </a>
+
+        <a href="/blog" class="glass-card rounded-xl p-4 no-underline flex flex-col gap-1 hover:border-accent transition-colors">
+          <span class="font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">Articles</span>
+          <span class="font-display font-bold text-sm text-on-surface">Blog &amp; Field Notes →</span>
+          <span class="text-xs text-on-surface-muted">AI adoption guides and commercial funding</span>
+        </a>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-[var(--color-border)] w-full">
+        <a href="/" class="exec-btn-primary no-underline">
+          Back to Home
+        </a>
+        <button
+          type="button"
+          data-inquiry-subject="Page Inquiry (404)"
+          data-inquiry-source="404-page"
+          class="exec-btn-secondary"
+        >
+          Send a Message
+        </button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

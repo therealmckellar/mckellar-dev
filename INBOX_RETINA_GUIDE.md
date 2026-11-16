@@ -69,7 +69,7 @@ Every tracked email stores a `senderEmail` field so Inbox Retina knows which mai
 When a recipient opens your email (`/api/pixel`) or clicks a tracked link (`/api/l`):
 1. Inbox Retina looks up the original sent email record by `uid` (`getSentEmailByUid(uid)`).
 2. It reads `sentEmail.senderEmail` (the exact address that sent the email).
-3. Email alerts (`🔔 FIRST OPEN`, `👀 REOPENED`, `🔥 HOT PROSPECT SPIKE`, `⚡ EMAIL REVIVED`, `🔗 LINK CLICKED`, and `⏰ FOLLOW-UP REMINDER`) are delivered directly to **`sentEmail.senderEmail`** (and to your `ntfy` push topic if configured).
+3. Alerts are delivered directly to **`sentEmail.senderEmail`** (and to your `ntfy` push topic if configured). Opens work like Mailtrack: **every real open sends exactly one alert** ("🔔/👀/🔥/⚡ Jane Smith opened "Subject" (Open #N)") naming who opened it, which open it was, and the device and location. First open, reopen, hot spike (3+ opens in 10 min) and revival (reopen after 72h) are labels on that single alert. `🔗 LINK CLICKED` and `⏰ FOLLOW-UP REMINDER` are separate alerts.
 4. If an older or ad-hoc pixel has no `senderEmail` attached, alerts fall back to `RETINA_ALERT_EMAIL` / `richard@mckellar.dev`.
 
 ---
@@ -77,11 +77,12 @@ When a recipient opens your email (`/api/pixel`) or clicks a tracked link (`/api
 ### E. How Recipient Email Addresses & Self-Opens Are Handled
 - **Single or Multiple Recipients**:
   - In **Create Track** or **Quick Compose**, you enter the recipient's email (and optional name).
-  - In **Outlook**, if an email is addressed to multiple `To:` recipients, the add-in joins all recipient addresses (`alice@client.com, bob@client.com`) on the tracking record.
+  - In **Outlook**, if an email is addressed to multiple `To:` recipients, the add-in joins all recipient addresses (`alice@client.com, bob@client.com`) on the tracking record, and passes their display names in the pixel's `n` param (`|`-separated) so alerts show names.
+  - One pixel goes to every recipient of a message, so for a multi-recipient email an alert says "one of N recipients" — the same limit Mailtrack has. Device and location help tell them apart.
 - **Automatic Self-Open Protection (3 Layers)**:
   1. **Sender IP Matching**: When an email is registered as sent, Inbox Retina records `senderIp`. If the tracking pixel is loaded from the same `senderIp`, it serves the 1×1 GIF silently without logging a false open.
   2. **60-Second Compose/Sent Preview Window**: Any pixel load occurring within `60 seconds` of the email being registered as sent is ignored (prevents Gmail/Outlook compose and Sent-folder rendering from counting as an open).
-  3. **5-Minute Same-IP Deduplication & Gmail Proxy Handling**: Repeated pixel loads from the same IP within 5 minutes are deduplicated so a single read doesn't inflate open counts.
+  3. **60-Second Repeat-Fetch Collapse & Gmail Proxy Handling**: Repeated pixel loads of the same email within 60 seconds from the same IP (or from Gmail/Yahoo's image proxy, whose IPs rotate) count as one open and send no alert. A load after that is a real reopen and is alerted. Gmail opens show "location hidden", since the IP belongs to Google.
 
 ---
 

@@ -14,7 +14,7 @@ interface Inquiry {
   source?: string;
 }
 
-const EMAIL_RE = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function env(key: string, fallback = ''): string {
   return (process.env[key] ?? fallback) || '';

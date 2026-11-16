@@ -96,6 +96,8 @@ export interface FeedEvent {
 }
 
 export interface RegisterOpenResult {
+    /** false when this request was collapsed as a repeat fetch of an open already recorded — never alert on it */
+    recorded: boolean;
     isFirstOpen: boolean;
     isOpenSpike: boolean;
     isRevival: boolean;
